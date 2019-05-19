@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FQB-Ha-Mb5">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="5mS-NZ-yLf">
+                                <rect key="frame" x="20" y="108" width="374" height="685"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yP-D3-gtK">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                        <state key="normal" title="Scan"/>
+                                        <connections>
+                                            <segue destination="pBm-eZ-lbE" kind="show" identifier="scanner" id="X2P-pm-lHL"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bUF-Pq-sSL">
+                                        <rect key="frame" x="0.0" y="116" width="374" height="54.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUA-LT-oeg">
+                                        <rect key="frame" x="0.0" y="231.5" width="374" height="55"/>
+                                        <state key="normal" title="Ajouter"/>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bdc-kc-f36"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sk9-9Z-qxb">
+                                        <rect key="frame" x="0.0" y="347.5" width="374" height="37.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auteur" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-hK-FyK">
+                                        <rect key="frame" x="0.0" y="446" width="374" height="239"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5mS-NZ-yLf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="RwH-B5-Szl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5mS-NZ-yLf" secondAttribute="bottom" constant="20" id="o5N-eW-Q6D"/>
+                            <constraint firstItem="5mS-NZ-yLf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="p5C-Yh-i92"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5mS-NZ-yLf" secondAttribute="trailing" constant="20" id="umy-0f-1e3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="U4K-iv-oIN"/>
+                    <connections>
+                        <outlet property="author" destination="Kkq-hK-FyK" id="az5-WC-IOj"/>
+                        <outlet property="bookTitle" destination="Sk9-9Z-qxb" id="usQ-mK-Rr6"/>
+                        <outlet property="isbnInput" destination="bUF-Pq-sSL" id="7mM-vT-jKc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-484" y="800"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="Ciq-JG-hzl">
+            <objects>
+                <viewController id="Ihe-NZ-v2I" customClass="NewsViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6rv-fF-fav" customClass="News">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7AA-xE-5UI"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="jSa-n0-yqo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGz-9f-MlS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-494" y="-629"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="qcB-Zk-MoP">
+            <objects>
+                <viewController id="PSc-ue-5n7" customClass="MapViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rwL-M8-q7d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZOd-Ny-HDP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cba-J3-4vn" firstAttribute="trailing" secondItem="ZOd-Ny-HDP" secondAttribute="trailing" id="RYS-W0-8cg"/>
+                            <constraint firstItem="Cba-J3-4vn" firstAttribute="bottom" secondItem="ZOd-Ny-HDP" secondAttribute="bottom" id="W0p-nC-NgT"/>
+                            <constraint firstItem="ZOd-Ny-HDP" firstAttribute="leading" secondItem="Cba-J3-4vn" secondAttribute="leading" id="oY3-Xw-sqZ"/>
+                            <constraint firstItem="ZOd-Ny-HDP" firstAttribute="top" secondItem="Cba-J3-4vn" secondAttribute="top" id="vf6-pO-Xhh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cba-J3-4vn"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="dJf-t1-CJZ"/>
+                    <connections>
+                        <outlet property="mapView" destination="ZOd-Ny-HDP" id="Srs-Y5-Dlr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qhx-fm-ihw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-484" y="72"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wm9-A5-r5r">
+            <objects>
+                <navigationController id="FQB-Ha-Mb5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Clg-nb-jVp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="AqA-he-DIP" kind="relationship" relationship="rootViewController" id="zbf-Sd-jPv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XXM-0k-lvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2712" y="72"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="OVP-U5-MWe">
+            <objects>
+                <tabBarController id="AqA-he-DIP" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="x88-2o-qRm"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yr1-9N-79a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Ihe-NZ-v2I" kind="relationship" relationship="viewControllers" id="Qay-w7-VaJ"/>
+                        <segue destination="PSc-ue-5n7" kind="relationship" relationship="viewControllers" id="0u0-Uh-6Go"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="tJO-ZK-8E2"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bth-sh-OZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1803" y="72"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="H1g-c5-w50">
+            <objects>
+                <viewController id="pBm-eZ-lbE" customClass="ScannerViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y9L-gl-mAe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKJ-ui-hwH">
+                                <rect key="frame" x="127.5" y="188" width="159" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UKJ-ui-hwH" firstAttribute="top" secondItem="AnZ-kg-QZE" secondAttribute="top" constant="100" id="Vgy-Tv-t7N"/>
+                            <constraint firstItem="UKJ-ui-hwH" firstAttribute="centerX" secondItem="Y9L-gl-mAe" secondAttribute="centerX" id="cLS-3A-YHx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AnZ-kg-QZE"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iUa-Hz-SYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672" y="800"/>
+        </scene>
+    </scenes>
+</document>
