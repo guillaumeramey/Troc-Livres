@@ -125,9 +125,9 @@
 				A4051E682290F7AA002A5D18 /* Constants.swift */,
 				A4051E7622926241002A5D18 /* Extensions.swift */,
 				A41351152293534500934188 /* Persist.swift */,
-				A4E3CC07228D124A00180F09 /* Book.swift */,
 				A4E3CC05228D0FB800180F09 /* BookService.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
+				A4E3CC07228D124A00180F09 /* Book.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

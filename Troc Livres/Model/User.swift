@@ -10,77 +10,57 @@ import Foundation
 import MapKit
 import Firebase
 
-class User: NSObject, MKAnnotation {
+struct User: Codable {
     let uid: String
     let name: String
-    var coordinate: CLLocationCoordinate2D
+    let latitude: Double
+    let longitude: Double
+    let books: [Book]
+}
 
-    init(uid: String, name: String, coordinate: CLLocationCoordinate2D) {
-        self.name = name
-        self.uid = uid
+class UserPin: NSObject, MKAnnotation {
+    let title: String?
+    let subtitle: String?
+    let coordinate: CLLocationCoordinate2D
+
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.subtitle = subtitle
         self.coordinate = coordinate
 
         super.init()
     }
-
-    var title: String? {
-        return name
-    }
-
-    static var all: [User] {
-        let allUsers = [User]()
-        let db = Database.database().reference()
-
-        db.observeSingleEvent(of: .childAdded) { (snapshot) in
-            guard let users = snapshot.value as? NSDictionary else { return }
-            print(users)
-        }
-
-        // Get users
-//        db.child("users").observeSingleEvent(of: .childAdded) { (snapshot) in
+}
+//    static var all: [User] {
+//        let allUsers = [User]()
+//        let db = Database.database().reference()
+//
+//        db.observeSingleEvent(of: .childAdded) { (snapshot) in
 //            guard let users = snapshot.value as? NSDictionary else { return }
-//            let name = users["name"] as! String
-//            let coordinate = users["coordinate"]
-//
-//            print(name)
-//            print(coordinate)
+//            print(users)
 //        }
-
-        return allUsers
-
-//        let userID = Auth.auth().currentUser?.uid
-//        db.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-//            // Get user value
-//            let value = snapshot.value as? NSDictionary
-//            let username = value?["username"] as? String ?? ""
-//            let user = User(username: username)
+//        return allUsers
+//    }
 //
-//            // ...
-//        }) { (error) in
-//            print(error.localizedDescription)
+//    private var userBooks = [Book]()
+//
+//    var subtitle: String? {
+//        return "\(userBooks.count) livres"
+//    }
+//
+//    func getBooks() -> [Book] {
+//        guard let userUID = Auth.auth().currentUser?.uid else { return userBooks }
+//        let booksDB = Database.database().reference().child("users/\(userUID)/books")
+//
+//        booksDB.observe(.childAdded) { (snapshot) in
+//            let snapshotValue = snapshot.value as! Dictionary<String, String>
+//
+//            let title = snapshotValue["title"]!
+//            let author = snapshotValue["author"]!
+//            let book = Book(title: title, author: author)
+//
+//            self.userBooks.append(book)
 //        }
-
-    }
-
-    private var userBooks = [Book]()
-
-    var subtitle: String? {
-        return "\(userBooks.count) livres"
-    }
-
-    func getBooks() -> [Book] {
-        guard let userUID = Auth.auth().currentUser?.uid else { return userBooks }
-        let booksDB = Database.database().reference().child("users/\(userUID)/books")
-
-        booksDB.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! Dictionary<String, String>
-
-            let title = snapshotValue["title"]!
-            let author = snapshotValue["author"]!
-            let book = Book(title: title, author: author)
-
-            self.userBooks.append(book)
-        }
-        return userBooks
-    }
+//        return userBooks
+//    }
 }
