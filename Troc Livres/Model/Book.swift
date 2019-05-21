@@ -7,22 +7,17 @@
 //
 
 import Foundation
-import MapKit
 
-class Book: NSObject, MKAnnotation {
-    var title: String?
-    var author: String
-    var coordinate: CLLocationCoordinate2D
+enum Category: String {
+    case novel = "Roman"
+    case kids = "Pour enfants"
+    case fantasy = "Fantasy"
+    case detectiveStory = "Policier"
+}
 
-    init(title: String, author: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.author = author
-        self.coordinate = coordinate
-
-        super.init()
-    }
-
-    var subtitle: String? {
-        return author
-    }
+struct Book {
+    let title: String
+    let author: String
+//    let image: String
+//    let category: Category
 }

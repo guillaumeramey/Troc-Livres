@@ -9,22 +9,27 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
 
     let locationManager = CLLocationManager()
-    let regionRadius: CLLocationDistance = 2000
+    let regionRadius: CLLocationDistance = 10000
 
-//    let books: [Book] = []
+    var users: [User] = [User]()
+    var selectedUser: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        users = User.all
+
         checkLocationServices()
 
         mapView.delegate = self
-        mapView.addAnnotations(Constants.books)
+        mapView.addAnnotations(users)
     }
 
     // MARK: - User location
@@ -39,8 +44,6 @@ class MapViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
             checkLocationAuthorization()
-        } else {
-
         }
     }
 
@@ -49,11 +52,11 @@ class MapViewController: UIViewController {
         case .authorizedWhenInUse:
             centerMapViewOnUserLocation()
         case .denied:
-            Alert.present(title: "Accès refusé", message: "Modifiez les paramètres pour autoriser l'accès aux données de localisation", vc: self)
+            Alert.present(title: "Impossible d'accéder aux données de localisation", message: "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.", vc: self)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            Alert.present(title: "Accès refusé", message: "Vous n'avez pas la permission d'accéder aux données de localisation", vc: self)
+            Alert.present(title: "Impossible d'accéder aux données de localisation", message: "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.", vc: self)
         case .authorizedAlways:
             break
         @unknown default:
@@ -71,16 +74,15 @@ class MapViewController: UIViewController {
             centerMapViewOnLocation(location)
         }
     }
-
 }
 
 extension MapViewController: CLLocationManagerDelegate {
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        centerMapViewOnLocation(userLocation)
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let location = locations.last else { return }
+//        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        centerMapViewOnLocation(userLocation)
+//    }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
@@ -90,20 +92,36 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let annotation = annotation as? Book else { return nil }
-
-        let identifier = "Book"
-        var annotationView: MKAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+        guard let annotation = annotation as? User else { return nil }
+        let identifier = "User"
+        var annotationView: MKPinAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
             dequeuedView.annotation = annotation
             annotationView = dequeuedView
         } else {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
+
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+            imageView.image = UIImage(named: "userIcon")
+            imageView.contentMode = .scaleAspectFit
+
+            annotationView.leftCalloutAccessoryView = imageView
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
-        annotationView.image = UIImage(named: "book")
-
         return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let user = view.annotation as? User else { return }
+        selectedUser = user
+        performSegue(withIdentifier: "user", sender: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "user" {
+            let userVC = segue.destination as! UserViewController
+            userVC.user = selectedUser
+        }
     }
 }
