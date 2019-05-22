@@ -7,25 +7,43 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class NewsViewController: UITableViewController {
 
     // MARK: - PROPERTIES
-    private var tableViewData = [Book]()
+    private var books = [Book]()
     private var selectedBook: Book!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        displayBooks()
+    }
+
+    private func displayBooks() {
+        ProgressHUD.show("Récupération des derniers livres")
+        BookManager.getBooks(completion: { (books) in
+            if let books = books {
+                self.books = books
+            }
+            ProgressHUD.dismiss()
+            self.tableView.reloadData()
+        })
     }
 
     // MARK: - Table view datasource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewData.count
+        return books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath)
-        let book = tableViewData[indexPath.row]
+        let book = books[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
         return cell
@@ -33,7 +51,7 @@ class NewsViewController: UITableViewController {
 
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedBook = tableViewData[indexPath.row]
+        selectedBook = books[indexPath.row]
         performSegue(withIdentifier: "fromNewsToBook", sender: self)
     }
 

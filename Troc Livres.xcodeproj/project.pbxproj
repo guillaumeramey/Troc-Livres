@@ -17,12 +17,14 @@
 		A4051E73229245F0002A5D18 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E72229245F0002A5D18 /* UserViewController.swift */; };
 		A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7422925E5B002A5D18 /* BookViewController.swift */; };
 		A4051E7722926241002A5D18 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7622926241002A5D18 /* Extensions.swift */; };
-		A4051E7B2292F5FD002A5D18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4051E7A2292F5FD002A5D18 /* GoogleService-Info.plist */; };
 		A413511022930DA600934188 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413510F22930DA600934188 /* LoginViewController.swift */; };
 		A4135112229336AC00934188 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4135111229336AC00934188 /* AddBookViewController.swift */; };
 		A41351142293516C00934188 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351132293516C00934188 /* ProfileViewController.swift */; };
 		A41351162293534500934188 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351152293534500934188 /* Persist.swift */; };
 		A41351182293701300934188 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351172293701300934188 /* RegisterViewController.swift */; };
+		A413511A2293985100934188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41351192293985100934188 /* GoogleService-Info.plist */; };
+		A413511C22939A8B00934188 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413511B22939A8B00934188 /* UserManager.swift */; };
+		A413511E22948D2800934188 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413511D22948D2800934188 /* BookManager.swift */; };
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
 		A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */; };
 		A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBE9228D0F4400180F09 /* Main.storyboard */; };
@@ -54,12 +56,14 @@
 		A4051E72229245F0002A5D18 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		A4051E7422925E5B002A5D18 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		A4051E7622926241002A5D18 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		A4051E7A2292F5FD002A5D18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A413510F22930DA600934188 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4135111229336AC00934188 /* AddBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
 		A41351132293516C00934188 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A41351152293534500934188 /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
 		A41351172293701300934188 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A41351192293985100934188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A413511B22939A8B00934188 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		A413511D22948D2800934188 /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManager.swift; sourceTree = "<group>"; };
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A4E3CBE2228D0F4400180F09 /* Troc Livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Troc Livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,7 +131,9 @@
 				A41351152293534500934188 /* Persist.swift */,
 				A4E3CC05228D0FB800180F09 /* BookService.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
+				A413511B22939A8B00934188 /* UserManager.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
+				A413511D22948D2800934188 /* BookManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +158,7 @@
 				A41351132293516C00934188 /* ProfileViewController.swift */,
 				A413510F22930DA600934188 /* LoginViewController.swift */,
 				A41351172293701300934188 /* RegisterViewController.swift */,
+				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -183,10 +190,9 @@
 				A4051E5F22909F6E002A5D18 /* View */,
 				A465C9E222909F3E0048D3D5 /* Controller */,
 				A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */,
-				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
 				A4E3CBEC228D0F4500180F09 /* Assets.xcassets */,
 				A4E3CBF1228D0F4500180F09 /* Info.plist */,
-				A4051E7A2292F5FD002A5D18 /* GoogleService-Info.plist */,
+				A41351192293985100934188 /* GoogleService-Info.plist */,
 			);
 			path = "Troc Livres";
 			sourceTree = "<group>";
@@ -285,7 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
-				A4051E7B2292F5FD002A5D18 /* GoogleService-Info.plist in Resources */,
+				A413511A2293985100934188 /* GoogleService-Info.plist in Resources */,
 				A4E3CBED228D0F4500180F09 /* Assets.xcassets in Resources */,
 				A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */,
 			);
@@ -310,10 +316,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -321,10 +327,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableFirebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -384,6 +390,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A413511C22939A8B00934188 /* UserManager.swift in Sources */,
+				A413511E22948D2800934188 /* BookManager.swift in Sources */,
 				A413511022930DA600934188 /* LoginViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,

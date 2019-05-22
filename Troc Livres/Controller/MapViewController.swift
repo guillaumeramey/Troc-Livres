@@ -24,12 +24,17 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        users = User.all
-
         checkLocationServices()
 
         mapView.delegate = self
-        mapView.addAnnotations(users)
+
+        UserManager.getUser(completion: { users in
+            if let users = users {
+                self.users = users
+                self.mapView.addAnnotations(users)
+            }
+        })
+
     }
 
     // MARK: - User location
@@ -101,9 +106,12 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
+            annotationView.animatesDrop = true
 
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            imageView.image = UIImage(named: "userIcon")
+            let reference = Constants.stRef.child("images/\(annotation.uid).jpg")
+            let placeholderImage = UIImage(named: "placeholder.jpg")
+            imageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
             imageView.contentMode = .scaleAspectFit
 
             annotationView.leftCalloutAccessoryView = imageView
