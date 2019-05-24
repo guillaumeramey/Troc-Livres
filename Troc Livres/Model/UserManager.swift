@@ -10,35 +10,80 @@ import Foundation
 import Firebase
 import CoreLocation
 
-class UserManager {
+struct UserManager {
 
-    class func getUser(requestedUserUID: String = "all", completion: @escaping (_ user: [User]?) -> ()) {
+    // Get the current user details
+    static func getUser(_ requestedUid: String, completion: @escaping (_ user: User) -> ()) {
+        var user: User!
+        let userQuery = Constants.Firebase.userRef.child(requestedUid)
+
+        userQuery.observeSingleEvent(of: .value, with: { snapshot in
+            let uid = snapshot.key
+            let value = snapshot.value as! [String: AnyObject]
+
+            if let name = value["name"] as? String,
+                let latitude = value["latitude"] as? Double,
+                let longitude = value["longitude"] as? Double,
+                let numberOfBooks = value["numberOfBooks"] as? Int {
+                user = User(uid: uid, name: name, latitude: latitude, longitude: longitude, numberOfBooks: numberOfBooks)
+            }
+            completion(user)
+        })
+    }
+
+    // Get all users (except the current user) with at least 1 book
+    static func getAllUsers(completion: @escaping (_ user: [User]?) -> ()) {
         var users = [User]()
-        let userQuery: DatabaseQuery
+        let userQuery = Constants.Firebase.userRef
 
-        if requestedUserUID == "all" {
-            userQuery = Constants.userRef
-        } else {
-            userQuery = Constants.userRef.queryOrdered(byChild: "uid").queryEqual(toValue : requestedUserUID)
-        }
-
-        userQuery.observeSingleEvent(of: .value, with: { (snapshot) in
+        userQuery.observeSingleEvent(of: .value, with: { snapshot in
             for child in snapshot.children {
                 let user = (child as! DataSnapshot)
-                let value = user.value as! Dictionary<String, AnyObject>
+                let uid = user.key
+                let value = user.value as! [String: AnyObject]
 
-                guard let uid = value["uid"] as? String else { fatalError() }
-                if uid != Persist.userUID! && requestedUserUID == "all" || requestedUserUID != "all" {
-                    if let name = value["name"] as? String,
-                    let latitude = value["latitude"] as? Double,
-                    let longitude = value["longitude"] as? Double,
-                    let books = value["books"] as? Int {
-                        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                        users.append(User(uid: uid, name: name, coordinate: coordinate, books: books))
+                if let numberOfBooks = value["numberOfBooks"] as? Int, numberOfBooks > 0 {
+                    if uid != Constants.currentUid {
+                        if let name = value["name"] as? String,
+                            let latitude = value["latitude"] as? Double,
+                            let longitude = value["longitude"] as? Double {
+                            users.append(User(uid: uid, name: name, latitude: latitude, longitude: longitude, numberOfBooks: numberOfBooks))
+                        }
                     }
                 }
             }
             completion(users)
         })
+    }
+
+    enum BookCounterAction {
+        case add, remove
+    }
+
+    static func modifyNumberOfBooks(_ action: BookCounterAction) {
+        let userQuery = Constants.Firebase.userRef.child(Constants.currentUid).child("numberOfBooks")
+        userQuery.observeSingleEvent(of: .value) { snapshot in
+            var numberOfBooks = snapshot.value as! Int
+            switch action {
+            case .add:
+                numberOfBooks += 1
+            case .remove:
+                numberOfBooks -= 1
+            }
+            userQuery.setValue(numberOfBooks)
+        }
+    }
+
+    static func deleteUserDetails() {
+        Constants.Firebase.userRef.child(Constants.currentUid).removeValue()
+    }
+
+    static func logout() {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
 }

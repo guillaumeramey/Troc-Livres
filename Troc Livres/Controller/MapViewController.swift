@@ -16,8 +16,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     let locationManager = CLLocationManager()
-    let regionRadius: CLLocationDistance = 10000
-
+    var userLocation = CLLocationCoordinate2D()
+    let radius: CLLocationDistance = 15000
     var users: [User] = [User]()
     var selectedUser: User!
 
@@ -28,13 +28,18 @@ class MapViewController: UIViewController {
 
         mapView.delegate = self
 
-        UserManager.getUser(completion: { users in
+        displayUsersOnMap()
+
+    }
+
+    private func displayUsersOnMap() {
+        UserManager.getAllUsers(completion: { users in
             if let users = users {
-                self.users = users
-                self.mapView.addAnnotations(users)
+                let region = CLCircularRegion.init(center: self.userLocation, radius: self.radius, identifier: "userRegion")
+                self.users = users.filter { region.contains($0.coordinate) }
+                self.mapView.addAnnotations(self.users)
             }
         })
-
     }
 
     // MARK: - User location
@@ -70,7 +75,8 @@ class MapViewController: UIViewController {
     }
 
     func centerMapViewOnLocation(_ location: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: radius, longitudinalMeters: radius)
+        userLocation = location
         mapView.setRegion(region, animated: true)
     }
 
@@ -78,6 +84,10 @@ class MapViewController: UIViewController {
         if let location = locationManager.location?.coordinate {
             centerMapViewOnLocation(location)
         }
+    }
+
+    @IBAction func findMeButtonPressed(_ sender: AnyObject) {
+        centerMapViewOnUserLocation()
     }
 }
 
@@ -109,7 +119,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView.animatesDrop = true
 
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            let reference = Constants.stRef.child("images/\(annotation.uid).jpg")
+            let reference = Constants.Firebase.imageRef.child("images/\(annotation.uid).jpg")
             let placeholderImage = UIImage(named: "placeholder.jpg")
             imageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
             imageView.contentMode = .scaleAspectFit

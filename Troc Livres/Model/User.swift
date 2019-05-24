@@ -11,24 +11,30 @@ import MapKit
 import Firebase
 
 class User: NSObject, MKAnnotation {
+    let uid: String
+    var name: String
+    var latitude: Double
+    var longitude: Double
+    var numberOfBooks: Int
+
+    init(uid: String, name: String, latitude: Double, longitude: Double, numberOfBooks: Int) {
+        self.uid = uid
+        self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
+        self.numberOfBooks = numberOfBooks
+
+        super.init()
+    }
+
+    // MKAnnotation variables
     var title: String? {
         return name
     }
     var subtitle: String? {
-        return nil
-//        return "\(books) livres"
+        return "\(numberOfBooks) livre" + (numberOfBooks > 1 ? "s" : "")
     }
-    let uid: String
-    let name: String
-    let coordinate: CLLocationCoordinate2D
-    var books: Int
-
-    init(uid: String, name: String, coordinate: CLLocationCoordinate2D, books: Int) {
-        self.uid = uid
-        self.name = name
-        self.coordinate = coordinate
-        self.books = books
-
-        super.init()
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

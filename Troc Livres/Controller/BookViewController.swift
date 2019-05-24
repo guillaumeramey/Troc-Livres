@@ -8,6 +8,7 @@
 
 import UIKit
 import ProgressHUD
+import Firebase
 
 class BookViewController: UIViewController {
 
@@ -30,22 +31,25 @@ class BookViewController: UIViewController {
 //            image.load(url: url)
 //        }
 
-        deleteButton.isHidden = book.uid == Persist.userUID ? false : true
+        if book.uid == Auth.auth().currentUser?.uid {
+            deleteButton.isHidden = false
+        } else {
+            deleteButton.isHidden = true
+        }
     }
 
     @IBAction func deleteBook(_ sender: Any) {
-
-        let alert = UIAlertController(title: "Etes-vous sûr de vouloir supprimer ce livre ?", message: "Cette action est irréversible", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "La suppression d'un livre est définitive et irréversible.", message: nil, preferredStyle: .actionSheet)
         let actionDelete = UIAlertAction(title: "Supprimer", style: .destructive, handler: deleteHandler)
         alert.addAction(actionDelete)
         let actionCancel = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
         alert.addAction(actionCancel)
-
         present(alert, animated: true)
     }
 
     private func deleteHandler(alert: UIAlertAction) {
-        BookManager.deleteBook(book: book)
+        BookManager.deleteBook(book)
+        UserManager.modifyNumberOfBooks(.remove)
         self.navigationController?.popViewController(animated: true)
         ProgressHUD.showSuccess("Livre supprimé")
     }

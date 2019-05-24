@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum Category: String {
-    case novel = "Roman"
-    case kids = "Pour enfants"
-    case fantasy = "Fantasy"
-    case detectiveStory = "Policier"
-}
+//enum Category: String {
+//    case novel = "Roman"
+//    case kids = "Pour enfants"
+//    case fantasy = "Fantasy"
+//    case detectiveStory = "Policier"
+//}
 
 struct Book {
     let key: String
@@ -21,6 +21,4 @@ struct Book {
     let title: String
     let author: String
     let condition: String
-//    let image: String
-//    let category: Category
 }

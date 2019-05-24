@@ -26,6 +26,8 @@
 		A413511C22939A8B00934188 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413511B22939A8B00934188 /* UserManager.swift */; };
 		A413511E22948D2800934188 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413511D22948D2800934188 /* BookManager.swift */; };
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
+		A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */; };
+		A4AE8F0F2296520A008DA01B /* UserBooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */; };
 		A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */; };
 		A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBE9228D0F4400180F09 /* Main.storyboard */; };
 		A4E3CBED228D0F4500180F09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBEC228D0F4500180F09 /* Assets.xcassets */; };
@@ -65,6 +67,8 @@
 		A413511B22939A8B00934188 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		A413511D22948D2800934188 /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManager.swift; sourceTree = "<group>"; };
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserSettings.storyboard; sourceTree = "<group>"; };
+		A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksTableViewController.swift; sourceTree = "<group>"; };
 		A4E3CBE2228D0F4400180F09 /* Troc Livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Troc Livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E3CBEA228D0F4400180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,8 +145,9 @@
 		A4051E5F22909F6E002A5D18 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A4E3CBE9228D0F4400180F09 /* Main.storyboard */,
 				A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */,
+				A4E3CBE9228D0F4400180F09 /* Main.storyboard */,
+				A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				A413510F22930DA600934188 /* LoginViewController.swift */,
 				A41351172293701300934188 /* RegisterViewController.swift */,
 				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
+				A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */,
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
 				A413511A2293985100934188 /* GoogleService-Info.plist in Resources */,
 				A4E3CBED228D0F4500180F09 /* Assets.xcassets in Resources */,
@@ -391,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A413511C22939A8B00934188 /* UserManager.swift in Sources */,
+				A4AE8F0F2296520A008DA01B /* UserBooksTableViewController.swift in Sources */,
 				A413511E22948D2800934188 /* BookManager.swift in Sources */,
 				A413511022930DA600934188 /* LoginViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
@@ -431,6 +439,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4AE8F0C229606E1008DA01B /* Base */,
+			);
+			name = UserSettings.storyboard;
+			sourceTree = "<group>";
+		};
 		A4E3CBE9228D0F4400180F09 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
