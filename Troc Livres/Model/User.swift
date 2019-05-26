@@ -15,16 +15,32 @@ class User: NSObject, MKAnnotation {
     var name: String
     var latitude: Double
     var longitude: Double
-    var books: [Book]
+    var books = [Book]()
+    let imageRef: StorageReference
 
-    init(uid: String, name: String, latitude: Double, longitude: Double, books: [Book]) {
-        self.uid = uid
+    init?(from snapshot: DataSnapshot){
+        guard
+            let value = snapshot.value as? [String: AnyObject],
+            let name = value["name"] as? String,
+            let latitude = value["latitude"] as? Double,
+            let longitude = value["longitude"] as? Double
+            else {
+                return nil
+            }
+
+        self.uid = snapshot.key
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
-        self.books = books
 
-        super.init()
+        // Get the user books
+        for snapshotChild in snapshot.childSnapshot(forPath: "books").children {
+            if let book = Book(from: snapshotChild as! DataSnapshot) {
+                self.books.append(book)
+            }
+        }
+
+        self.imageRef = Constants.Firebase.imageRef.child("images/\(uid).jpg")
     }
 
     // MKAnnotation properties
@@ -44,12 +60,14 @@ class User: NSObject, MKAnnotation {
     }
 
     func delete() {
+        Session.user = nil
         Constants.Firebase.userRef.child(uid).removeValue()
     }
 
     static func logout() {
         do {
             try Auth.auth().signOut()
+            Session.user = nil
         }
         catch {
             print(error.localizedDescription)

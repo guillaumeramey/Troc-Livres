@@ -10,16 +10,16 @@ import Foundation
 
 struct Persist {
 
-//    private struct Keys {
-//        static let userUID = "TrocLivresUserUID"
-//    }
-//
-//    static var userUID: String {
-//        get {
-//            return UserDefaults.standard.string(forKey: Keys.userUID)
-//        }
-//        set {
-//            UserDefaults.standard.set(newValue, forKey: Keys.userUID)
-//        }
-//    }
+    private struct Keys {
+        static let userUID = "TrocLivresDistance"
+    }
+
+    static var distance: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: Keys.userUID)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.userUID)
+        }
+    }
 }

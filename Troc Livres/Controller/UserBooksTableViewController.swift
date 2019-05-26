@@ -12,34 +12,25 @@ import Firebase
 class UserBooksTableViewController: UITableViewController {
 
     var selectedBook: Book!
-    var currentUser: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayUser()
     }
 
-    private func displayUser() {
-        guard let currentUid = Auth.auth().currentUser?.uid else { fatalError() }
-
-        UserManager.getUser(currentUid) { user in
-            self.currentUser = user
-
-            print(self.currentUser.books.count)
-
-            self.tableView.reloadData()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentUser == nil ? 0 : currentUser.books.count
+        return Session.user.books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath)
-        let book = currentUser.books[indexPath.row]
+        let book = Session.user.books[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
         return cell
@@ -48,7 +39,7 @@ class UserBooksTableViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedBook = currentUser.books[indexPath.row]
+        selectedBook = Session.user.books[indexPath.row]
         performSegue(withIdentifier: "bookDetail", sender: self)
     }
 
@@ -58,6 +49,7 @@ class UserBooksTableViewController: UITableViewController {
         if segue.identifier == "bookDetail" {
             let bookVC = segue.destination as! BookViewController
             bookVC.book = selectedBook
+            bookVC.user = Session.user
         }
     }
 }

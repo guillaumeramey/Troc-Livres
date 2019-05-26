@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import ProgressHUD
 
 class MapViewController: UIViewController {
 
@@ -17,48 +18,43 @@ class MapViewController: UIViewController {
 
     let locationManager = CLLocationManager()
     var userLocation = CLLocationCoordinate2D()
-    let radius: CLLocationDistance = 15000
-    var users: [User] = [User]()
+    let mapRadius: CLLocationDistance = 5000
+//    var users = [User]()
     var selectedUser: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         checkLocationServices()
-
         mapView.delegate = self
-
         displayUsersOnMap()
-
     }
 
     private func displayUsersOnMap() {
-        UserManager.getAllUsers(completion: { users in
-            if let users = users {
-//                let region = CLCircularRegion.init(center: self.userLocation, radius: self.radius, identifier: "userRegion")
-//                self.users = users.filter { region.contains($0.coordinate) }
-//                self.mapView.addAnnotations(self.users)
-                self.mapView.addAnnotations(users)
-            }
-        })
+        ProgressHUD.show("Recherche d'utilisateurs")
+        UserManager.getAllUsers { users in
+            ProgressHUD.dismiss()
+//            self.users = users
+            self.mapView.addAnnotations(users)
+        }
     }
 
     // MARK: - User location
 
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-    }
-
-    func checkLocationServices() {
+    private func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
             checkLocationAuthorization()
         }
     }
 
-    func checkLocationAuthorization() {
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+
+    private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             centerMapViewOnUserLocation()
@@ -75,13 +71,13 @@ class MapViewController: UIViewController {
         }
     }
 
-    func centerMapViewOnLocation(_ location: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: radius, longitudinalMeters: radius)
+    private func centerMapViewOnLocation(_ location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: mapRadius, longitudinalMeters: mapRadius)
         userLocation = location
         mapView.setRegion(region, animated: true)
     }
 
-    func centerMapViewOnUserLocation() {
+    private func centerMapViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             centerMapViewOnLocation(location)
         }
@@ -120,9 +116,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView.animatesDrop = true
 
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            let reference = Constants.Firebase.imageRef.child("images/\(annotation.uid).jpg")
-            let placeholderImage = UIImage(named: "placeholder.jpg")
-            imageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
+            imageView.sd_setImage(with: annotation.imageRef, placeholderImage: UIImage(named: "placeholder.jpg"))
             imageView.contentMode = .scaleAspectFit
 
             annotationView.leftCalloutAccessoryView = imageView

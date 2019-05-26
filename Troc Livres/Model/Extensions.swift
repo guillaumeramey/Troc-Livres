@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
@@ -24,6 +25,28 @@ extension UIViewController {
         let actionOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(actionOk)
         present(alert, animated: true)
+    }
+
+    func updateSessionUser() {
+        UserManager.getSessionUser(Session.user.uid) { success in
+            if success {
+                ProgressHUD.showSuccess()
+                self.goBack()
+            } else {
+                ProgressHUD.showError()
+                self.logout()
+            }
+        }
+    }
+
+    // MARK: - Navigation
+
+    func goBack() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    func logout() {
+        performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
 }
 

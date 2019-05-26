@@ -17,7 +17,8 @@ class BookViewController: UIViewController {
     @IBOutlet weak var condition: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
-
+    @IBOutlet weak var contactUserStackView: UIStackView!
+    
     var book: Book!
     var user: User!
 
@@ -32,11 +33,13 @@ class BookViewController: UIViewController {
 //            image.load(url: url)
 //        }
 
-//        if book.uid == Auth.auth().currentUser?.uid {
-//            deleteButton.isHidden = false
-//        } else {
+        if user.uid == Session.user.uid {
+            deleteButton.isHidden = false
+            contactUserStackView.isHidden = true
+        } else {
             deleteButton.isHidden = true
-//        }
+            contactUserStackView.isHidden = false
+        }
     }
 
     @IBAction func deleteBook(_ sender: Any) {
@@ -49,8 +52,12 @@ class BookViewController: UIViewController {
     }
 
     private func deleteHandler(alert: UIAlertAction) {
-//        UserManager.deleteBook(uid: currentUid, key: book.key)
-        navigationController?.popViewController(animated: true)
-        ProgressHUD.showSuccess("Livre supprimé")
+        Session.user.deleteBook(key: book.key)
+        updateSessionUser()
     }
+
+    @IBAction func contactUser(_ sender: Any) {
+
+    }
+
 }
