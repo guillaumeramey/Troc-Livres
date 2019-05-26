@@ -35,9 +35,10 @@ class MapViewController: UIViewController {
     private func displayUsersOnMap() {
         UserManager.getAllUsers(completion: { users in
             if let users = users {
-                let region = CLCircularRegion.init(center: self.userLocation, radius: self.radius, identifier: "userRegion")
-                self.users = users.filter { region.contains($0.coordinate) }
-                self.mapView.addAnnotations(self.users)
+//                let region = CLCircularRegion.init(center: self.userLocation, radius: self.radius, identifier: "userRegion")
+//                self.users = users.filter { region.contains($0.coordinate) }
+//                self.mapView.addAnnotations(self.users)
+                self.mapView.addAnnotations(users)
             }
         })
     }
@@ -62,11 +63,11 @@ class MapViewController: UIViewController {
         case .authorizedWhenInUse:
             centerMapViewOnUserLocation()
         case .denied:
-            Alert.present(title: "Impossible d'accéder aux données de localisation", message: "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.", vc: self)
+            alert(title: "Impossible d'accéder aux données de localisation", message: "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.")
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            Alert.present(title: "Impossible d'accéder aux données de localisation", message: "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.", vc: self)
+            alert(title: "Impossible d'accéder aux données de localisation", message: "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.")
         case .authorizedAlways:
             break
         @unknown default:

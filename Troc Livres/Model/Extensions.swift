@@ -18,6 +18,13 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(actionOk)
+        present(alert, animated: true)
+    }
 }
 
 extension UIImageView {

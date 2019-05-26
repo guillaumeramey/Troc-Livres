@@ -15,26 +15,44 @@ class User: NSObject, MKAnnotation {
     var name: String
     var latitude: Double
     var longitude: Double
-    var numberOfBooks: Int
+    var books: [Book]
 
-    init(uid: String, name: String, latitude: Double, longitude: Double, numberOfBooks: Int) {
+    init(uid: String, name: String, latitude: Double, longitude: Double, books: [Book]) {
         self.uid = uid
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
-        self.numberOfBooks = numberOfBooks
+        self.books = books
 
         super.init()
     }
 
-    // MKAnnotation variables
+    // MKAnnotation properties
     var title: String? {
         return name
     }
     var subtitle: String? {
-        return "\(numberOfBooks) livre" + (numberOfBooks > 1 ? "s" : "")
+        return "\(books.count) livre" + (books.count > 1 ? "s" : "")
     }
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+
+    // Methods
+    func deleteBook(key: String) {
+        Constants.Firebase.userRef.child("\(uid)/books/\(key)").removeValue()
+    }
+
+    func delete() {
+        Constants.Firebase.userRef.child(uid).removeValue()
+    }
+
+    static func logout() {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
 }

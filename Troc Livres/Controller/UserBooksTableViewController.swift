@@ -11,32 +11,35 @@ import Firebase
 
 class UserBooksTableViewController: UITableViewController {
 
-    var books = [Book]()
     var selectedBook: Book!
+    var currentUser: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayBooks()
+        displayUser()
     }
 
-    private func displayBooks() {
-        BookManager.getBooks(requestedUid: Constants.currentUid) { books in
-            if let books = books {
-                self.books = books
-                self.tableView.reloadData()
-            }
+    private func displayUser() {
+        guard let currentUid = Auth.auth().currentUser?.uid else { fatalError() }
+
+        UserManager.getUser(currentUid) { user in
+            self.currentUser = user
+
+            print(self.currentUser.books.count)
+
+            self.tableView.reloadData()
         }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        return currentUser == nil ? 0 : currentUser.books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath)
-        let book = books[indexPath.row]
+        let book = currentUser.books[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
         return cell
@@ -45,8 +48,7 @@ class UserBooksTableViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedBook = books[indexPath.row]
-        print("selectedBook: \(String(describing: selectedBook))")
+        selectedBook = currentUser.books[indexPath.row]
         performSegue(withIdentifier: "bookDetail", sender: self)
     }
 
@@ -56,7 +58,6 @@ class UserBooksTableViewController: UITableViewController {
         if segue.identifier == "bookDetail" {
             let bookVC = segue.destination as! BookViewController
             bookVC.book = selectedBook
-            print("bookVC.book: \(String(describing: bookVC.book))")
         }
     }
 }

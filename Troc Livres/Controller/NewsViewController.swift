@@ -22,19 +22,19 @@ class NewsViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        displayBooks()
+//        displayBooks()
     }
 
-    private func displayBooks() {
-        ProgressHUD.show("Récupération des derniers livres")
-        BookManager.getBooks(completion: { (books) in
-            if let books = books {
-                self.books = books
-            }
-            ProgressHUD.dismiss()
-            self.tableView.reloadData()
-        })
-    }
+//    private func displayBooks() {
+//        ProgressHUD.show("Récupération des derniers livres")
+//        BookManager.getBooks(completion: { (books) in
+//            if let books = books {
+//                self.books = books
+//            }
+//            ProgressHUD.dismiss()
+//            self.tableView.reloadData()
+//        })
+//    }
 
     // MARK: - Table view datasource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

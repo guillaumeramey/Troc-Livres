@@ -193,7 +193,7 @@
                     <navigationItem key="navigationItem" id="XDg-mV-qfE">
                         <barButtonItem key="leftBarButtonItem" title="Déconnexion" id="9Sd-lX-39h">
                             <connections>
-                                <action selector="disconnectUser:" destination="YXD-4t-FyT" id="MyB-2b-niE"/>
+                                <action selector="disconnectUser:" destination="YXD-4t-FyT" id="YrF-NQ-ZbH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="ive-uQ-e2i">
@@ -206,7 +206,7 @@
                     <connections>
                         <outlet property="image" destination="3a9-7G-lbb" id="w4S-yX-4a6"/>
                         <outlet property="name" destination="2fa-Ci-TIr" id="aSL-eI-IE5"/>
-                        <segue destination="8Oe-mV-kfw" kind="unwind" identifier="unwindToLoginVC" unwindAction="unwindToLoginVC:" id="zBl-8b-14d"/>
+                        <segue destination="8Oe-mV-kfw" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="CMr-gE-TN5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4D-jE-ceT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -599,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jc2-mg-OKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2883" y="-311"/>
+            <point key="canvasLocation" x="-2884" y="72"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OVP-U5-MWe">
@@ -655,7 +655,7 @@
                 <viewControllerPlaceholder storyboardName="UserSettings" id="WEz-aY-yhF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weW-jf-T7v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2883" y="455"/>
+            <point key="canvasLocation" x="-2884" y="593"/>
         </scene>
         <!--User Books Table View Controller-->
         <scene sceneID="mV4-wY-jJJ">

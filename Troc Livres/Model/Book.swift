@@ -17,7 +17,6 @@ import Foundation
 
 struct Book {
     let key: String
-    let uid: String
     let title: String
     let author: String
     let condition: String
