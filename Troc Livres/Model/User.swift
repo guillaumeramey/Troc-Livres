@@ -16,11 +16,13 @@ class User: NSObject, MKAnnotation {
     var latitude: Double
     var longitude: Double
     var books = [Book]()
+    var chats = [Chat]()
+    var contacts = [Contact]()
     let imageRef: StorageReference
 
     init?(from snapshot: DataSnapshot){
         guard
-            let value = snapshot.value as? [String: AnyObject],
+            let value = snapshot.value as? [String: Any],
             let name = value["name"] as? String,
             let latitude = value["latitude"] as? Double,
             let longitude = value["longitude"] as? Double
@@ -28,7 +30,7 @@ class User: NSObject, MKAnnotation {
                 return nil
             }
 
-        self.uid = snapshot.key
+        uid = snapshot.key
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
@@ -36,11 +38,18 @@ class User: NSObject, MKAnnotation {
         // Get the user books
         for snapshotChild in snapshot.childSnapshot(forPath: "books").children {
             if let book = Book(from: snapshotChild as! DataSnapshot) {
-                self.books.append(book)
+                books.append(book)
             }
         }
 
-        self.imageRef = Constants.Firebase.imageRef.child("images/\(uid).jpg")
+        // Get the user contacts
+        for snapshotChild in snapshot.childSnapshot(forPath: "chats").children {
+            if let contact = Contact(from: snapshotChild as! DataSnapshot) {
+                contacts.append(contact)
+            }
+        }
+
+        imageRef = Constants.Firebase.imageRef.child("images/\(uid).jpg")
     }
 
     // MKAnnotation properties
@@ -57,6 +66,7 @@ class User: NSObject, MKAnnotation {
     // Methods
     func deleteBook(key: String) {
         Constants.Firebase.userRef.child("\(uid)/books/\(key)").removeValue()
+        books.removeAll(where: { $0.key == key })
     }
 
     func delete() {
@@ -72,5 +82,31 @@ class User: NSObject, MKAnnotation {
         catch {
             print(error.localizedDescription)
         }
+    }
+
+    // Create or reuse a chat with a user
+    func chat(with user: User, for book: Book) -> String {
+
+        // Unique chatKey between 2 users
+        let chatKey = uid < user.uid ? uid + user.uid : user.uid + uid
+
+        Chat(fromKey: chatKey)?.message("Bonjour ! Je suis intéressé par \"\(book.title)\"")
+
+        if contacts.contains(where: { $0.chatKey == chatKey }) {
+            return chatKey
+        }
+
+        // Add chat to the current user
+        Constants.Firebase.userRef.child("\(uid)/chats/\(chatKey)").setValue(user.name) { (error, reference) in
+            guard error == nil else { return }
+            self.contacts.append(Contact(chatKey: chatKey, name: user.name))
+        }
+
+        // Add chat to the second user
+        Constants.Firebase.userRef.child("\(user.uid)/chats/\(chatKey)").setValue(name) { (error, reference) in
+            guard error == nil else { return }
+        }
+        
+        return chatKey
     }
 }

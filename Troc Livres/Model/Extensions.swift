@@ -27,18 +27,6 @@ extension UIViewController {
         present(alert, animated: true)
     }
 
-    func updateSessionUser() {
-        UserManager.getSessionUser(Session.user.uid) { success in
-            if success {
-                ProgressHUD.showSuccess()
-                self.goBack()
-            } else {
-                ProgressHUD.showError()
-                self.logout()
-            }
-        }
-    }
-
     // MARK: - Navigation
 
     func goBack() {

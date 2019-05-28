@@ -21,6 +21,7 @@ class BookViewController: UIViewController {
     
     var book: Book!
     var user: User!
+    var chatKey: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +54,19 @@ class BookViewController: UIViewController {
 
     private func deleteHandler(alert: UIAlertAction) {
         Session.user.deleteBook(key: book.key)
-        updateSessionUser()
+        ProgressHUD.showSuccess("Livre supprimé")
+        self.goBack()
     }
 
     @IBAction func contactUser(_ sender: Any) {
-
+        chatKey = Session.user.chat(with: user, for: book)
+        self.performSegue(withIdentifier: "chatMessages", sender: self)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chatMessages" {
+            let messageVC = segue.destination as! ChatMessagesTableViewController
+            messageVC.chat = Chat(fromKey: chatKey)
+        }
+    }
 }

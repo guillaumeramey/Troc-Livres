@@ -19,7 +19,6 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var userLocation = CLLocationCoordinate2D()
     let mapRadius: CLLocationDistance = 5000
-//    var users = [User]()
     var selectedUser: User!
 
     override func viewDidLoad() {
@@ -34,7 +33,6 @@ class MapViewController: UIViewController {
         ProgressHUD.show("Recherche d'utilisateurs")
         UserManager.getAllUsers { users in
             ProgressHUD.dismiss()
-//            self.users = users
             self.mapView.addAnnotations(users)
         }
     }

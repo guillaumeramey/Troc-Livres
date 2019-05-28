@@ -109,10 +109,10 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="author" destination="Us8-mu-aUe" id="ZI5-Mu-hMf"/>
-                        <outlet property="bookTitle" destination="2Gw-QW-a9v" id="EJT-Qk-SMI"/>
-                        <outlet property="condition" destination="1rh-YJ-JUk" id="1p6-fc-KL5"/>
-                        <outlet property="isbnInput" destination="bUF-Pq-sSL" id="7mM-vT-jKc"/>
+                        <outlet property="authorTextField" destination="Us8-mu-aUe" id="j7F-k4-75y"/>
+                        <outlet property="conditionTextView" destination="1rh-YJ-JUk" id="2PK-gz-cwp"/>
+                        <outlet property="isbnTextField" destination="bUF-Pq-sSL" id="m5n-nm-u47"/>
+                        <outlet property="titleTextField" destination="2Gw-QW-a9v" id="7zA-BE-YX7"/>
                         <segue destination="0va-Wp-HZD" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="Zba-OY-UfB"/>
                     </connections>
                 </viewController>
@@ -506,7 +506,6 @@
                                                                 <state key="normal" title="Contactez le propriétaire"/>
                                                                 <connections>
                                                                     <action selector="contactUser:" destination="Ig8-Jz-3qS" eventType="touchUpInside" id="T0V-eK-KNI"/>
-                                                                    <segue destination="EIN-sW-qbu" kind="show" id="eTD-kM-hr1"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -573,6 +572,7 @@
                         <outlet property="contactUserStackView" destination="SjM-LN-zcL" id="g7s-YJ-6Pu"/>
                         <outlet property="deleteButton" destination="EgU-sK-qWi" id="SXO-iM-jkV"/>
                         <outlet property="image" destination="Ovq-HZ-0Sz" id="BPv-Op-48d"/>
+                        <segue destination="EIN-sW-qbu" kind="show" identifier="chatMessages" id="6wB-kq-Oha"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KBG-7J-Cn0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -781,6 +781,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gmt-nc-OmC"/>
-        <segue reference="sCx-QJ-Jj9"/>
+        <segue reference="6wB-kq-Oha"/>
     </inferredMetricsTieBreakers>
 </document>

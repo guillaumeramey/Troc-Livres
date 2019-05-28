@@ -22,6 +22,13 @@ struct Book {
     var author: String
     var condition: String
 
+    init(key: String, title: String, author: String, condition: String) {
+        self.key = key
+        self.title = title
+        self.author = author
+        self.condition = condition
+    }
+
     init?(from snapshot: DataSnapshot){
         guard
             let value = snapshot.value as? [String: String],

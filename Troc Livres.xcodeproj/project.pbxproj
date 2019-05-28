@@ -25,8 +25,8 @@
 		A44783FC229AFDD900257636 /* ChatMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatMessagesTableViewController.swift */; };
 		A44783FE229B078200257636 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FD229B078200257636 /* Chat.swift */; };
 		A4478400229B081D00257636 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FF229B081D00257636 /* Message.swift */; };
-		A4478402229B0F7300257636 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478401229B0F7300257636 /* ChatManager.swift */; };
 		A4478404229B1E9400257636 /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478403229B1E9400257636 /* ChatsTableViewController.swift */; };
+		A4478408229CD51800257636 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478407229CD51800257636 /* Contact.swift */; };
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
 		A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* UserBooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */; };
@@ -68,8 +68,8 @@
 		A44783FB229AFDD900257636 /* ChatMessagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagesTableViewController.swift; sourceTree = "<group>"; };
 		A44783FD229B078200257636 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		A44783FF229B081D00257636 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		A4478401229B0F7300257636 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		A4478403229B1E9400257636 /* ChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
+		A4478407229CD51800257636 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserSettings.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksTableViewController.swift; sourceTree = "<group>"; };
@@ -138,10 +138,10 @@
 				A41351152293534500934188 /* Persist.swift */,
 				A4E3CC05228D0FB800180F09 /* BookService.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
+				A4478407229CD51800257636 /* Contact.swift */,
 				A413511B22939A8B00934188 /* UserManager.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
 				A44783FD229B078200257636 /* Chat.swift */,
-				A4478401229B0F7300257636 /* ChatManager.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
 			);
 			path = Model;
@@ -409,13 +409,13 @@
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,
 				A4478400229B081D00257636 /* Message.swift in Sources */,
+				A4478408229CD51800257636 /* Contact.swift in Sources */,
 				A4051E73229245F0002A5D18 /* UserViewController.swift in Sources */,
 				A4135112229336AC00934188 /* AddBookViewController.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* MapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
 				A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */,
 				A4051E712292399E002A5D18 /* User.swift in Sources */,
-				A4478402229B0F7300257636 /* ChatManager.swift in Sources */,
 				A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */,
 				A44783FE229B078200257636 /* Chat.swift in Sources */,
 				A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */,

@@ -9,18 +9,25 @@
 import Foundation
 import Firebase
 
-struct Chat {
+class Chat {
     let key: String
     var messages = [Message]()
 
-    init?(from snapshot: DataSnapshot){
-        self.key = snapshot.key
-
-        // Get the chat messages
-        for snapshotChild in snapshot.children {
-            if let message = Message(from: snapshotChild as! DataSnapshot) {
+    init?(fromKey key: String) {
+        self.key = key
+        Constants.Firebase.chatRef.child(key).observeSingleEvent(of: .value, with: { snapshot in
+            if let message = Message(from: snapshot) {
                 self.messages.append(message)
             }
-        }
+        })
+    }
+
+    func message(_ text: String) {
+        let message = [
+            "text": text,
+            "sender": Session.user.name,
+            "timestamp": ServerValue.timestamp()
+            ] as [String : Any]
+        Constants.Firebase.chatRef.child(key).childByAutoId().setValue(message)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatMessagesTableViewController: UITableViewController {
 
@@ -15,7 +16,18 @@ class ChatMessagesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = chat.key
+        retrieveMessages()
+    }
+
+    func retrieveMessages() {
+        var messages = [Message]()
+        Constants.Firebase.chatRef.child(chat.key).observe(.childAdded) { snapshot in
+            if let message = Message(from: snapshot) {
+                messages.append(message)
+            }
+            self.chat.messages = messages
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -27,8 +39,11 @@ class ChatMessagesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
 
-        cell.textLabel?.text = chat.messages[indexPath.row].text
-        cell.detailTextLabel?.text = chat.messages[indexPath.row].uid
+        let text = chat.messages[indexPath.row].text
+        let sender = chat.messages[indexPath.row].sender
+        let timestamp = chat.messages[indexPath.row].timestamp
+        cell.textLabel?.text = text
+        cell.detailTextLabel?.text = "\(sender) \(timestamp)"
 
         return cell
     }
