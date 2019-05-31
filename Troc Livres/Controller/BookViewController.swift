@@ -21,11 +21,12 @@ class BookViewController: UIViewController {
     
     var book: Book!
     var user: User!
-    var chatKey: String!
+    var contact: Contact!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = book.title
         bookTitle.text = book.title
         author.text = book.author
         condition.text = book.condition
@@ -41,6 +42,12 @@ class BookViewController: UIViewController {
             deleteButton.isHidden = true
             contactUserStackView.isHidden = false
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     @IBAction func deleteBook(_ sender: Any) {
@@ -59,14 +66,19 @@ class BookViewController: UIViewController {
     }
 
     @IBAction func contactUser(_ sender: Any) {
-        chatKey = Session.user.chat(with: user, for: book)
-        self.performSegue(withIdentifier: "chatMessages", sender: self)
+
+        contact = Contact(with: user)
+
+        // Write a new message
+        _ = Message("Bonjour ! Je suis intéressé(e) par \"\(book.title)\"", to: contact)
+
+        self.performSegue(withIdentifier: "chat", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chatMessages" {
-            let messageVC = segue.destination as! ChatMessagesTableViewController
-            messageVC.chat = Chat(fromKey: chatKey)
+        if segue.identifier == "chat" {
+            let chatVC = segue.destination as! ChatViewController
+            chatVC.contact = contact
         }
     }
 }

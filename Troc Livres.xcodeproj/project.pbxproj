@@ -22,17 +22,20 @@
 		A41351182293701300934188 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351172293701300934188 /* RegisterViewController.swift */; };
 		A413511A2293985100934188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41351192293985100934188 /* GoogleService-Info.plist */; };
 		A413511C22939A8B00934188 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413511B22939A8B00934188 /* UserManager.swift */; };
-		A44783FC229AFDD900257636 /* ChatMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatMessagesTableViewController.swift */; };
-		A44783FE229B078200257636 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FD229B078200257636 /* Chat.swift */; };
+		A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatViewController.swift */; };
 		A4478400229B081D00257636 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FF229B081D00257636 /* Message.swift */; };
-		A4478404229B1E9400257636 /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478403229B1E9400257636 /* ChatsTableViewController.swift */; };
 		A4478408229CD51800257636 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478407229CD51800257636 /* Contact.swift */; };
+		A46041C6229F429200E78852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46041C5229F429200E78852 /* Assets.xcassets */; };
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
+		A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* ChatViewCell.swift */; };
+		A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* ChatViewCell.xib */; };
 		A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */; };
-		A4AE8F0F2296520A008DA01B /* UserBooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */; };
+		A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */; };
+		A4D9B359229EF9C600A81F39 /* ContactViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */; };
+		A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */; };
+		A4D9B35C229EFB0800A81F39 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */; };
 		A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */; };
 		A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBE9228D0F4400180F09 /* Main.storyboard */; };
-		A4E3CBED228D0F4500180F09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBEC228D0F4500180F09 /* Assets.xcassets */; };
 		A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */; };
 		A4E3CBFB228D0F4600180F09 /* Troc_LivresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */; };
 		A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC05228D0FB800180F09 /* BookService.swift */; };
@@ -65,18 +68,21 @@
 		A41351172293701300934188 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A41351192293985100934188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A413511B22939A8B00934188 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		A44783FB229AFDD900257636 /* ChatMessagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagesTableViewController.swift; sourceTree = "<group>"; };
-		A44783FD229B078200257636 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		A44783FB229AFDD900257636 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A44783FF229B081D00257636 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		A4478403229B1E9400257636 /* ChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
 		A4478407229CD51800257636 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		A46041C5229F429200E78852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		A475130F229DDEB3002EA87E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
+		A4751310229DDEB3002EA87E /* ChatViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatViewCell.xib; path = ../Controller/ChatViewCell.xib; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserSettings.storyboard; sourceTree = "<group>"; };
-		A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksTableViewController.swift; sourceTree = "<group>"; };
+		A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksViewController.swift; sourceTree = "<group>"; };
+		A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewCell.swift; sourceTree = "<group>"; };
+		A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContactViewCell.xib; path = ../Controller/ContactViewCell.xib; sourceTree = "<group>"; };
+		A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		A4E3CBE2228D0F4400180F09 /* Troc Livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Troc Livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E3CBEA228D0F4400180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A4E3CBEC228D0F4500180F09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4E3CBEF228D0F4500180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4E3CBF1228D0F4500180F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E3CBF6228D0F4600180F09 /* Troc LivresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Troc LivresTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,10 +144,9 @@
 				A41351152293534500934188 /* Persist.swift */,
 				A4E3CC05228D0FB800180F09 /* BookService.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
-				A4478407229CD51800257636 /* Contact.swift */,
 				A413511B22939A8B00934188 /* UserManager.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
-				A44783FD229B078200257636 /* Chat.swift */,
+				A4478407229CD51800257636 /* Contact.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
 			);
 			path = Model;
@@ -153,6 +158,8 @@
 				A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */,
 				A4E3CBE9228D0F4400180F09 /* Main.storyboard */,
 				A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */,
+				A4751310229DDEB3002EA87E /* ChatViewCell.xib */,
+				A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,9 +175,11 @@
 				A413510F22930DA600934188 /* LoginViewController.swift */,
 				A41351172293701300934188 /* RegisterViewController.swift */,
 				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
-				A4AE8F0E2296520A008DA01B /* UserBooksTableViewController.swift */,
-				A4478403229B1E9400257636 /* ChatsTableViewController.swift */,
-				A44783FB229AFDD900257636 /* ChatMessagesTableViewController.swift */,
+				A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */,
+				A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */,
+				A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */,
+				A44783FB229AFDD900257636 /* ChatViewController.swift */,
+				A475130F229DDEB3002EA87E /* ChatViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,7 +211,7 @@
 				A4051E5F22909F6E002A5D18 /* View */,
 				A465C9E222909F3E0048D3D5 /* Controller */,
 				A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */,
-				A4E3CBEC228D0F4500180F09 /* Assets.xcassets */,
+				A46041C5229F429200E78852 /* Assets.xcassets */,
 				A4E3CBF1228D0F4500180F09 /* Info.plist */,
 				A41351192293985100934188 /* GoogleService-Info.plist */,
 			);
@@ -303,9 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */,
+				A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */,
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
+				A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */,
+				A46041C6229F429200E78852 /* Assets.xcassets in Resources */,
 				A413511A2293985100934188 /* GoogleService-Info.plist in Resources */,
-				A4E3CBED228D0F4500180F09 /* Assets.xcassets in Resources */,
 				A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,27 +415,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				A413511C22939A8B00934188 /* UserManager.swift in Sources */,
-				A4AE8F0F2296520A008DA01B /* UserBooksTableViewController.swift in Sources */,
+				A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */,
 				A413511022930DA600934188 /* LoginViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,
 				A4478400229B081D00257636 /* Message.swift in Sources */,
 				A4478408229CD51800257636 /* Contact.swift in Sources */,
 				A4051E73229245F0002A5D18 /* UserViewController.swift in Sources */,
+				A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */,
 				A4135112229336AC00934188 /* AddBookViewController.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* MapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
 				A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */,
 				A4051E712292399E002A5D18 /* User.swift in Sources */,
 				A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */,
-				A44783FE229B078200257636 /* Chat.swift in Sources */,
 				A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */,
+				A4D9B35C229EFB0800A81F39 /* ContactViewController.swift in Sources */,
 				A41351182293701300934188 /* RegisterViewController.swift in Sources */,
-				A4478404229B1E9400257636 /* ChatsTableViewController.swift in Sources */,
 				A41351142293516C00934188 /* ProfileViewController.swift in Sources */,
 				A4051E692290F7AA002A5D18 /* Constants.swift in Sources */,
 				A4051E7722926241002A5D18 /* Extensions.swift in Sources */,
-				A44783FC229AFDD900257636 /* ChatMessagesTableViewController.swift in Sources */,
+				A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */,
+				A4D9B359229EF9C600A81F39 /* ContactViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

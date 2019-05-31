@@ -29,6 +29,11 @@ class MapViewController: UIViewController {
         displayUsersOnMap()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
         UserManager.getAllUsers { users in

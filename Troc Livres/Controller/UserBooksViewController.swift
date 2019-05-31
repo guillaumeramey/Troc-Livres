@@ -1,5 +1,5 @@
 //
-//  UserBooksTableViewController.swift
+//  UserBooksViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 22/05/2019.
@@ -9,12 +9,14 @@
 import UIKit
 import Firebase
 
-class UserBooksTableViewController: UITableViewController {
+class UserBooksViewController: UITableViewController {
+
 
     var selectedBook: Book!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

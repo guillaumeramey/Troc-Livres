@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "lupin.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Glyph_contact.png",
       "scale" : "2x"
     },
     {

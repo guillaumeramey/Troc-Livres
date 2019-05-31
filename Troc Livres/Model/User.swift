@@ -12,11 +12,10 @@ import Firebase
 
 class User: NSObject, MKAnnotation {
     let uid: String
-    var name: String
+    let name: String
     var latitude: Double
     var longitude: Double
     var books = [Book]()
-    var chats = [Chat]()
     var contacts = [Contact]()
     let imageRef: StorageReference
 
@@ -42,11 +41,13 @@ class User: NSObject, MKAnnotation {
             }
         }
 
-        // Get the user contacts
-        for snapshotChild in snapshot.childSnapshot(forPath: "chats").children {
-            if let contact = Contact(from: snapshotChild as! DataSnapshot) {
-                contacts.append(contact)
-            }
+        // Get the current user contacts
+        if let currentUid = Auth.auth().currentUser?.uid, uid == currentUid {
+//            for snapshotChild in snapshot.childSnapshot(forPath: "contacts").children {
+//                if let contact = Contact(from: snapshotChild as! DataSnapshot) {
+//                    contacts.append(contact)
+//                }
+//            }
         }
 
         imageRef = Constants.Firebase.imageRef.child("images/\(uid).jpg")
@@ -82,31 +83,5 @@ class User: NSObject, MKAnnotation {
         catch {
             print(error.localizedDescription)
         }
-    }
-
-    // Create or reuse a chat with a user
-    func chat(with user: User, for book: Book) -> String {
-
-        // Unique chatKey between 2 users
-        let chatKey = uid < user.uid ? uid + user.uid : user.uid + uid
-
-        Chat(fromKey: chatKey)?.message("Bonjour ! Je suis intéressé par \"\(book.title)\"")
-
-        if contacts.contains(where: { $0.chatKey == chatKey }) {
-            return chatKey
-        }
-
-        // Add chat to the current user
-        Constants.Firebase.userRef.child("\(uid)/chats/\(chatKey)").setValue(user.name) { (error, reference) in
-            guard error == nil else { return }
-            self.contacts.append(Contact(chatKey: chatKey, name: user.name))
-        }
-
-        // Add chat to the second user
-        Constants.Firebase.userRef.child("\(user.uid)/chats/\(chatKey)").setValue(name) { (error, reference) in
-            guard error == nil else { return }
-        }
-        
-        return chatKey
     }
 }
