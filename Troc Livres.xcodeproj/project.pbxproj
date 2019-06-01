@@ -29,7 +29,8 @@
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
 		A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* ChatViewCell.swift */; };
 		A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* ChatViewCell.xib */; };
-		A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */; };
+		A4A5A1D422A1B8D6005D83AC /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A5A1D322A1B8D6005D83AC /* WelcomeViewController.swift */; };
+		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */; };
 		A4D9B359229EF9C600A81F39 /* ContactViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */; };
 		A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */; };
@@ -75,7 +76,8 @@
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A475130F229DDEB3002EA87E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		A4751310229DDEB3002EA87E /* ChatViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatViewCell.xib; path = ../Controller/ChatViewCell.xib; sourceTree = "<group>"; };
-		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserSettings.storyboard; sourceTree = "<group>"; };
+		A4A5A1D322A1B8D6005D83AC /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksViewController.swift; sourceTree = "<group>"; };
 		A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewCell.swift; sourceTree = "<group>"; };
 		A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContactViewCell.xib; path = ../Controller/ContactViewCell.xib; sourceTree = "<group>"; };
@@ -156,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */,
+				A4AE8F0B229606E1008DA01B /* Welcome.storyboard */,
 				A4E3CBE9228D0F4400180F09 /* Main.storyboard */,
-				A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */,
 				A4751310229DDEB3002EA87E /* ChatViewCell.xib */,
 				A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */,
 			);
@@ -167,13 +169,12 @@
 		A465C9E222909F3E0048D3D5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A494111122A1B82B009DD9C1 /* Welcome */,
 				A4135111229336AC00934188 /* AddBookViewController.swift */,
 				A4051E6022909FAA002A5D18 /* MapViewController.swift */,
 				A4051E72229245F0002A5D18 /* UserViewController.swift */,
 				A4051E7422925E5B002A5D18 /* BookViewController.swift */,
 				A41351132293516C00934188 /* ProfileViewController.swift */,
-				A413510F22930DA600934188 /* LoginViewController.swift */,
-				A41351172293701300934188 /* RegisterViewController.swift */,
 				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
 				A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */,
 				A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */,
@@ -182,6 +183,16 @@
 				A475130F229DDEB3002EA87E /* ChatViewCell.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A494111122A1B82B009DD9C1 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				A4A5A1D322A1B8D6005D83AC /* WelcomeViewController.swift */,
+				A413510F22930DA600934188 /* LoginViewController.swift */,
+				A41351172293701300934188 /* RegisterViewController.swift */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		A4E3CBD9228D0F4400180F09 = {
@@ -311,7 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4AE8F0D229606E1008DA01B /* UserSettings.storyboard in Resources */,
+				A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */,
 				A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */,
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
 				A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */,
@@ -423,6 +434,7 @@
 				A4478408229CD51800257636 /* Contact.swift in Sources */,
 				A4051E73229245F0002A5D18 /* UserViewController.swift in Sources */,
 				A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */,
+				A4A5A1D422A1B8D6005D83AC /* WelcomeViewController.swift in Sources */,
 				A4135112229336AC00934188 /* AddBookViewController.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* MapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
@@ -459,12 +471,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A4AE8F0B229606E1008DA01B /* UserSettings.storyboard */ = {
+		A4AE8F0B229606E1008DA01B /* Welcome.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A4AE8F0C229606E1008DA01B /* Base */,
 			);
-			name = UserSettings.storyboard;
+			name = Welcome.storyboard;
 			sourceTree = "<group>";
 		};
 		A4E3CBE9228D0F4400180F09 /* Main.storyboard */ = {
