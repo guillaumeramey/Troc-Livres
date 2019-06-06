@@ -25,17 +25,11 @@ class ContactViewController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
-        retrieveContacts()
+        getContacts()
     }
 
-    func retrieveContacts() {
-        var contacts = [Contact]()
-        Constants.Firebase.userRef.child("\(Session.user.uid)/contacts").queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value) { snapshot in
-            for contactSnapshot in snapshot.children {
-                if let contact = Contact(from: contactSnapshot as! DataSnapshot) {
-                    contacts.insert(contact, at: 0)
-                }
-            }
+    func getContacts() {
+        FirebaseManager.getContacts { contacts in
             self.contacts = contacts
             self.tableView.reloadData()
         }

@@ -42,7 +42,7 @@ class Contact {
     func markAsRead() {
         unread = false
         let path = "\(Session.user.uid)/contacts/\(uid)"
-        Constants.Firebase.userRef.child(path).updateChildValues(["unread": false]) { (error, reference) in
+        FirebaseManager.userRef.child(path).updateChildValues(["unread": false]) { (error, reference) in
             guard error == nil else { return }
         }
     }

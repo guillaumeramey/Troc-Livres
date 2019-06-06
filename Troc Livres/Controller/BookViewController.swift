@@ -21,7 +21,6 @@ class BookViewController: UIViewController {
     
     var book: Book!
     var user: User!
-    var contact: Contact!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +34,9 @@ class BookViewController: UIViewController {
 //            image.load(url: url)
 //        }
 
-        if user.uid == Session.user.uid {
-            deleteButton.isHidden = false
-            contactUserStackView.isHidden = true
-        } else {
-            deleteButton.isHidden = true
-            contactUserStackView.isHidden = false
-        }
+        // Different actions depending if the book belongs to the user
+        deleteButton.isHidden = user.uid == Session.user.uid ? false : true
+        contactUserStackView.isHidden = user.uid == Session.user.uid ? true : false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,20 +60,10 @@ class BookViewController: UIViewController {
         self.goBack()
     }
 
+    // Write a message to another user for the book
     @IBAction func contactUser(_ sender: Any) {
-
-        contact = Contact(with: user)
-
-        // Write a new message
-        _ = Message("Bonjour ! Je suis intéressé(e) par \"\(book.title)\"", to: contact)
-
-        self.performSegue(withIdentifier: "chat", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chat" {
-            let chatVC = segue.destination as! ChatViewController
-            chatVC.contact = contact
-        }
+        _ = Message("Bonjour ! Je suis intéressé(e) par \"\(book.title)\"", to: Contact(with: user))
+        #warning("Gérer les erreurs d'envoi")
+        alert(title: "Message envoyé !", message: "Retrouvez cette discussion dans l'onglet Contacts")
     }
 }

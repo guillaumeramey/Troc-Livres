@@ -17,9 +17,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
 
-//        if Auth.auth().currentUser != nil {
-//
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        var storyboardName = ""
+        var initialVCId = ""
+//        if let uid = Auth.auth().currentUser?.uid {
+//            storyboardName = "Main"
+//            initialVCId = "Main"
+//            UserManager.getUser(uid: uid, completion: { success in
+//                if success {
+//                    print("************ USER success ************")
+//                } else {
+//                // logout
+//                    print("************ USER failure ************")
+//                }
+//            })
+//        } else {
+            storyboardName = "Welcome"
+            initialVCId = "RegisterViewController"
 //        }
+
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: initialVCId)
+
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
 
         return true
     }

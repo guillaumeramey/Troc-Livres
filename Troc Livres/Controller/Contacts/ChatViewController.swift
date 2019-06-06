@@ -44,13 +44,7 @@ class ChatViewController: UIViewController {
     }
 
     func retrieveMessages() {
-        var messages = [Message]()
-        let chatKey = Constants.chatKey(uid1: Session.user.uid, uid2: contact.uid)
-        
-        Constants.Firebase.chatRef.child(chatKey).observe(.childAdded) { snapshot in
-            if let message = Message(from: snapshot) {
-                messages.append(message)
-            }
+        FirebaseManager.getChat(withUid: contact.uid) { messages in
             self.messages = messages
             self.chatTableView.reloadData()
             self.scrollTableViewToBottom()

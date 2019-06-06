@@ -12,27 +12,34 @@ import Firebase
 
 class User: NSObject, MKAnnotation {
     let uid: String
-    let name: String
-    var latitude: Double
-    var longitude: Double
+    var name: String
     var books = [Book]()
     var contacts = [Contact]()
-    let imageRef: StorageReference
+    var address: String?
+    var latitude: Double?
+    var longitude: Double?
+    var imageRef: StorageReference {
+        return FirebaseManager.imageRef.child("users/\(uid).jpg")
+    }
+
+    init(uid: String, name: String) {
+        self.uid = uid
+        self.name = name
+    }
 
     init?(from snapshot: DataSnapshot){
         guard
             let value = snapshot.value as? [String: Any],
-            let name = value["name"] as? String,
-            let latitude = value["latitude"] as? Double,
-            let longitude = value["longitude"] as? Double
+            let name = value["name"] as? String
             else {
                 return nil
             }
 
         uid = snapshot.key
         self.name = name
-        self.latitude = latitude
-        self.longitude = longitude
+        self.address = value["address"] as? String
+        self.latitude = value["latitude"] as? Double
+        self.longitude = value["longitude"] as? Double
 
         // Get the user books
         for snapshotChild in snapshot.childSnapshot(forPath: "books").children {
@@ -49,8 +56,6 @@ class User: NSObject, MKAnnotation {
 //                }
 //            }
         }
-
-        imageRef = Constants.Firebase.imageRef.child("images/\(uid).jpg")
     }
 
     // MKAnnotation properties
@@ -61,27 +66,18 @@ class User: NSObject, MKAnnotation {
         return "\(books.count) livre" + (books.count > 1 ? "s" : "")
     }
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        #warning("optionals")
+        return CLLocationCoordinate2D(latitude: latitude ?? 0, longitude: longitude ?? 0)
     }
 
     // Methods
     func deleteBook(key: String) {
-        Constants.Firebase.userRef.child("\(uid)/books/\(key)").removeValue()
+        FirebaseManager.deleteBook(withKey: key)
         books.removeAll(where: { $0.key == key })
     }
 
-    func delete() {
-        Session.user = nil
-        Constants.Firebase.userRef.child(uid).removeValue()
-    }
-
-    static func logout() {
-        do {
-            try Auth.auth().signOut()
-            Session.user = nil
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
+//    func delete() {
+////        Session.user = nil
+//        Constants.Firebase.userRef.child(uid).removeValue()
+//    }
 }

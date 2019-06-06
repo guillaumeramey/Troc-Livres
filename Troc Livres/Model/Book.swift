@@ -22,7 +22,7 @@ struct Book {
     var author: String
     var condition: String
 
-    init(key: String, title: String, author: String, condition: String) {
+    init(_ key: String, title: String, author: String, condition: String) {
         self.key = key
         self.title = title
         self.author = author

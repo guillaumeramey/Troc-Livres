@@ -32,21 +32,26 @@ extension UIViewController {
     func goBack() {
         navigationController?.popViewController(animated: true)
     }
+//
+//    func logout() {
+//        guard let window = UIApplication.shared.keyWindow else { return }
+//        guard let rootViewController = window.rootViewController else { return }
+//
+//        let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "RegisterViewController")
+//        vc.view.frame = rootViewController.view.frame
+//        vc.view.layoutIfNeeded()
+//
+//        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+//            window.rootViewController = vc
+//        }, completion: { completed in
+//            // maybe do something here
+//        })
+//    }
 
-    func logout() {
-        guard let window = UIApplication.shared.keyWindow else { return }
-        guard let rootViewController = window.rootViewController else { return }
-
-        let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "Welcome")
-        vc.view.frame = rootViewController.view.frame
-        vc.view.layoutIfNeeded()
-
-        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = vc
-        }, completion: { completed in
-            // maybe do something here
-        })
+    enum FormError {
+        case accepted
+        case rejected(String)
     }
 }
 

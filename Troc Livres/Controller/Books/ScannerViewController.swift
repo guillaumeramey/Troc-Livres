@@ -9,14 +9,14 @@
 import AVFoundation
 import UIKit
 
-protocol scanDelegate {
+protocol ScannerDelegate {
     func updateIsbn(isbn: String)
 }
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var delegate: scanDelegate?
+    var delegate: ScannerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

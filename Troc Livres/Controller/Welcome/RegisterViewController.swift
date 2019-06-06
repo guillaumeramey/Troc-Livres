@@ -13,48 +13,40 @@ import CoreLocation
 
 class RegisterViewController: UIViewController {
 
-    @IBOutlet weak var imageButton: UIButton!
+    // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-
-    var imagePicker = UIImagePickerController()
-    var latitude, longitude: Double!
+    @IBOutlet weak var passwordTextField: PasswordTextField!
+//    @IBOutlet weak var showPasswordButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-
-        imagePicker.delegate = self
-        imagePicker.sourceType = .savedPhotosAlbum
     }
 
-    @IBAction func selectImage(_ sender: AnyObject) {
-        present(imagePicker, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseManager.logOut()
     }
+
+    // MARK: - Actions
+
 
     @IBAction func validateButtonPressed(_ sender: AnyObject) {
+        #warning("disable buttons")
         ProgressHUD.show()
         switch checkForm() {
         case .accepted:
-            checkAddress()
+            createUser()
         case .rejected(let error):
             ProgressHUD.showError(error)
         }
     }
 
-    enum FormError {
-        case accepted
-        case rejected(String)
-    }
-
+    // MARK: - Methods
     private func checkForm() -> FormError {
         if usernameTextField.text == nil || usernameTextField.text == "" {
             return .rejected("Entrez un nom d'utilisateur")
-        }
-        if addressTextField.text == nil || addressTextField.text == "" {
-            return .rejected("Entrez une adresse valide")
         }
         if emailTextField.text == nil || emailTextField.text == "" {
             return .rejected("Entrez un e-mail valide")
@@ -62,76 +54,63 @@ class RegisterViewController: UIViewController {
         if passwordTextField.text == nil || passwordTextField.text == "" {
             return .rejected("Entrez un mot de passe")
         }
+        if passwordTextField.text!.count < 6 {
+            return .rejected("Le mot de passe doit faire 6 caractères minimum")
+        }
         return .accepted
     }
 
-    private func checkAddress() {
-        CLGeocoder().geocodeAddressString(addressTextField.text!) { placemarks, error in
-            if let location = placemarks?.first?.location {
-                self.latitude = location.coordinate.latitude
-                self.longitude = location.coordinate.longitude
-                self.createUser()
-            }
-            ProgressHUD.dismiss()
-        }
-    }
-
     private func createUser() {
-        ProgressHUD.show("Création du compte")
+        ProgressHUD.show()
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) {
             (user, error) in
-            if let error = error {
-                ProgressHUD.showError("\(error.localizedDescription)")
+            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+//                print(errorCode.rawValue)
+                switch errorCode {
+                case .invalidEmail:
+                    ProgressHUD.showError("E-mail invalide")
+                case .emailAlreadyInUse:
+                    ProgressHUD.showError("E-mail déjà utilisé")
+                default:
+                    ProgressHUD.showError(error.localizedDescription)
+                }
                 return
             }
-            self.saveUserData()
+            self.saveUsername()
         }
     }
 
-    private func saveUserData() {
-        guard let userUid = Auth.auth().currentUser?.uid else { fatalError() }
-
-        if let data = imageButton.currentImage?.jpegData(compressionQuality: 0) {
-            let imageRef = Constants.Firebase.imageRef.child("images/\(userUid).jpg")
-            _ = imageRef.putData(data, metadata: nil) { (metadata, error) in
-                guard metadata != nil else {
-                    return
-                }
+    private func saveUsername() {
+        FirebaseManager.setUsername(usernameTextField.text!) { success in
+            if success {
+                ProgressHUD.dismiss()
+                self.performSegue(withIdentifier: "userLogged", sender: self)
+            } else {
+                ProgressHUD.showError("Impossible de sauvegarder le nom d'utilisateur")
             }
         }
+    }
 
-        let user: [String: Any] = ["name": usernameTextField.text!,
-                                   "latitude": latitude as Any,
-                                   "longitude": longitude as Any]
-
-        Constants.Firebase.userRef.child(userUid).setValue(user) { (error, reference) in
-            guard error == nil else {
-                ProgressHUD.showError(error?.localizedDescription)
-                return
-            }
-            ProgressHUD.dismiss()
-        }
-
-        UserManager.getSessionUser(userUid) { success in
-            guard success else { return }
-            self.performSegue(withIdentifier: "userLogged", sender: self)
-        }
+    // MARK: - Navigation
+    @IBAction func unwindToSignUp(segue:UIStoryboardSegue) {
+        ProgressHUD.dismiss()
     }
 }
 
-// MARK: - Image picker
-extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // Allows the user to select an image
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        imageButton.setImage(pickedImage, for: .normal)
-        imageButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-        dismiss(animated: true)
-    }
+// Keyboard navigation between textfields
+extension RegisterViewController: UITextFieldDelegate {
 
-    // Canceling the image picker
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case usernameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+        default:
+            passwordTextField.resignFirstResponder()
+        }
+        return true
     }
 }

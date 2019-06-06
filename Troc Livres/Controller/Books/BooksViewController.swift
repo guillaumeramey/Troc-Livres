@@ -1,5 +1,5 @@
 //
-//  UserBooksViewController.swift
+//  BooksViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 22/05/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UserBooksViewController: UITableViewController {
+class BooksViewController: UITableViewController {
 
 
     var selectedBook: Book!

@@ -14,24 +14,23 @@ struct Constants {
     static func chatKey(uid1: String, uid2: String) -> String {
             return uid1 < uid2 ? uid1 + uid2 : uid2 + uid1
     }
+
+    struct Font {
+        static let button = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
+    struct Image {
+        static let eyeShow = UIImage(named: "Image-EyeShow")
+        static let eyeHide = UIImage(named: "Image-EyeHide")
+    }
     
     struct Color {
-        static let background = UIColor(named: "Color_background")
-        static let chatSender = UIColor(named: "Color_chatSender")
-        static let chatReceiver = UIColor(named: "Color_chatReceiver")
+        static let background = UIColor(named: "Color-Background")
+        static let chatSender = UIColor(named: "Color-ChatSender")
+        static let chatReceiver = UIColor(named: "Color-ChatReceiver")
+        static let button = UIColor(named: "Color-Button")
     }
 
     struct Firebase {
-        static let chatRef = Database.database().reference().child("chats")
-        static let userRef = Database.database().reference().child("users")
-        static let imageRef = Storage.storage().reference()
     }
-
-    struct Params {
-        static let initialDistance = 15
-    }
-}
-
-struct Session {
-    static var user: User!
 }

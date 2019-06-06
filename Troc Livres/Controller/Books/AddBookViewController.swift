@@ -17,7 +17,6 @@ class AddBookViewController: UIViewController {
     @IBOutlet var conditionTextView: UITextView!
     @IBOutlet weak var isbnTextField: UITextField!
 
-    private var scanner = ScannerViewController()
     private var isbn = "" {
         didSet {
             isbnTextField.text = isbn
@@ -27,8 +26,6 @@ class AddBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-
-        scanner.delegate = self
     }
 
     private func getBookDetails() {
@@ -51,37 +48,37 @@ class AddBookViewController: UIViewController {
     // Add a book for the current user
     @IBAction func addButtonPressed(_ sender: Any) {
         ProgressHUD.show("Ajout du livre")
-        #warning("tester les données saisies")
         let title = titleTextField.text!
         let author = authorTextField.text!
         let condition = conditionTextView.text!
         let book = ["title": title, "author": author, "condition": condition]
 
-        let bookRef = Constants.Firebase.userRef.child("\(Session.user.uid)/books").childByAutoId()
-        bookRef.setValue(book) { (error, reference) in
-            guard error == nil else {
+        FirebaseManager.addBook(book) { result in
+            switch result {
+            case .success(let key):
+                Session.user.books.append(Book(key, title: title, author: author, condition: condition))
+                ProgressHUD.showSuccess("Livre ajouté")
+                self.goBack()
+            case .failure(let error):
+                print(error.localizedDescription)
                 ProgressHUD.showError("Erreur lors de l'ajout du livre")
-                return
             }
-            Session.user.books.append(Book(key: bookRef.key!, title: title, author: author, condition: condition))
-            ProgressHUD.showSuccess("Livre ajouté")
-            self.goBack()
         }
     }
 
     private func validateData() {
-
+        #warning("tester les données saisies")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "scanner" {
-            let destinationVC = segue.destination as! ScannerViewController
-            destinationVC.delegate = self
+            let scannerVC = segue.destination as! ScannerViewController
+            scannerVC.delegate = self
         }
     }
 }
 
-extension AddBookViewController: scanDelegate {
+extension AddBookViewController: ScannerDelegate {
 
     // Barcode successfully scanned
     func updateIsbn(isbn: String) {

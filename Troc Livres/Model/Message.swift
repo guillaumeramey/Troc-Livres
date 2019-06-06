@@ -28,12 +28,7 @@ struct Message {
         self.senderUid = Session.user.uid
         self.timestamp = nil
 
-        // Send the message to a contact
         send(to: contact)
-        // Update the timestamp and change the unread message flag to true
-        updateContact(contact)
-        // Update the timestamp for the conversation to be on top
-        updateUserContact(contact)
     }
 
     init?(from snapshot: DataSnapshot){
@@ -59,27 +54,32 @@ struct Message {
                                        "senderUid": senderUid,
                                        "timestamp": ServerValue.timestamp()]
 
-        Constants.Firebase.chatRef.child(chatKey).childByAutoId().setValue(message)
-    }
-
-    private func updateUserContact(_ contact: Contact) {
-        let path = "\(senderUid)/contacts/\(contact.uid)"
-        let value: [String : Any] = ["name": contact.name,
-                                     "timestamp": ServerValue.timestamp()]
-
-        Constants.Firebase.userRef.child(path).updateChildValues(value) { (error, reference) in
+        FirebaseManager.chatRef.child(chatKey).childByAutoId().setValue(message) { (error, reference) in
             guard error == nil else { return }
+            self.updateContact(contact)
         }
     }
 
-    // Mark the message as unread for the contact
+    // Update the timestamp and change the unread message flag to true
     private func updateContact(_ contact: Contact) {
         let path = "\(contact.uid)/contacts/\(senderUid)"
         let value: [String : Any] = ["name": Session.user.name,
                                      "unread": true,
                                      "timestamp": ServerValue.timestamp()]
 
-        Constants.Firebase.userRef.child(path).setValue(value) { (error, reference) in
+        FirebaseManager.userRef.child(path).setValue(value) { (error, reference) in
+            guard error == nil else { return }
+            self.updateUserContact(contact)
+        }
+    }
+
+    // Update the timestamp for the conversation to be on top
+    private func updateUserContact(_ contact: Contact) {
+        let path = "\(senderUid)/contacts/\(contact.uid)"
+        let value: [String : Any] = ["name": contact.name,
+                                     "timestamp": ServerValue.timestamp()]
+
+        FirebaseManager.userRef.child(path).updateChildValues(value) { (error, reference) in
             guard error == nil else { return }
         }
     }
