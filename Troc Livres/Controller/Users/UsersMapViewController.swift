@@ -15,9 +15,11 @@ import ProgressHUD
 class UsersMapViewController: MapViewController {
 
     // MARK: - Properties
+    
     var selectedUser: User!
 
     // MARK: - Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,11 +27,6 @@ class UsersMapViewController: MapViewController {
         
         checkLocationServices()
         displayUsersOnMap()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     private func displayUsersOnMap() {

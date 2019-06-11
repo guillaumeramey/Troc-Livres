@@ -17,9 +17,9 @@ class CustomButton: UIButton {
     }
 
     private func setup() {
-        layer.cornerRadius = frame.size.height / 2
+        layer.cornerRadius = 8
         layer.borderWidth = 2
-        layer.borderColor = Constants.Color.button?.cgColor
+        layer.borderColor = Constants.Color.button.cgColor
         titleLabel?.font = Constants.Font.button
     }
 }

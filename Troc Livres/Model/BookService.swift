@@ -8,52 +8,85 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case badURL
-    case error
-    case noData
-    case jsonKO
+enum NetworkError: String, Error {
+    case encodingString = "erreur dans l'URL"
+    case badURL = "Mauvaise URL"
+    case error = "une erreur est survenue"
+    case noData = "aucune donnée reçue"
+    case jsonKO = "Problème de JSON"
 }
 
 class BookService {
-//    private let apiURL = "https://openlibrary.org/api/books?"
-//    private var task: URLSessionDataTask!
-//    private var bookSession = URLSession.init(configuration: .default)
-//
-//    func getBook(isbn: String, completion: @escaping (Result<[String: Book], NetworkError>) -> Void) {
-//
-//        let urlString = apiURL
-//            + "bibkeys="
-//            + "ISBN:" + isbn
-//            + "&jscmd=data"
-//            + "&format=json"
-//
-//        guard let url = URL(string: urlString) else {
-//            completion(.failure(.badURL))
-//            return
-//        }
-//
-//        task?.cancel()
-//        task = bookSession.dataTask(with: url) { (data, response, error) in
-//            DispatchQueue.main.async {
-//                if error != nil {
-//                    completion(.failure(.error))
-//                    return
-//                }
-//
-//                guard let data = data else {
-//                    completion(.failure(.noData))
-//                    return
-//                }
-//
-//                do {
-//                    let books = try JSONDecoder().decode([String: Book].self, from: data)
-//                    completion(.success(books))
-//                } catch {
-//                    completion(.failure(.jsonKO))
-//                }
-//            }
-//        }
-//        task?.resume()
-//    }
+    private let apiURL = "https://www.googleapis.com/books/v1/volumes?"
+    private let apiKey = Constants.valueForAPIKey("API_KEY")
+    private var task: URLSessionDataTask!
+    private var bookSession = URLSession.init(configuration: .default)
+
+    private func createRequest(isbn: String, title: String, author: String, langRestrict: String) -> String {
+        var request = apiURL + "key=" + apiKey + "&q="
+        if isbn != "" {
+            request += "isbn:" + isbn
+        }
+
+        if title != "" {
+            request += "intitle:" + title.replacingOccurrences(of: " ", with: "+intitle:")
+        }
+
+        if author != "" {
+            if title != "" {
+                request += "+"
+            }
+            request += "inauthor:" + author.replacingOccurrences(of: " ", with: "+inauthor:")
+        }
+
+        if langRestrict != "" {
+            request += "&langRestrict=" + langRestrict
+        }
+
+        request += "&fields=items/id,items/volumeInfo(title,authors,description,pageCount,imageLinks/thumbnail,language)"
+
+        return request
+    }
+
+    func getBook(isbn: String = "", title: String = "", author: String = "", langRestrict: String = "fr", completion: @escaping (Result<[Book], NetworkError>) -> Void) {
+
+        let requestURLString = createRequest(isbn: isbn, title: title, author: author, langRestrict: langRestrict)
+
+        // removes forbidden characters
+        guard let encodeString = requestURLString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let url = URL(string: encodeString) else {
+            completion(.failure(.badURL))
+            return
+        }
+
+        task?.cancel()
+        task = bookSession.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    completion(.failure(.error))
+                    return
+                }
+
+                guard let data = data else {
+                    completion(.failure(.noData))
+                    return
+                }
+
+                do {
+                    let bookJSON = try JSONDecoder().decode(BookJSON.self, from: data)
+
+                    var items = [Item]()
+
+                    for var item in bookJSON.items {
+                        item.volumeInfo.id = item.id
+                        items.append(item)
+                    }
+
+                    completion(.success(items.map { $0.volumeInfo }))
+                } catch {
+                    completion(.failure(.jsonKO))
+                }
+            }
+        }
+        task?.resume()
+    }
 }

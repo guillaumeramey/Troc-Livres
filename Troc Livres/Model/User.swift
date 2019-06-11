@@ -47,15 +47,6 @@ class User: NSObject, MKAnnotation {
                 books.append(book)
             }
         }
-
-        // Get the current user contacts
-        if let currentUid = Auth.auth().currentUser?.uid, uid == currentUid {
-//            for snapshotChild in snapshot.childSnapshot(forPath: "contacts").children {
-//                if let contact = Contact(from: snapshotChild as! DataSnapshot) {
-//                    contacts.append(contact)
-//                }
-//            }
-        }
     }
 
     // MKAnnotation properties
@@ -66,18 +57,13 @@ class User: NSObject, MKAnnotation {
         return "\(books.count) livre" + (books.count > 1 ? "s" : "")
     }
     var coordinate: CLLocationCoordinate2D {
-        #warning("optionals")
         return CLLocationCoordinate2D(latitude: latitude ?? 0, longitude: longitude ?? 0)
     }
 
     // Methods
-    func deleteBook(key: String) {
+    func deleteBook(key: String?) {
+        guard let key = key else { return }
         FirebaseManager.deleteBook(withKey: key)
-        books.removeAll(where: { $0.key == key })
+        books.removeAll(where: { $0.id == key })
     }
-
-//    func delete() {
-////        Session.user = nil
-//        Constants.Firebase.userRef.child(uid).removeValue()
-//    }
 }

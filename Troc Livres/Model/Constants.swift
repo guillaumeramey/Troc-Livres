@@ -6,8 +6,7 @@
 //  Copyright © 2019 Guillaume Ramey. All rights reserved.
 //
 
-import Foundation
-import Firebase
+import UIKit
 
 struct Constants {
 
@@ -20,17 +19,31 @@ struct Constants {
     }
 
     struct Image {
-        static let eyeShow = UIImage(named: "Image-EyeShow")
-        static let eyeHide = UIImage(named: "Image-EyeHide")
+        static let eyeShow = UIImage(named: "Image-EyeShow")!
+        static let eyeHide = UIImage(named: "Image-EyeHide")!
+        static let envelope = UIImage(named: "Image-Envelope")!
+        static let userIcon = UIImage(named: "Image-UserIcon")!
+        static let lock = UIImage(named: "Image-Lock")!
     }
     
     struct Color {
-        static let background = UIColor(named: "Color-Background")
-        static let chatSender = UIColor(named: "Color-ChatSender")
-        static let chatReceiver = UIColor(named: "Color-ChatReceiver")
-        static let button = UIColor(named: "Color-Button")
+        static let background = UIColor(named: "Color-Background")!
+        static let chatSender = UIColor(named: "Color-ChatSender")!
+        static let chatReceiver = UIColor(named: "Color-ChatReceiver")!
+        static let button = UIColor(named: "Color-Button")!
     }
 
-    struct Firebase {
+    // Wrapper for obtaining keys from keys.plist
+    static func valueForAPIKey(_ keyname: String) -> String {
+        // Get the file path for keys.plist
+        let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
+
+        // Put the keys in a dictionary
+        let plist = NSDictionary(contentsOfFile: filePath!)
+
+        // Pull the value for the key
+        let value: String = plist?.object(forKey: keyname) as! String
+
+        return value
     }
 }

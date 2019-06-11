@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct Persist {
-
-    private struct Keys {
-        static let userUID = "TrocLivresDistance"
-    }
-
-    static var distance: Int {
-        get {
-            return UserDefaults.standard.integer(forKey: Keys.userUID)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: Keys.userUID)
-        }
-    }
-}
+//struct Persist {
+//
+//    private struct Keys {
+//        static let userUID = "TrocLivresDistance"
+//    }
+//
+//    static var distance: Int {
+//        get {
+//            return UserDefaults.standard.integer(forKey: Keys.userUID)
+//        }
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: Keys.userUID)
+//        }
+//    }
+//}

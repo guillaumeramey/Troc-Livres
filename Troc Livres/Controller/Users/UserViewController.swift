@@ -11,16 +11,19 @@ import UIKit
 class UserViewController: UIViewController {
 
     // MARK: - Properties
+
     var user: User!
     var books = [Book]()
     var selectedBook: Book!
     private let cellId = "bookCell"
 
     // MARK: - Outlets
+
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var booksCollectionView: UICollectionView!
+    @IBOutlet weak var booksTableView: UITableView!
 
     // MARK: - Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,15 +32,12 @@ class UserViewController: UIViewController {
         image.layer.cornerRadius = 8
         image.contentMode = .scaleAspectFill
 
-        booksCollectionView.register(UINib(nibName: "UserBookCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
-    }
+        booksTableView.register(UINib(nibName: "BookViewCell", bundle: nil), forCellReuseIdentifier: cellId)
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bookDetail" {
             let bookVC = segue.destination as! BookViewController
@@ -47,23 +47,23 @@ class UserViewController: UIViewController {
     }
 }
 
-extension UserViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension UserViewController: UITableViewDataSource {
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return user == nil ? 0 : user.books.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserBookCollectionViewCell
-        cell.set(book: user.books[indexPath.row])
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookViewCell
+        cell.book = user.books[indexPath.row]
         return cell
     }
+}
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width / 2, height: collectionView.bounds.height)
-    }
+extension UserViewController: UITableViewDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         selectedBook = user.books[indexPath.row]
         performSegue(withIdentifier: "bookDetail", sender: self)
     }

@@ -12,9 +12,14 @@ import ProgressHUD
 
 class ContactViewController: UITableViewController {
 
+    // MARK: - Properties
+
     var contacts = [Contact]()
     var selectedContact: Contact!
+    
     private let cellId = "contactCell"
+
+    // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +33,12 @@ class ContactViewController: UITableViewController {
         getContacts()
     }
 
-    func getContacts() {
+    private func getContacts() {
         FirebaseManager.getContacts { contacts in
             self.contacts = contacts
             self.tableView.reloadData()
         }
     }
-
-//    func refresh() {
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
-//    }
 
     // MARK: - Table view data source
 
@@ -56,6 +55,7 @@ class ContactViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         selectedContact = contacts[indexPath.row]
         performSegue(withIdentifier: "chat", sender: self)
     }

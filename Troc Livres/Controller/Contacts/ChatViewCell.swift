@@ -17,7 +17,6 @@ class ChatViewCell: UITableViewCell {
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
 
     func set(with message: Message) {
-
         messageText.text = message.text
         messageDate.text = message.displayDate
 

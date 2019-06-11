@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            })
 //        } else {
             storyboardName = "Welcome"
-            initialVCId = "RegisterViewController"
+            initialVCId = "WelcomeViewController"
 //        }
 
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)

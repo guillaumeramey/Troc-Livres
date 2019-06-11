@@ -20,14 +20,29 @@ struct FirebaseManager {
     static let chatRef = Database.database().reference().child("chats")
     static let imageRef = Storage.storage().reference().child("images")
 
-    static func logIn(withEmail email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void ) {
+    static func signIn(withEmail email: String, password: String, completion: @escaping (String?) -> Void ) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                completion(.failure(error))
+            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+//                print(errorCode.rawValue)
+                let errorMessage: String
+                switch errorCode {
+                case .invalidEmail:
+                    errorMessage = "E-mail invalide"
+                case .networkError:
+                    errorMessage = "Problème de connexion"
+                case .wrongPassword:
+                    errorMessage = "Mot de passe incorrect"
+                case .userNotFound:
+                    errorMessage = "Utilisateur introuvable"
+                default:
+                    errorMessage = error.localizedDescription
+                }
+                completion(errorMessage)
             } else {
                 FirebaseManager.currentUser = result?.user
-                completion(.success(true))
+                completion(nil)
             }
+
         }
     }
 
@@ -39,6 +54,27 @@ struct FirebaseManager {
         }
         catch {
             print(error.localizedDescription)
+        }
+    }
+
+    static func createUser(withEmail email: String, password: String, completion: @escaping (String?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                //                    print(errorCode.rawValue)
+                let errorMessage: String
+                switch errorCode {
+                case .invalidEmail:
+                    errorMessage = "E-mail invalide"
+                case .emailAlreadyInUse:
+                    errorMessage = "E-mail déjà utilisé"
+                default:
+                    errorMessage = error.localizedDescription
+                }
+                completion(errorMessage)
+            } else {
+                FirebaseManager.currentUser = user?.user
+                completion(nil)
+            }
         }
     }
 
@@ -55,7 +91,6 @@ struct FirebaseManager {
 
     static func deleteCurrentUser(completion: @escaping (Result<Bool, Error>) -> Void) {
         userRef.child(currentUser.uid).removeValue()
-
         Auth.auth().currentUser?.delete { error in
             if let error = error {
                 completion(.failure(error))
@@ -65,13 +100,20 @@ struct FirebaseManager {
         }
     }
     
-    static func addBook(_ book: [String: String], completion: @escaping (Result<String, Error>) -> Void) {
-        let bookRef = userRef.child("\(currentUser.uid)/books").childByAutoId()
-        bookRef.setValue(book) { (error, reference) in
+    static func addBook(_ book: Book, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let bookValue: [String: Any] =
+            ["title": book.title ?? "",
+             "authors": book.authors?.joined(separator: "&&&") ?? "",
+             "bookDescription": book.bookDescription ?? "",
+             "pageCount": book.pageCount ?? 0,
+             "imageURL": book.imageURL ?? "",
+             "language": book.language ?? ""]
+        let bookRef = userRef.child("\(currentUser.uid)/books/\(book.id!)")
+        bookRef.setValue(bookValue) { (error, reference) in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(bookRef.key!))
+                completion(.success(true))
             }
         }
     }
@@ -83,13 +125,13 @@ struct FirebaseManager {
 
     static func setUsername(_ name: String, completion: @escaping (Bool) -> Void) {
         userRef.child("\(currentUser.uid)/name").setValue(name) { (error, reference) in
-            completion(error != nil)
+            completion(error == nil)
         }
     }
 
     static func setUserLocation(_ userLocation: [String: Any], completion: @escaping (Bool) -> Void) {
         userRef.child("\(currentUser.uid)").updateChildValues(userLocation) { (error, reference) in
-            completion(error != nil)
+            completion(error == nil)
         }
     }
 
@@ -107,15 +149,23 @@ struct FirebaseManager {
         })
     }
 
-    static func getChat(withUid uid: String, completion: @escaping ([Message]) -> Void) {
+    // MARK: - Chat data
+
+    static var chatHandle: UInt!
+
+    static func enterChat(withUid uid: String, completion: @escaping ([Message]) -> Void) {
         var messages = [Message]()
         let chatKey = Constants.chatKey(uid1: currentUser.uid, uid2: uid)
-        chatRef.child(chatKey).observe(.childAdded) { snapshot in
+        chatHandle = chatRef.child(chatKey).observe(.childAdded) { snapshot in
             if let message = Message(from: snapshot) {
                 messages.append(message)
             }
             completion(messages)
         }
+    }
+
+    static func leaveChat() {
+        chatRef.removeObserver(withHandle: chatHandle)
     }
 
     static func getContacts(completion: @escaping ([Contact]) -> Void) {

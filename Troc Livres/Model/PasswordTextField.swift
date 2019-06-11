@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PasswordTextField: UITextField {
+class PasswordTextField: customTextField {
 
     var toggleSecureTextButton: UIButton!
 

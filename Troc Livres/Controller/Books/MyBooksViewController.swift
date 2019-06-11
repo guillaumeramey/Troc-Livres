@@ -1,5 +1,5 @@
 //
-//  BooksViewController.swift
+//  MyBooksViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 22/05/2019.
@@ -9,14 +9,19 @@
 import UIKit
 import Firebase
 
-class BooksViewController: UITableViewController {
+class MyBooksViewController: UITableViewController {
 
+    // MARK: - Properties
 
     var selectedBook: Book!
+    private let cellId = "bookCell"
+
+    // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.register(UINib(nibName: "BookViewCell", bundle: nil), forCellReuseIdentifier: cellId)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,16 +36,15 @@ class BooksViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath)
-        let book = Session.user.books[indexPath.row]
-        cell.textLabel?.text = book.title
-        cell.detailTextLabel?.text = book.author
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookViewCell
+        cell.book = Session.user.books[indexPath.row]
         return cell
     }
 
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         selectedBook = Session.user.books[indexPath.row]
         performSegue(withIdentifier: "bookDetail", sender: self)
     }
@@ -54,4 +58,6 @@ class BooksViewController: UITableViewController {
             bookVC.user = Session.user
         }
     }
+
+    @IBAction func unwindToMyBooks(segue:UIStoryboardSegue) { }
 }

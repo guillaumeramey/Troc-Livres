@@ -11,24 +11,27 @@ import Firebase
 
 class ChatViewController: UIViewController {
 
-    // MARK: - OUTLETS
+    // MARK: - Outlets
+
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    // MARK: - PROPERTIES
+    // MARK: - Properties
+
     var contact: Contact!
     var messages = [Message]()
+
     private let cellId = "chatCell"
 
-    // MARK: - METHODS
+    // MARK: - Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
         title = contact.name
         hideKeyboardWhenTappedAround()
         keyboardNotifications()
-        retrieveMessages()
         chatTableView.register(UINib(nibName: "ChatViewCell", bundle: nil), forCellReuseIdentifier: cellId)
     }
 
@@ -36,15 +39,17 @@ class ChatViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
         contact.markAsRead()
+        enterChat()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         contact.markAsRead()
+        FirebaseManager.leaveChat()
     }
 
-    func retrieveMessages() {
-        FirebaseManager.getChat(withUid: contact.uid) { messages in
+    private func enterChat() {
+        FirebaseManager.enterChat(withUid: contact.uid) { messages in
             self.messages = messages
             self.chatTableView.reloadData()
             self.scrollTableViewToBottom()
@@ -53,6 +58,7 @@ class ChatViewController: UIViewController {
 }
 
 // MARK: - Keyboard management
+
 extension ChatViewController: UITextFieldDelegate {
 
     // observe when the keyboard shows and hides
@@ -100,6 +106,8 @@ extension ChatViewController: UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: - TableView data source
 
 extension ChatViewController: UITableViewDataSource {
 
