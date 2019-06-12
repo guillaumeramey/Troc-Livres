@@ -30,20 +30,10 @@ class UserTableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "bookDetail" {
-            let bookVC = segue.destination as! BookViewController
-            bookVC.book = selectedBook
-            bookVC.user = user
-        }
-    }
-
     // MARK: - TableView DataSource {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user == nil ? 0 : user.books.count
+        return user.books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,5 +48,15 @@ class UserTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedBook = user.books[indexPath.row]
         performSegue(withIdentifier: "bookDetail", sender: self)
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bookDetail" {
+            let destinationVC = segue.destination as! BookViewController
+            destinationVC.book = selectedBook
+            destinationVC.user = user
+        }
     }
 }

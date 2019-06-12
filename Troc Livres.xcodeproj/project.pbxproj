@@ -21,7 +21,6 @@
 		A41351182293701300934188 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351172293701300934188 /* WelcomeViewController.swift */; };
 		A413511A2293985100934188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41351192293985100934188 /* GoogleService-Info.plist */; };
 		A4264AF122A8661500760D8D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4264AF022A8661500760D8D /* Session.swift */; };
-		A438B1F822AF35AF001F5E5A /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438B1F722AF35AF001F5E5A /* SearchResultViewController.swift */; };
 		A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatViewController.swift */; };
 		A4478400229B081D00257636 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FF229B081D00257636 /* Message.swift */; };
 		A4478408229CD51800257636 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478407229CD51800257636 /* Contact.swift */; };
@@ -30,6 +29,7 @@
 		A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */; };
 		A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* ChatViewCell.swift */; };
 		A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* ChatViewCell.xib */; };
+		A47D0A5422B140C7000378E0 /* SearchBookAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */; };
 		A4C2630322A2108900B82141 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2630222A2108900B82141 /* CustomButton.swift */; };
@@ -75,7 +75,6 @@
 		A41351172293701300934188 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A41351192293985100934188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4264AF022A8661500760D8D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		A438B1F722AF35AF001F5E5A /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		A44783FB229AFDD900257636 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A44783FF229B081D00257636 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A4478407229CD51800257636 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordTextField.swift; path = ../Model/PasswordTextField.swift; sourceTree = "<group>"; };
 		A475130F229DDEB3002EA87E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		A4751310229DDEB3002EA87E /* ChatViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatViewCell.xib; path = ../Controller/ChatViewCell.xib; sourceTree = "<group>"; };
+		A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBookAdviceView.xib; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		A4C2630222A2108900B82141 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 				A4751310229DDEB3002EA87E /* ChatViewCell.xib */,
 				A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */,
 				A4DF67BE22AD575A00D6929C /* BookViewCell.xib */,
+				A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,7 +209,6 @@
 			children = (
 				A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */,
 				A4135111229336AC00934188 /* SearchBookViewController.swift */,
-				A438B1F722AF35AF001F5E5A /* SearchResultViewController.swift */,
 				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
 			);
 			path = Books;
@@ -375,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47D0A5422B140C7000378E0 /* SearchBookAdviceView.xib in Resources */,
 				A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */,
 				A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */,
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
@@ -482,7 +483,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4AE8F0F2296520A008DA01B /* MyBooksViewController.swift in Sources */,
-				A438B1F822AF35AF001F5E5A /* SearchResultViewController.swift in Sources */,
 				A4264AF122A8661500760D8D /* Session.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A4C2630322A2108900B82141 /* CustomButton.swift in Sources */,

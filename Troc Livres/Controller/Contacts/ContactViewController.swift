@@ -64,8 +64,8 @@ class ContactViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chat" {
-            let chatVC = segue.destination as! ChatViewController
-            chatVC.contact = selectedContact
+            let destinationVC = segue.destination as! ChatViewController
+            destinationVC.contact = selectedContact
         }
     }
 }

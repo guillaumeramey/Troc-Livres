@@ -21,7 +21,6 @@ class ChatViewController: UIViewController {
 
     var contact: Contact!
     var messages = [Message]()
-
     private let cellId = "chatCell"
 
     // MARK: - Methods
@@ -49,7 +48,7 @@ class ChatViewController: UIViewController {
     }
 
     private func enterChat() {
-        FirebaseManager.enterChat(withUid: contact.uid) { messages in
+        FirebaseManager.getChat(withUid: contact.uid) { messages in
             self.messages = messages
             self.chatTableView.reloadData()
             self.scrollTableViewToBottom()

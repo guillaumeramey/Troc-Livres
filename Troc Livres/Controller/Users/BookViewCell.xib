@@ -21,25 +21,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sY3-CT-4nE">
-                        <rect key="frame" x="20" y="5" width="444" height="180"/>
+                        <rect key="frame" x="20" y="5" width="444" height="189.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-NoBookCover" translatesAutoresizingMaskIntoConstraints="NO" id="sTD-yT-Aoq">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="180"/>
+                                <rect key="frame" x="0.0" y="11" width="121" height="167.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sTD-yT-Aoq" secondAttribute="height" multiplier="13:18" id="ohW-ke-tO7"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k4s-hp-ozX">
-                                <rect key="frame" x="150" y="63" width="294" height="53.5"/>
+                                <rect key="frame" x="141" y="68" width="303" height="53.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lj-9w-hIl">
-                                        <rect key="frame" x="0.0" y="0.0" width="294" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="303" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bju-cR-DyV">
-                                        <rect key="frame" x="0.0" y="32" width="294" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="32" width="303" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="sY3-CT-4nE" secondAttribute="trailing" constant="20" id="8Eg-BR-NuH"/>
-                    <constraint firstItem="sTD-yT-Aoq" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1:3" id="MpI-lw-7CN"/>
+                    <constraint firstItem="sTD-yT-Aoq" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1:4" id="MpI-lw-7CN"/>
                     <constraint firstAttribute="bottom" secondItem="sY3-CT-4nE" secondAttribute="bottom" constant="5" id="Tl5-jT-WwP"/>
                     <constraint firstItem="sY3-CT-4nE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Yxc-L0-UeO"/>
                     <constraint firstItem="sY3-CT-4nE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="pRb-uX-lEH"/>

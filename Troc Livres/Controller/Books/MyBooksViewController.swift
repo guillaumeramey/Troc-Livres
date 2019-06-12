@@ -53,9 +53,9 @@ class MyBooksViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bookDetail" {
-            let bookVC = segue.destination as! BookViewController
-            bookVC.book = selectedBook
-            bookVC.user = Session.user
+            let destinationVC = segue.destination as! BookViewController
+            destinationVC.book = selectedBook
+            destinationVC.user = Session.user
         }
     }
 

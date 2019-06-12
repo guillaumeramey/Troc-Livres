@@ -14,8 +14,8 @@ class WelcomeViewController: UIViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet weak var usernameTextField: customTextField!
-    @IBOutlet weak var emailTextField: customTextField!
+    @IBOutlet weak var usernameTextField: CustomTextField!
+    @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: PasswordTextField!
     @IBOutlet weak var usernameLine: UIView!
     @IBOutlet weak var textFieldsView: UIView!
@@ -116,7 +116,7 @@ class WelcomeViewController: UIViewController {
     }
 
     private func createUser() {
-        FirebaseManager.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
+        FirebaseManager.createUser(email: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {

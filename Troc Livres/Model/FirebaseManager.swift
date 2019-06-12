@@ -57,7 +57,7 @@ struct FirebaseManager {
         }
     }
 
-    static func createUser(withEmail email: String, password: String, completion: @escaping (String?) -> Void) {
+    static func createUser(email: String, password: String, completion: @escaping (String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                 //                    print(errorCode.rawValue)
@@ -151,7 +151,7 @@ struct FirebaseManager {
 
     static var chatHandle: UInt!
 
-    static func enterChat(withUid uid: String, completion: @escaping ([Message]) -> Void) {
+    static func getChat(withUid uid: String, completion: @escaping ([Message]) -> Void) {
         var messages = [Message]()
         let chatKey = Constants.chatKey(uid1: currentUser.uid, uid2: uid)
         chatHandle = chatRef.child(chatKey).observe(.childAdded) { snapshot in
@@ -169,8 +169,8 @@ struct FirebaseManager {
     static func getContacts(completion: @escaping ([Contact]) -> Void) {
         var contacts = [Contact]()
         userRef.child("\(currentUser.uid)/contacts").queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value) { snapshot in
-            for contactSnapshot in snapshot.children {
-                if let contact = Contact(from: contactSnapshot as! DataSnapshot) {
+            for snapshot in snapshot.children {
+                if let contact = Contact(from: snapshot as! DataSnapshot) {
                     contacts.insert(contact, at: 0)
                 }
             }
