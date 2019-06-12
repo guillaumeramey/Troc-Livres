@@ -13,6 +13,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Storage'
 pod 'FirebaseUI/Storage'
 pod 'ProgressHUD'
+pod 'Kingfisher', '~> 5.0'
 
   target 'Troc LivresTests' do
     inherit! :search_paths

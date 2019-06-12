@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BookViewCell: UITableViewCell {
 
@@ -14,19 +15,23 @@ class BookViewCell: UITableViewCell {
     @IBOutlet weak var bookAuthor: UILabel!
     @IBOutlet weak var bookImage: UIImageView!
 
-    var book: Book? {
+    var book: Book! {
         didSet {
+            resetCell()
             updateCell()
         }
     }
 
+    private func resetCell() {
+        bookImage.image = Constants.Image.noBookCover
+    }
+
     private func updateCell() {
-        guard let book = book else { return }
         bookTitle.text = book.title
         bookAuthor.text = book.authors?.joined(separator: " & ")
-//        bookImage.sd_setImage(with: book.imageRef, placeholderImage: UIImage(named: "Image-Book1"))
         if let imageURL = book.imageURL, let url = URL(string: imageURL) {
-            bookImage.load(url: url)
+            bookImage.kf.indicatorType = .activity
+            bookImage.kf.setImage(with: url)
         }
     }
 }

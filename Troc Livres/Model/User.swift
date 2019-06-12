@@ -28,15 +28,12 @@ class User: NSObject, MKAnnotation {
     }
 
     init?(from snapshot: DataSnapshot){
-        guard
-            let value = snapshot.value as? [String: Any],
-            let name = value["name"] as? String
-            else {
-                return nil
-            }
+        guard let value = snapshot.value as? [String: Any] else {
+            return nil
+        }
 
         uid = snapshot.key
-        self.name = name
+        self.name = value["name"] as! String
         self.address = value["address"] as? String
         self.latitude = value["latitude"] as? Double
         self.longitude = value["longitude"] as? Double
@@ -47,6 +44,7 @@ class User: NSObject, MKAnnotation {
                 books.append(book)
             }
         }
+        books.sort(by: { $0.title! < $1.title! })
     }
 
     // MKAnnotation properties

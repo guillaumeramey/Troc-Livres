@@ -24,6 +24,7 @@ struct Constants {
         static let envelope = UIImage(named: "Image-Envelope")!
         static let userIcon = UIImage(named: "Image-UserIcon")!
         static let lock = UIImage(named: "Image-Lock")!
+        static let noBookCover = UIImage(named: "Image-NoBookCover")!
     }
     
     struct Color {

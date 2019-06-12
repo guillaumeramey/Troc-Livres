@@ -29,6 +29,11 @@ class UsersMapViewController: MapViewController {
         displayUsersOnMap()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
         FirebaseManager.getUsers { users in
@@ -83,8 +88,8 @@ extension UsersMapViewController: MKMapViewDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "user" {
-            let userVC = segue.destination as! UserViewController
-            userVC.user = selectedUser
+            let destinationVC = segue.destination as! UserTableViewController
+            destinationVC.user = selectedUser
         }
     }
 }

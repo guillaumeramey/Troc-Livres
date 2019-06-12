@@ -12,7 +12,7 @@
 		A4051E6122909FAA002A5D18 /* UsersMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */; };
 		A4051E692290F7AA002A5D18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E682290F7AA002A5D18 /* Constants.swift */; };
 		A4051E712292399E002A5D18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E702292399E002A5D18 /* User.swift */; };
-		A4051E73229245F0002A5D18 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E72229245F0002A5D18 /* UserViewController.swift */; };
+		A4051E73229245F0002A5D18 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E72229245F0002A5D18 /* UserTableViewController.swift */; };
 		A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7422925E5B002A5D18 /* BookViewController.swift */; };
 		A4051E7722926241002A5D18 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7622926241002A5D18 /* Extensions.swift */; };
 		A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4135111229336AC00934188 /* SearchBookViewController.swift */; };
@@ -66,7 +66,7 @@
 		A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersMapViewController.swift; sourceTree = "<group>"; };
 		A4051E682290F7AA002A5D18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4051E702292399E002A5D18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A4051E72229245F0002A5D18 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		A4051E72229245F0002A5D18 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		A4051E7422925E5B002A5D18 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		A4051E7622926241002A5D18 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A4135111229336AC00934188 /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */,
-				A4051E72229245F0002A5D18 /* UserViewController.swift */,
+				A4051E72229245F0002A5D18 /* UserTableViewController.swift */,
 				A4DF67BD22AD575A00D6929C /* BookViewCell.swift */,
 			);
 			path = Users;
@@ -407,6 +407,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -418,6 +419,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -487,7 +489,7 @@
 				A41351162293534500934188 /* Persist.swift in Sources */,
 				A4478400229B081D00257636 /* Message.swift in Sources */,
 				A4478408229CD51800257636 /* Contact.swift in Sources */,
-				A4051E73229245F0002A5D18 /* UserViewController.swift in Sources */,
+				A4051E73229245F0002A5D18 /* UserTableViewController.swift in Sources */,
 				A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */,
 				A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */,
 				A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */,

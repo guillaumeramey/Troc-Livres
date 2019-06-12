@@ -17,12 +17,12 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var usernameTextField: customTextField!
     @IBOutlet weak var emailTextField: customTextField!
     @IBOutlet weak var passwordTextField: PasswordTextField!
-    @IBOutlet weak var registerLine: UIView!
-    @IBOutlet weak var loginLine: UIView!
     @IBOutlet weak var usernameLine: UIView!
     @IBOutlet weak var textFieldsView: UIView!
     @IBOutlet weak var validateButton: CustomButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+
 
     // MARK: - Properties
 
@@ -34,12 +34,15 @@ class WelcomeViewController: UIViewController {
 
     // MARK: - Actions
 
-    @IBAction func registerButtonPressed(_ sender: AnyObject) {
-        registration = true
-    }
-
-    @IBAction func loginButtonPressed(_ sender: AnyObject) {
-        registration = false
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            registration = true
+        case 1:
+            registration = false
+        default:
+            break
+        }
     }
 
     @IBAction func validateButtonPressed(_ sender: AnyObject) {
@@ -68,7 +71,8 @@ class WelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseManager.logOut()
+        FirebaseManager.signOut()
+        #warning("remove")
         passwordTextField.text = "123456"
         emailTextField.text = "tony.stark@avengers.com"
         usernameTextField.text = nil
@@ -76,6 +80,8 @@ class WelcomeViewController: UIViewController {
 
     private func setDesign() {
         registration = true
+
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: Constants.Font.button], for: .normal)
 
         textFieldsView.layer.cornerRadius = 8
         textFieldsView.layer.masksToBounds = true
@@ -88,9 +94,7 @@ class WelcomeViewController: UIViewController {
     }
 
     private func updateDisplay() {
-        loginLine.isHidden = registration
         forgotPasswordButton.isHidden = registration
-        registerLine.isHidden = !registration
         usernameTextField.isHidden = !registration
         usernameLine.isHidden = !registration
     }

@@ -46,7 +46,7 @@ struct FirebaseManager {
         }
     }
 
-    static func logOut() {
+    static func signOut() {
         do {
             try Auth.auth().signOut()
             currentUser = nil
@@ -101,13 +101,11 @@ struct FirebaseManager {
     }
     
     static func addBook(_ book: Book, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let bookValue: [String: Any] =
-            ["title": book.title ?? "",
-             "authors": book.authors?.joined(separator: "&&&") ?? "",
-             "bookDescription": book.bookDescription ?? "",
-             "pageCount": book.pageCount ?? 0,
-             "imageURL": book.imageURL ?? "",
-             "language": book.language ?? ""]
+        let bookValue = ["title": book.title ?? "",
+                         "authors": book.authors?.joined(separator: "&&&") ?? "",
+                         "bookDescription": book.bookDescription ?? "",
+                         "imageURL": book.imageURL ?? "",
+                         "language": book.language ?? ""]
         let bookRef = userRef.child("\(currentUser.uid)/books/\(book.id!)")
         bookRef.setValue(bookValue) { (error, reference) in
             if let error = error {

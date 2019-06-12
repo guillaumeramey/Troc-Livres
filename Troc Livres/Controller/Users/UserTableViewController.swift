@@ -1,5 +1,5 @@
 //
-//  UserViewController.swift
+//  UserTableViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 19/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController {
+class UserTableViewController: UITableViewController {
 
     // MARK: - Properties
 
@@ -17,23 +17,17 @@ class UserViewController: UIViewController {
     var selectedBook: Book!
     private let cellId = "bookCell"
 
-    // MARK: - Outlets
-
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var booksTableView: UITableView!
-
     // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = user.name
-        image.sd_setImage(with: user.imageRef, placeholderImage: UIImage(named: "Image-User"))
-        image.layer.cornerRadius = 8
-        image.contentMode = .scaleAspectFill
+        tableView.register(UINib(nibName: "BookViewCell", bundle: nil), forCellReuseIdentifier: cellId)
+    }
 
-        booksTableView.register(UINib(nibName: "BookViewCell", bundle: nil), forCellReuseIdentifier: cellId)
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Navigation
@@ -45,24 +39,22 @@ class UserViewController: UIViewController {
             bookVC.user = user
         }
     }
-}
 
-extension UserViewController: UITableViewDataSource {
+    // MARK: - TableView DataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return user == nil ? 0 : user.books.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookViewCell
         cell.book = user.books[indexPath.row]
         return cell
     }
-}
 
-extension UserViewController: UITableViewDelegate {
+    // MARK: - TableView Delegate
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedBook = user.books[indexPath.row]
         performSegue(withIdentifier: "bookDetail", sender: self)
