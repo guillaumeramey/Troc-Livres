@@ -25,13 +25,15 @@ struct Constants {
         static let userIcon = UIImage(named: "Image-UserIcon")!
         static let lock = UIImage(named: "Image-Lock")!
         static let noBookCover = UIImage(named: "Image-NoBookCover")!
+        static let noUserImage = UIImage(named: "Image-NoUserImage")!
     }
     
     struct Color {
-        static let background = UIColor(named: "Color-Background")!
+        static let lightGray = UIColor(named: "Color-LightGray")!
         static let chatSender = UIColor(named: "Color-ChatSender")!
         static let chatReceiver = UIColor(named: "Color-ChatReceiver")!
         static let button = UIColor(named: "Color-Button")!
+//        static let button = UIColor.systemTeal
     }
 
     // Wrapper for obtaining keys from keys.plist

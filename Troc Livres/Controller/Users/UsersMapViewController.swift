@@ -69,7 +69,7 @@ extension UsersMapViewController: MKMapViewDelegate {
             annotationView.animatesDrop = true
 
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            imageView.sd_setImage(with: annotation.imageRef, placeholderImage: UIImage(named: "Image-User"))
+            imageView.sd_setImage(with: annotation.imageRef, placeholderImage: Constants.Image.noUserImage)
             imageView.contentMode = .scaleAspectFill
             imageView.layer.cornerRadius = 5
             imageView.clipsToBounds = true

@@ -83,7 +83,7 @@
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-Ks-yVh" userLabel="Line">
                                                                 <rect key="frame" x="0.0" y="40" width="331" height="1"/>
-                                                                <color key="backgroundColor" name="Color-Background"/>
+                                                                <color key="backgroundColor" name="Color-LightGray"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="Uvp-gT-m2V"/>
                                                                 </constraints>
@@ -103,7 +103,7 @@
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Hs-Pl-hXe" userLabel="Line">
                                                                 <rect key="frame" x="0.0" y="81" width="331" height="1"/>
-                                                                <color key="backgroundColor" name="Color-Background"/>
+                                                                <color key="backgroundColor" name="Color-LightGray"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="S5S-au-eMU"/>
                                                                 </constraints>
@@ -195,7 +195,7 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="Color-Background">
+        <namedColor name="Color-LightGray">
             <color red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Color-Button">

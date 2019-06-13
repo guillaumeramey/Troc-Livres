@@ -30,6 +30,8 @@
 		A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* ChatViewCell.swift */; };
 		A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* ChatViewCell.xib */; };
 		A47D0A5422B140C7000378E0 /* SearchBookAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */; };
+		A47D0A5822B1A2C5000378E0 /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47D0A5622B1A2C5000378E0 /* UserViewCell.swift */; };
+		A47D0A5922B1A2C5000378E0 /* UserViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47D0A5722B1A2C5000378E0 /* UserViewCell.xib */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */; };
 		A4C2630322A2108900B82141 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2630222A2108900B82141 /* CustomButton.swift */; };
@@ -82,8 +84,10 @@
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordTextField.swift; path = ../Model/PasswordTextField.swift; sourceTree = "<group>"; };
 		A475130F229DDEB3002EA87E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
-		A4751310229DDEB3002EA87E /* ChatViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatViewCell.xib; path = ../Controller/ChatViewCell.xib; sourceTree = "<group>"; };
+		A4751310229DDEB3002EA87E /* ChatViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBookAdviceView.xib; sourceTree = "<group>"; };
+		A47D0A5622B1A2C5000378E0 /* UserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
+		A47D0A5722B1A2C5000378E0 /* UserViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewCell.xib; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		A4C2630222A2108900B82141 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -91,10 +95,10 @@
 		A4C2632B22A42CBD00B82141 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewCell.swift; sourceTree = "<group>"; };
-		A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContactViewCell.xib; path = ../Controller/ContactViewCell.xib; sourceTree = "<group>"; };
+		A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewCell.xib; sourceTree = "<group>"; };
 		A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		A4DF67BD22AD575A00D6929C /* BookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewCell.swift; sourceTree = "<group>"; };
-		A4DF67BE22AD575A00D6929C /* BookViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BookViewCell.xib; path = ../Controller/Users/BookViewCell.xib; sourceTree = "<group>"; };
+		A4DF67BE22AD575A00D6929C /* BookViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookViewCell.xib; sourceTree = "<group>"; };
 		A4E3CBE2228D0F4400180F09 /* Troc Livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Troc Livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E3CBEA228D0F4400180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -175,10 +179,8 @@
 				A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */,
 				A4AE8F0B229606E1008DA01B /* Welcome.storyboard */,
 				A4E3CBE9228D0F4400180F09 /* Main.storyboard */,
-				A4751310229DDEB3002EA87E /* ChatViewCell.xib */,
-				A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */,
-				A4DF67BE22AD575A00D6929C /* BookViewCell.xib */,
 				A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */,
+				A47D0A5522B1A29B000378E0 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +202,7 @@
 				A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */,
 				A4051E72229245F0002A5D18 /* UserTableViewController.swift */,
 				A4DF67BD22AD575A00D6929C /* BookViewCell.swift */,
+				A47D0A5622B1A2C5000378E0 /* UserViewCell.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -229,6 +232,17 @@
 				A4516A2522A482C400A2FF7F /* Users */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A47D0A5522B1A29B000378E0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A4751310229DDEB3002EA87E /* ChatViewCell.xib */,
+				A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */,
+				A4DF67BE22AD575A00D6929C /* BookViewCell.xib */,
+				A47D0A5722B1A2C5000378E0 /* UserViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		A494111122A1B82B009DD9C1 /* Welcome */ = {
@@ -378,6 +392,7 @@
 				A47D0A5422B140C7000378E0 /* SearchBookAdviceView.xib in Resources */,
 				A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */,
 				A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */,
+				A47D0A5922B1A2C5000378E0 /* UserViewCell.xib in Resources */,
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
 				A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */,
 				A46041C6229F429200E78852 /* Assets.xcassets in Resources */,
@@ -503,6 +518,7 @@
 				A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */,
 				A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */,
 				A4D9B35C229EFB0800A81F39 /* ContactViewController.swift in Sources */,
+				A47D0A5822B1A2C5000378E0 /* UserViewCell.swift in Sources */,
 				A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */,
 				A41351182293701300934188 /* WelcomeViewController.swift in Sources */,
 				A41351142293516C00934188 /* ProfileViewController.swift in Sources */,

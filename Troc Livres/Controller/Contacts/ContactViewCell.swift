@@ -17,7 +17,7 @@ class ContactViewCell: UITableViewCell {
         contactName.text = contact.name
         contactName.isHighlighted = contact.unread
         let imageRef = FirebaseManager.imageRef.child("users/\(contact.uid).jpg")
-        contactImage.sd_setImage(with: imageRef, placeholderImage: UIImage(named: "Image-User"))
+        contactImage.sd_setImage(with: imageRef, placeholderImage: Constants.Image.noUserImage)
         contactImage.layer.cornerRadius = 8
         contactImage.contentMode = .scaleAspectFill
     }
