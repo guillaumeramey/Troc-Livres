@@ -22,28 +22,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDk-0b-XqV">
-                        <rect key="frame" x="8" y="3" width="466" height="198.5"/>
+                        <rect key="frame" x="8" y="3" width="466" height="69.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sY3-CT-4nE">
-                                <rect key="frame" x="8" y="8" width="450" height="182.5"/>
+                                <rect key="frame" x="8" y="8" width="450" height="53.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-NoBookCover" translatesAutoresizingMaskIntoConstraints="NO" id="sTD-yT-Aoq">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="182.5"/>
+                                        <rect key="frame" x="0.0" y="15.5" width="16" height="22.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sTD-yT-Aoq" secondAttribute="height" multiplier="21:29.7" id="ohW-ke-tO7"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k4s-hp-ozX">
-                                        <rect key="frame" x="149" y="64.5" width="301" height="53.5"/>
+                                        <rect key="frame" x="36" y="0.0" width="414" height="53.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lj-9w-hIl">
-                                                <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bju-cR-DyV">
-                                                <rect key="frame" x="0.0" y="32" width="301" height="21.5"/>
+                                                <rect key="frame" x="0.0" y="32" width="414" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Image-NoBookCover" width="129" height="180"/>
+        <image name="Image-NoBookCover" width="575" height="750"/>
         <namedColor name="Color-LightGray">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

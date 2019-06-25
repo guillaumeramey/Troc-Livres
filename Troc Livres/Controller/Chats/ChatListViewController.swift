@@ -1,5 +1,5 @@
 //
-//  ContactViewController.swift
+//  ChatListViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 26/05/2019.
@@ -10,32 +10,31 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class ContactViewController: UITableViewController {
+class ChatListViewController: UITableViewController {
 
     // MARK: - Properties
 
-    var contacts = [Contact]()
-    var selectedContact: Contact!
-    
-    private let cellId = "contactCell"
+    var chats = [Chat]()
+    var selectedChat: Chat!
 
     // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "ContactViewCell", bundle: nil), forCellReuseIdentifier: cellId)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
-        getContacts()
+        getChats()
     }
 
-    private func getContacts() {
-        FirebaseManager.getContacts { contacts in
-            self.contacts = contacts
+    private func getChats() {
+        ProgressHUD.show()
+        FirebaseManager.getUserChats { chats in
+            ProgressHUD.dismiss()
+            self.chats = chats
             self.tableView.reloadData()
         }
     }
@@ -43,12 +42,13 @@ class ContactViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+        return chats.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ContactViewCell
-        cell.set(contact: contacts[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
+        cell.textLabel?.text = chats[indexPath.row].name
+        cell.textLabel?.isHighlighted = chats[indexPath.row].unread
         return cell
     }
 
@@ -56,16 +56,16 @@ class ContactViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedContact = contacts[indexPath.row]
-        performSegue(withIdentifier: "chat", sender: self)
+        selectedChat = chats[indexPath.row]
+        performSegue(withIdentifier: Constants.Segue.chatVC, sender: self)
     }
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chat" {
+        if segue.identifier == Constants.Segue.chatVC {
             let destinationVC = segue.destination as! ChatViewController
-            destinationVC.contact = selectedContact
+            destinationVC.chat = selectedChat
         }
     }
 }

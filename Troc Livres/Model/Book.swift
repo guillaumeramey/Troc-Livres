@@ -14,7 +14,7 @@ struct BookJSON: Decodable {
 }
 
 struct Item: Decodable {
-    let id: String?
+    let id: String
     var volumeInfo: Book
 }
 
@@ -40,15 +40,12 @@ struct Book: Decodable {
         let thumbnail: String?
     }
 
-
-    init?(from snapshot: DataSnapshot){
-        guard let value = snapshot.value as? [String: Any] else { return nil }
-
-        self.id = snapshot.key
-        self.title = value["title"] as? String
-        self.authors = (value["authors"] as? String)?.components(separatedBy: "&&&")
-        self.bookDescription = value["bookDescription"] as? String
-        self.imageLinks = ImageLinks(thumbnail: value["imageURL"] as? String)
-        self.language = value["language"] as? String
+    init(from document: DocumentSnapshot) {
+        self.id = document.documentID
+        self.title = document.get("title") as? String ?? ""
+        self.authors = document.get("authors") as? [String]
+        self.bookDescription = document.get("description") as? String
+        self.imageLinks = ImageLinks(thumbnail: document.get("imageURL") as? String)
+        self.language = document.get("language")  as? String
     }
 }

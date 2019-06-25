@@ -10,8 +10,17 @@ import UIKit
 
 struct Constants {
 
-    static func chatKey(uid1: String, uid2: String) -> String {
-            return uid1 < uid2 ? uid1 + uid2 : uid2 + uid1
+    struct Cell {
+        static let book = "BookViewCell"
+        static let message = "MessageViewCell"
+    }
+
+    struct Color {
+        static let lightGray = UIColor(named: "Color-LightGray")!
+        static let chatSender = UIColor(named: "Color-ChatSender")!
+        static let chatReceiver = UIColor(named: "Color-ChatReceiver")!
+        static let button = UIColor(named: "Color-Button")!
+        //        static let button = UIColor.systemTeal
     }
 
     struct Font {
@@ -26,14 +35,15 @@ struct Constants {
         static let lock = UIImage(named: "Image-Lock")!
         static let noBookCover = UIImage(named: "Image-NoBookCover")!
         static let noUserImage = UIImage(named: "Image-NoUserImage")!
+        static let starFalse = UIImage(named: "Image-StarFalse")!
+        static let starTrue = UIImage(named: "Image-StarTrue")!
     }
-    
-    struct Color {
-        static let lightGray = UIColor(named: "Color-LightGray")!
-        static let chatSender = UIColor(named: "Color-ChatSender")!
-        static let chatReceiver = UIColor(named: "Color-ChatReceiver")!
-        static let button = UIColor(named: "Color-Button")!
-//        static let button = UIColor.systemTeal
+
+    struct Segue {
+        static let bookVC = "BookViewController"
+        static let chatVC = "ChatViewController"
+        static let userTableVC = "UserTableViewController"
+        static let scannerVC = "ScannerViewController"
     }
 
     // Wrapper for obtaining keys from keys.plist

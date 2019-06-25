@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
 
     let locationManager = CLLocationManager()
     let mapRadius: CLLocationDistance = 5000
+    var userLocation = CLLocationCoordinate2D()
 
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
@@ -49,6 +50,8 @@ class MapViewController: UIViewController {
 
     func centerMapViewOnUserLocation(){
         guard let location = locationManager.location?.coordinate else { return }
+
+        userLocation = location
 
         let region = MKCoordinateRegion.init(center: location, latitudinalMeters: mapRadius, longitudinalMeters: mapRadius)
 

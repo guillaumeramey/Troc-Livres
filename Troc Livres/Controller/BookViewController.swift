@@ -14,10 +14,11 @@ class BookViewController: UIViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet weak var bookTitle: UILabel!
-    @IBOutlet weak var author: UILabel!
-    @IBOutlet weak var bookDescription: UILabel!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet var labels: [PaddingLabel]!
+    @IBOutlet weak var titleLabel: PaddingLabel!
+    @IBOutlet weak var authorLabel: PaddingLabel!
+    @IBOutlet weak var descriptionLabel: PaddingLabel!
+    @IBOutlet weak var imageView: UIImageView!
 
     // MARK: - Properties
 
@@ -28,23 +29,29 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setLabelsDesign()
         setRightBarButton()
-        displayBookDetails()
+        setBookData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = false
     }
 
-    private func displayBookDetails() {
-        bookTitle.text = book.title
-        author.text = book.authors?.joined(separator: " & ")
-        bookDescription.text = book.bookDescription
+    private func setLabelsDesign() {
+        for label in labels {
+            label.layer.cornerRadius = 8
+            label.layer.masksToBounds = true
+        }
+    }
 
+    private func setBookData() {
+        titleLabel.text = book.title
+        authorLabel.text = book.authors?.joined(separator: "\n")
+        descriptionLabel.text = book.bookDescription
         if let imageURL = book.imageURL, let url = URL(string: imageURL) {
-            image.kf.setImage(with: url)
+            imageView.kf.setImage(with: url)
         }
     }
 
@@ -58,7 +65,18 @@ class BookViewController: UIViewController {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
             }
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(composeTapped))
+
+//            let buttonImage: UIImage!
+//
+//            if let applicants = book.applicants, applicants.contains(Session.user.uid) {
+//                buttonImage = Constants.Image.starTrue
+//            } else {
+//                buttonImage = Constants.Image.starFalse
+//            }
+//
+//            navigationItem.rightBarButtonItem = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(starTapped))
+
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(starTapped))
         }
     }
 
@@ -66,7 +84,7 @@ class BookViewController: UIViewController {
 
     // Add the book to the user's collection
     @objc func addTapped(_ sender: Any) {
-        guard book.id != nil else { return }
+//        guard book.id != nil else { return }
 
         ProgressHUD.show("Ajout du livre")
 
@@ -83,7 +101,7 @@ class BookViewController: UIViewController {
         }
     }
 
-    // Delte the book from the user's collection
+    // Remove the book from the user's collection
     @objc func trashTapped(_ sender: Any) {
         let alert = UIAlertController(title: "La suppression d'un livre est définitive et irréversible.", message: nil, preferredStyle: .actionSheet)
         let actionDelete = UIAlertAction(title: "Supprimer", style: .destructive, handler: deleteHandler)
@@ -94,16 +112,29 @@ class BookViewController: UIViewController {
     }
 
     private func deleteHandler(alert: UIAlertAction) {
-        Session.user.deleteBook(key: book.id)
-        ProgressHUD.showSuccess("Livre supprimé")
-        self.goBack()
+        FirebaseManager.deleteBook(book) { result in
+            switch result {
+            case .success(_):
+                Session.user.books.removeAll(where: { $0.id == self.book.id })
+                ProgressHUD.showSuccess("Livre supprimé")
+                self.performSegue(withIdentifier: "unwindToMyBooks", sender: self)
+            case .failure(let error):
+                print(error.localizedDescription)
+                ProgressHUD.showError("Echec de la suppression du livre")
+            }
+        }
     }
 
     // Send a message to the owner of the book
-    @objc func composeTapped(_ sender: Any) {
-        _ = Message("Bonjour ! Je suis intéressé(e) par \"\(book.title ?? "Erreur de titre")\"", to: Contact(with: user))
-        #warning("Gérer les erreurs d'envoi")
-        alert(title: "Message envoyé !", message: "Retrouvez cette discussion dans l'onglet Contacts")
+    @objc func starTapped(_ sender: Any) {
+        // Check if this user wants one of my books
+        FirebaseManager.getMatches(uid: user.uid) { book in
+            if book.isEmpty {
+                // No match, add the book to wishlist
+                FirebaseManager.addBookToWishlist(uid: self.user.uid, self.book)
+            } else {
+                self.alert(title: "Match !!", message: "Cet utilisateur veut également un livre à vous : \"\(book)\"")
+            }
+        }
     }
-
 }

@@ -120,15 +120,15 @@ class WelcomeViewController: UIViewController {
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {
-                self.setUsername()
+                self.setUserName()
             }
         }
     }
 
-    private func setUsername() {
-        FirebaseManager.setUsername(usernameTextField.text!) { success in
+    private func setUserName() {
+        FirebaseManager.setUserName(usernameTextField.text!) { success in
             if success {
-                self.getUserData()
+                self.getCurrentUserData()
             } else {
                 ProgressHUD.showError("Impossible de sauvegarder le nom d'utilisateur")
             }
@@ -140,15 +140,16 @@ class WelcomeViewController: UIViewController {
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {
-                self.getUserData()
+                self.getCurrentUserData()
             }
         }
     }
 
-    private func getUserData() {
+    private func getCurrentUserData() {
         ProgressHUD.show("Récupération des données de l'utilisateur")
-        FirebaseManager.getCurrentUserData(completion: { success in
-            if success {
+        FirebaseManager.getUser(completion: { user in
+            if let user = user {
+                Session.user = user
                 ProgressHUD.dismiss()
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {

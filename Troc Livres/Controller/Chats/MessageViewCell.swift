@@ -1,5 +1,5 @@
 //
-//  ChatViewCell.swift
+//  MessageViewCell.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 28/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewCell: UITableViewCell {
+class MessageViewCell: UITableViewCell {
 
     @IBOutlet weak var messageBackground: UIView!
     @IBOutlet weak var messageText: UILabel!
@@ -16,19 +16,26 @@ class ChatViewCell: UITableViewCell {
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
 
-    func set(with message: Message) {
-        messageText.text = message.text
-        messageDate.text = message.displayDate
+    var message: Message! {
+        didSet {
+            setCell()
+        }
+    }
 
+    func setCell() {
+        messageText.text = message.content
+        messageDate.text = message.displayDate
         messageBackground.layer.cornerRadius = 5
 
-        if message.senderUid == Session.user.uid {
+        if message.sender == Session.user.uid {
+            // Message from the current user
             messageBackground.backgroundColor = Constants.Color.chatSender
             messageText.textColor = .white
             messageDate.textColor = .white
             leadingConstraint.constant = 80
             trailingConstraint.constant = 10
         } else {
+            // Message from the other user
             messageBackground.backgroundColor = Constants.Color.chatReceiver
             messageText.textColor = .darkText
             messageDate.textColor = .darkText

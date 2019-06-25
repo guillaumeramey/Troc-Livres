@@ -31,7 +31,7 @@ class BookViewCell: UITableViewCell {
         background.layer.cornerRadius = 8
 
         bookTitle.text = book.title
-        bookAuthor.text = book.authors?.joined(separator: " & ")
+        bookAuthor.text = book.authors?.joined(separator: "\n")
         if let imageURL = book.imageURL, let url = URL(string: imageURL) {
             bookImage.kf.indicatorType = .activity
             bookImage.kf.setImage(with: url)

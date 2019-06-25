@@ -36,10 +36,10 @@ class UsersMapViewController: MapViewController {
 
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        FirebaseManager.getUsers { users in
+        FirebaseManager.getUsers(center: userLocation, radius: 1, completion: { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
-        }
+        })
     }
 
     @IBAction func findMeButtonPressed(_ sender: AnyObject) {
@@ -67,14 +67,6 @@ extension UsersMapViewController: MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
             annotationView.animatesDrop = true
-
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            imageView.sd_setImage(with: annotation.imageRef, placeholderImage: Constants.Image.noUserImage)
-            imageView.contentMode = .scaleAspectFill
-            imageView.layer.cornerRadius = 5
-            imageView.clipsToBounds = true
-
-            annotationView.leftCalloutAccessoryView = imageView
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return annotationView
@@ -83,11 +75,11 @@ extension UsersMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let user = view.annotation as? User else { return }
         selectedUser = user
-        performSegue(withIdentifier: "user", sender: nil)
+        performSegue(withIdentifier: Constants.Segue.userTableVC, sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "user" {
+        if segue.identifier == Constants.Segue.userTableVC {
             let destinationVC = segue.destination as! UserTableViewController
             destinationVC.user = selectedUser
         }

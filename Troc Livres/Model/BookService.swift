@@ -9,11 +9,11 @@
 import Foundation
 
 enum NetworkError: String, Error {
-    case encodingString = "erreur dans l'URL"
-    case badURL = "Mauvaise URL"
-    case error = "une erreur est survenue"
-    case noData = "aucune donnée reçue"
-    case jsonKO = "Problème de JSON"
+    case encodingString = "Caractères interdits"
+    case badURL = "Erreur dans la requête"
+    case error = "Une erreur est survenue"
+    case noData = "Aucune donnée reçue"
+    case noResult = "Aucun résultat"
 }
 
 class BookService {
@@ -26,31 +26,30 @@ class BookService {
         var request = apiURL + "key=" + apiKey + "&q="
         if isbn != "" {
             request += "isbn:" + isbn
-        }
-
-        if title != "" {
-            request += "intitle:" + title.replacingOccurrences(of: " ", with: "+intitle:")
-        }
-
-        if author != "" {
+        } else {
             if title != "" {
-                request += "+"
+                request += "intitle:" + title.replacingOccurrences(of: " ", with: "+intitle:")
             }
-            request += "inauthor:" + author.replacingOccurrences(of: " ", with: "+inauthor:")
-        }
 
-        if langRestrict != "" {
-            request += "&langRestrict=" + langRestrict
-        }
+            if author != "" {
+                if title != "" {
+                    request += "+"
+                }
+                request += "inauthor:" + author.replacingOccurrences(of: " ", with: "+inauthor:")
+            }
 
+            if langRestrict != "" {
+                request += "&langRestrict=" + langRestrict
+            }
+        }
         request += "&fields=items/id,items/volumeInfo(title,authors,description,pageCount,imageLinks/thumbnail,language)"
 
         return request
     }
 
-    func getBook(isbn: String = "", title: String = "", author: String = "", langRestrict: String = "fr", completion: @escaping (Result<[Book], NetworkError>) -> Void) {
+    func getBooks(isbn: String = "", title: String = "", author: String = "", langRestrict: String = "fr", completion: @escaping (Result<[Book], NetworkError>) -> Void) {
 
-        let requestURLString = createRequest(isbn: isbn, title: title, author: author, langRestrict: langRestrict)
+        let requestURLString = createRequest(isbn: isbn, title: title.trimmingCharacters(in: CharacterSet(charactersIn: " ")), author: author.trimmingCharacters(in: CharacterSet(charactersIn: " ")), langRestrict: langRestrict)
 
         // removes forbidden characters
         guard let encodeString = requestURLString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let url = URL(string: encodeString) else {
@@ -83,7 +82,7 @@ class BookService {
 
                     completion(.success(items.map { $0.volumeInfo }))
                 } catch {
-                    completion(.failure(.jsonKO))
+                    completion(.failure(.noResult))
                 }
             }
         }

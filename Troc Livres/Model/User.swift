@@ -9,42 +9,28 @@
 import Foundation
 import MapKit
 import Firebase
+import CoreLocation
 
 class User: NSObject, MKAnnotation {
     let uid: String
     var name: String
+    var numberOfBooks: Int?
     var books = [Book]()
-    var contacts = [Contact]()
+    var contacts = [Chat]()
     var address: String?
-    var latitude: Double?
-    var longitude: Double?
-    var imageRef: StorageReference {
-        return FirebaseManager.imageRef.child("users/\(uid).jpg")
-    }
+    var geohash: String?
 
     init(uid: String, name: String) {
         self.uid = uid
         self.name = name
     }
 
-    init?(from snapshot: DataSnapshot){
-        guard let value = snapshot.value as? [String: Any] else {
-            return nil
-        }
-
-        uid = snapshot.key
-        self.name = value["name"] as! String
-        self.address = value["address"] as? String
-        self.latitude = value["latitude"] as? Double
-        self.longitude = value["longitude"] as? Double
-
-        // Get the user books
-        for snapshotChild in snapshot.childSnapshot(forPath: "books").children {
-            if let book = Book(from: snapshotChild as! DataSnapshot) {
-                books.append(book)
-            }
-        }
-        books.sort(by: { $0.title! < $1.title! })
+    init(from document: DocumentSnapshot) {
+        self.uid = document.documentID
+        self.name = document.get("name") as? String ?? ""
+        self.numberOfBooks = document.get("numberOfBooks") as? Int
+        self.address = document.get("address") as? String
+        self.geohash = document.get("geohash") as? String
     }
 
     // MKAnnotation properties
@@ -52,16 +38,15 @@ class User: NSObject, MKAnnotation {
         return name
     }
     var subtitle: String? {
-        return "\(books.count) livre" + (books.count > 1 ? "s" : "")
+        if let numberOfBooks = numberOfBooks {
+            return "\(numberOfBooks) livre" + (numberOfBooks > 1 ? "s" : "")
+        }
+        return nil
     }
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude ?? 0, longitude: longitude ?? 0)
-    }
-
-    // Methods
-    func deleteBook(key: String?) {
-        guard let key = key else { return }
-        FirebaseManager.deleteBook(withKey: key)
-        books.removeAll(where: { $0.id == key })
+        if let geohash = geohash {
+            return CLLocationCoordinate2D.init(geohash: geohash)
+        }
+        return CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
 }
