@@ -94,7 +94,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Recherche" id="wZm-gI-EQy">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="bEd-UB-vbc">
+                        <barButtonItem key="backBarButtonItem" title=" " id="29V-Lx-CFO"/>
+                        <barButtonItem key="rightBarButtonItem" image="Image-Barcode" id="bEd-UB-vbc">
                             <color key="tintColor" name="Color-Button"/>
                             <connections>
                                 <segue destination="pBm-eZ-lbE" kind="presentation" identifier="ScannerViewController" id="Xgd-ze-1Hl"/>
@@ -132,13 +133,13 @@
                     <viewLayoutGuide key="safeArea" id="hsX-DA-xaq"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3348" y="-465"/>
+            <point key="canvasLocation" x="1374" y="-465"/>
         </scene>
-        <!--Livres-->
+        <!--Mes livres-->
         <scene sceneID="AiL-Xb-Dd3">
             <objects>
                 <navigationController id="IHu-bc-XZS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Livres" image="Glyph-Books" id="SpP-xE-sSh"/>
+                    <tabBarItem key="tabBarItem" title="Mes livres" image="Glyph-Book" id="SpP-xE-sSh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="46M-Fx-wnp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -152,21 +153,11 @@
             </objects>
             <point key="canvasLocation" x="-484" y="-465"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="vgq-LM-OGs">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="KFs-ft-FMV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8No-Nc-Uob"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fol-b7-dl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1244" y="2246"/>
-        </scene>
-        <!--Contacts-->
+        <!--Discussions-->
         <scene sceneID="oMl-JL-fN5">
             <objects>
                 <navigationController id="stN-g2-x8j" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" image="Glyph-Contacts" id="E9F-F5-VIG"/>
+                    <tabBarItem key="tabBarItem" title="Discussions" image="Glyph-Chats" id="E9F-F5-VIG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TcM-fh-odc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -190,7 +181,7 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOd-Ny-HDP">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="tintColor" name="Color-Button"/>
+                                <color key="tintColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="PSc-ue-5n7" id="kVf-9u-t12"/>
                                 </connections>
@@ -206,7 +197,7 @@
                         <viewLayoutGuide key="safeArea" id="Cba-J3-4vn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Carte" id="TJz-zF-sxA">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="location" id="IeN-Hm-0Hg">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Image-Location" id="IeN-Hm-0Hg">
                             <color key="tintColor" name="Color-Button"/>
                             <connections>
                                 <action selector="findMeButtonPressed:" destination="PSc-ue-5n7" id="34a-bm-ehE"/>
@@ -364,7 +355,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KBG-7J-Cn0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4Ry-3m-r8T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3348" y="611"/>
+            <point key="canvasLocation" x="2322" y="611"/>
         </scene>
         <!--User Table View Controller-->
         <scene sceneID="Lnq-Hg-oeQ">
@@ -395,7 +386,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rb5-nc-PWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="611"/>
+            <point key="canvasLocation" x="1374" y="611"/>
         </scene>
         <!--Carte-->
         <scene sceneID="Wm9-A5-r5r">
@@ -430,14 +421,14 @@
                         <segue destination="FQB-Ha-Mb5" kind="relationship" relationship="viewControllers" id="Dei-dD-VG1"/>
                         <segue destination="stN-g2-x8j" kind="relationship" relationship="viewControllers" id="7c8-db-4np"/>
                         <segue destination="IHu-bc-XZS" kind="relationship" relationship="viewControllers" id="ZcW-H6-zRG"/>
-                        <segue destination="KFs-ft-FMV" kind="relationship" relationship="viewControllers" id="7GM-Dq-CdW"/>
+                        <segue destination="imP-Qt-57M" kind="relationship" relationship="viewControllers" id="Q3e-FX-Jmc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bth-sh-OZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2332" y="1648"/>
+            <point key="canvasLocation" x="-2351" y="2448"/>
         </scene>
-        <!--Contacts-->
+        <!--Discussions-->
         <scene sceneID="cP0-1i-rL9">
             <objects>
                 <tableViewController id="wVZ-JW-XF3" customClass="ChatListViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
@@ -474,7 +465,7 @@
                             <outlet property="delegate" destination="wVZ-JW-XF3" id="qsu-Fz-kCM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" largeTitleDisplayMode="always" id="oej-Xf-IZw">
+                    <navigationItem key="navigationItem" title="Discussions" largeTitleDisplayMode="always" id="oej-Xf-IZw">
                         <barButtonItem key="backBarButtonItem" title=" " id="hJz-G7-PPG"/>
                     </navigationItem>
                 </tableViewController>
@@ -549,7 +540,6 @@
                         <outlet property="bottomConstraint" destination="C3o-XW-4Gz" id="xYT-9Q-k5E"/>
                         <outlet property="chatTableView" destination="JGi-Dj-uIc" id="wZN-Dq-N4Q"/>
                         <outlet property="messageTextField" destination="i2e-e4-6lU" id="Tla-vS-mc6"/>
-                        <segue destination="Tkc-y3-UJj" kind="show" identifier="UserTableViewController" id="hRx-oD-Fvh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1S-4j-mpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -609,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iUa-Hz-SYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4343" y="-465"/>
+            <point key="canvasLocation" x="2322" y="-465"/>
         </scene>
         <!--Mes livres-->
         <scene sceneID="mV4-wY-jJJ">
@@ -648,6 +638,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Mes livres" id="kbM-ee-iLi">
+                        <barButtonItem key="backBarButtonItem" title=" " id="cOs-Kn-ccI"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="umx-H5-02A">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="OgK-QO-zAm"/>
@@ -683,14 +674,184 @@ Appuyez sur + pour en ajouter.</string>
                     <viewLayoutGuide key="safeArea" id="760-3X-ptA"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2361" y="-465"/>
+            <point key="canvasLocation" x="441" y="-465"/>
+        </scene>
+        <!--Profil-->
+        <scene sceneID="2wh-O1-VjD">
+            <objects>
+                <navigationController id="imP-Qt-57M" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profil" image="Glyph-Person" id="Dn6-AR-Qqs"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hvN-d6-pZ4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="Color-Button"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bg9-VQ-NIP" kind="relationship" relationship="rootViewController" id="tsO-UQ-adb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wwP-nS-s4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-496" y="2448"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="wbX-zf-L8O">
+            <objects>
+                <viewController id="Bg9-VQ-NIP" customClass="ProfileViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ai3-pe-L2B">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X2t-xh-w3c">
+                                <rect key="frame" x="10" y="404" width="394" height="88"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Aucun emplacement défini" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AIr-Le-jpg">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
+                                        <color key="backgroundColor" name="Color-LightGray"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L09-bO-PHI" customClass="CustomButton" customModule="Troc_Livres" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="48" width="394" height="40"/>
+                                        <color key="backgroundColor" name="Color-Button"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="OZB-Bx-cgw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Choisir un lieu de troc">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="siM-Z9-sXL" kind="presentation" identifier="ChangeLocationViewController" modalPresentationStyle="overCurrentContext" id="uD6-Yp-T2j"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VV7-HE-v38" firstAttribute="trailing" secondItem="X2t-xh-w3c" secondAttribute="trailing" constant="10" id="39S-MF-jv2"/>
+                            <constraint firstItem="X2t-xh-w3c" firstAttribute="centerY" secondItem="ai3-pe-L2B" secondAttribute="centerY" id="DMW-MV-5Zw"/>
+                            <constraint firstItem="X2t-xh-w3c" firstAttribute="leading" secondItem="VV7-HE-v38" secondAttribute="leading" constant="10" id="cHz-Qf-aLD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VV7-HE-v38"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3bf-Eg-MpG">
+                        <barButtonItem key="leftBarButtonItem" title="Déconnexion" id="3rr-Ec-nWT">
+                            <connections>
+                                <segue destination="AfW-0I-7Ll" kind="unwind" identifier="unwindToWelcome" unwindAction="unwindToWelcomeWithSegue:" id="guc-xa-o5D"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="I0E-He-EfT">
+                            <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="Bg9-VQ-NIP" id="7jF-YX-W75"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="AIr-Le-jpg" id="8uP-Un-him"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xd6-GU-ehU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AfW-0I-7Ll" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="428.98550724637687" y="2447.5446428571427"/>
+        </scene>
+        <!--Change Location View Controller-->
+        <scene sceneID="Vkx-bb-c8d">
+            <objects>
+                <viewController id="siM-Z9-sXL" customClass="ChangeLocationViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j6p-zU-uUa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOU-nr-Mio">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KT-If-wEH">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Mon lieu de troc" id="qbG-uA-1fn">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MZe-dI-rMT">
+                                            <connections>
+                                                <action selector="cancelButtonPressed" destination="siM-Z9-sXL" id="9P9-45-Ogu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="EfL-cw-ghv">
+                                            <connections>
+                                                <action selector="doneButtonPressed" destination="siM-Z9-sXL" id="HXs-mS-ojV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JJK-Tg-XTc">
+                                <rect key="frame" x="10" y="98" width="394" height="394"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JJK-Tg-XTc" secondAttribute="height" multiplier="1:1" id="xvz-jf-2NN"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="siM-Z9-sXL" id="m2h-t6-gfj"/>
+                                </connections>
+                            </mapView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-Pin" translatesAutoresizingMaskIntoConstraints="NO" id="Eiq-ON-JM6">
+                                <rect key="frame" x="198.5" y="260.5" width="17" height="37"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kJe-rZ-lnK">
+                                <rect key="frame" x="10" y="502" width="394" height="30"/>
+                                <color key="backgroundColor" name="Color-LightGray"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wf5-Rl-hug">
+                                <rect key="frame" x="197" y="507" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="tintColor" name="Color-Button"/>
+                        <constraints>
+                            <constraint firstItem="BOU-nr-Mio" firstAttribute="trailing" secondItem="tp6-Eq-TAf" secondAttribute="trailing" id="2iE-LK-ztq"/>
+                            <constraint firstItem="wf5-Rl-hug" firstAttribute="centerY" secondItem="kJe-rZ-lnK" secondAttribute="centerY" id="5Ap-Io-0qj"/>
+                            <constraint firstItem="4KT-If-wEH" firstAttribute="top" secondItem="tp6-Eq-TAf" secondAttribute="top" id="CCP-zz-bMM"/>
+                            <constraint firstItem="JJK-Tg-XTc" firstAttribute="top" secondItem="4KT-If-wEH" secondAttribute="bottom" constant="10" id="DTc-GE-Lwk"/>
+                            <constraint firstItem="4KT-If-wEH" firstAttribute="centerX" secondItem="j6p-zU-uUa" secondAttribute="centerX" id="DvV-hx-Ifd"/>
+                            <constraint firstItem="tp6-Eq-TAf" firstAttribute="trailing" secondItem="JJK-Tg-XTc" secondAttribute="trailing" constant="10" id="Mjy-Oh-8TL"/>
+                            <constraint firstItem="kJe-rZ-lnK" firstAttribute="top" secondItem="JJK-Tg-XTc" secondAttribute="bottom" constant="10" id="Pgw-xd-sdL"/>
+                            <constraint firstItem="JJK-Tg-XTc" firstAttribute="centerY" secondItem="Eiq-ON-JM6" secondAttribute="centerY" constant="16" id="Qdb-fi-SM5"/>
+                            <constraint firstItem="kJe-rZ-lnK" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" constant="10" id="TgT-qf-ZAn"/>
+                            <constraint firstItem="BOU-nr-Mio" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" id="Vwo-n2-EA2"/>
+                            <constraint firstItem="BOU-nr-Mio" firstAttribute="top" secondItem="4KT-If-wEH" secondAttribute="bottom" id="WL5-3F-MOe"/>
+                            <constraint firstAttribute="bottom" secondItem="BOU-nr-Mio" secondAttribute="bottom" id="av1-oF-Rty"/>
+                            <constraint firstItem="JJK-Tg-XTc" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" constant="10" id="gP1-FL-Zxa"/>
+                            <constraint firstItem="Eiq-ON-JM6" firstAttribute="centerX" secondItem="JJK-Tg-XTc" secondAttribute="centerX" id="m8h-RC-5VF"/>
+                            <constraint firstItem="wf5-Rl-hug" firstAttribute="centerX" secondItem="kJe-rZ-lnK" secondAttribute="centerX" id="oQq-KM-xMJ"/>
+                            <constraint firstItem="tp6-Eq-TAf" firstAttribute="trailing" secondItem="kJe-rZ-lnK" secondAttribute="trailing" constant="10" id="vE8-rr-Gat"/>
+                            <constraint firstItem="4KT-If-wEH" firstAttribute="leading" secondItem="j6p-zU-uUa" secondAttribute="leading" id="wL4-ng-fNT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tp6-Eq-TAf"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="wf5-Rl-hug" id="W2H-kr-RHf"/>
+                        <outlet property="addressTextField" destination="kJe-rZ-lnK" id="hIp-pm-NNJ"/>
+                        <outlet property="mapView" destination="JJK-Tg-XTc" id="J1e-Fz-FM4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zRh-h7-QU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1374" y="2448"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Glyph-Books" width="20.5" height="21.5"/>
-        <image name="Glyph-Contacts" width="27" height="21.5"/>
-        <image name="Glyph-Map" width="22.5" height="22.5"/>
-        <image name="location" width="23" height="23"/>
+        <image name="Glyph-Book" width="22" height="26"/>
+        <image name="Glyph-Chats" width="27" height="26"/>
+        <image name="Glyph-Map" width="28" height="26"/>
+        <image name="Glyph-Person" width="25" height="26"/>
+        <image name="Image-Barcode" width="26" height="26"/>
+        <image name="Image-Location" width="26" height="26"/>
+        <image name="Image-Pin" width="17" height="37"/>
         <namedColor name="Color-Button">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -699,7 +860,6 @@ Appuyez sur + pour en ajouter.</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Fp-wX-QJy"/>
         <segue reference="ZKF-7u-uUs"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Color-Button"/>

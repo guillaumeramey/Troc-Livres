@@ -23,11 +23,11 @@ class MyBooksViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundView = tableViewBackgroundView
         tableView.register(UINib(nibName: Constants.Cell.book, bundle: nil), forCellReuseIdentifier: Constants.Cell.book)
 
         FirebaseManager.getBooks(uid: Session.user.uid, completion: { books in
             Session.user.books = books
+            self.tableView.backgroundView = self.tableViewBackgroundView
             self.tableView.reloadData()
         })
     }
@@ -36,12 +36,12 @@ class MyBooksViewController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.reloadData()
-        tableView.backgroundView?.isHidden = Session.user.books.count > 0 ? true : false
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView?.isHidden = Session.user.books.count > 0 ? true : false
         return Session.user.books.count
     }
 

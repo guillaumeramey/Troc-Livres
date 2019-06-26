@@ -25,6 +25,7 @@ class ChatListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tabBarController?.tabBar.items?[1].badgeValue = nil
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
         getChats()

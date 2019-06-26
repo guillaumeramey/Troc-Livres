@@ -24,6 +24,12 @@ class BookViewController: UIViewController {
 
     var book: Book!
     var user: User!
+    private var rightBarButton: UIBarButtonItem!
+    private var bookIsInWishlist: Bool! {
+        didSet {
+            rightBarButton.image = bookIsInWishlist ? Constants.Image.starFill : Constants.Image.star
+        }
+    }
 
     // MARK: - Methods
 
@@ -59,35 +65,25 @@ class BookViewController: UIViewController {
     private func setRightBarButton() {
         if user.uid == Session.user.uid {
             if user.books.contains(where: { $0.id == book.id }) {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashTapped))
-                navigationItem.rightBarButtonItem?.tintColor = .red
+                rightBarButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashTapped))
+                rightBarButton.tintColor = .red
             } else {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+                rightBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
             }
         } else {
-
-//            let buttonImage: UIImage!
-//
-//            if let applicants = book.applicants, applicants.contains(Session.user.uid) {
-//                buttonImage = Constants.Image.starTrue
-//            } else {
-//                buttonImage = Constants.Image.starFalse
-//            }
-//
-//            navigationItem.rightBarButtonItem = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(starTapped))
-
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(starTapped))
+            rightBarButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(starTapped))
+            FirebaseManager.isBookInWishlist(uid: user.uid, book, completion: { (bookIsInWishlist) in
+                self.bookIsInWishlist = bookIsInWishlist
+            })
         }
+        navigationItem.rightBarButtonItem = rightBarButton
     }
 
     // MARK: - Actions
 
     // Add the book to the user's collection
     @objc func addTapped(_ sender: Any) {
-//        guard book.id != nil else { return }
-
         ProgressHUD.show("Ajout du livre")
-
         FirebaseManager.addBook(book) { result in
             switch result {
             case .success(_):
@@ -96,7 +92,7 @@ class BookViewController: UIViewController {
                 self.performSegue(withIdentifier: "unwindToMyBooks", sender: self)
             case .failure(let error):
                 print(error.localizedDescription)
-                ProgressHUD.showError("Echec d'ajout du livre")
+                ProgressHUD.showError("Echec de l'ajout du livre")
             }
         }
     }
@@ -112,6 +108,7 @@ class BookViewController: UIViewController {
     }
 
     private func deleteHandler(alert: UIAlertAction) {
+        ProgressHUD.show("Suppression du livre")
         FirebaseManager.deleteBook(book) { result in
             switch result {
             case .success(_):
@@ -124,17 +121,38 @@ class BookViewController: UIViewController {
             }
         }
     }
-
-    // Send a message to the owner of the book
+    
+    // Add or remove the book from the wishlist
     @objc func starTapped(_ sender: Any) {
+        bookIsInWishlist.toggle()
+        bookIsInWishlist ?
+            addBookToWishlist() :
+            removeBookFromWishlist()
+    }
+    
+    private func addBookToWishlist() {
+        FirebaseManager.addBookToWishlist(uid: user.uid, book)
+        
         // Check if this user wants one of my books
         FirebaseManager.getMatches(uid: user.uid) { book in
-            if book.isEmpty {
-                // No match, add the book to wishlist
-                FirebaseManager.addBookToWishlist(uid: self.user.uid, self.book)
-            } else {
-                self.alert(title: "Match !!", message: "Cet utilisateur veut également un livre à vous : \"\(book)\"")
+            if book.isEmpty == false {
+                // Create a chat or reuse existing one
+                FirebaseManager.getChat(with: self.user, completion: { result in
+                    switch result {
+                    case .success(let chat):
+                        FirebaseManager.sendMessage(in: chat, content: "Message automatique ")
+                        self.alert(title: "Troc !", message: "\(self.user.name) veut également votre livre : \"\(book)\". Vous pouvez à présent discuter ensemble.")
+                        self.tabBarController?.tabBar.items?[1].badgeValue = "!"
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        ProgressHUD.showError("Impossible de créer un chat avec l'utilisateur")
+                    }
+                })
             }
         }
+    }
+    
+    private func removeBookFromWishlist() {
+        FirebaseManager.removeBookFromWishlist(uid: user.uid, book)
     }
 }

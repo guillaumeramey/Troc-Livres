@@ -9,20 +9,14 @@
 import Foundation
 import Firebase
 import CoreLocation
-import Geofirestore
 
 struct FirebaseManager {
-
-//    static let shared = FirebaseManager()
-//
-//    private init() {}
-
+    
     static var currentUser: Firebase.User!
     static let db = Firestore.firestore()
     static let usersCollection = db.collection("users")
     static let chatsCollection = db.collection("chats")
     static let booksCollection = db.collection("books")
-    static let geoFirestore = GeoFirestore(collectionRef: usersCollection)
 
     // MARK: - Authentication
 
@@ -95,40 +89,17 @@ struct FirebaseManager {
         }
     }
 
-    // Get the users within a radius around a location
-    static func getUsers(center: CLLocationCoordinate2D, radius: Double, completion: @escaping ([User]) -> Void) {
-        let earthRadius: Double = 6371
-
-        let deltaLatitude = radius / ((2 * Double.pi / 360) * earthRadius)
-        let minLatitude = center.latitude - deltaLatitude
-        let maxLatitude = center.latitude + deltaLatitude
-
-        let deltaLongitude = radius / ((2 * Double.pi / 360) * earthRadius * __cospi(center.latitude / 180))
-        let minLongitude = center.longitude - deltaLongitude
-        let maxLongitude = center.longitude + deltaLongitude
-
-        let swGeohash = Geohash.encode(latitude: minLatitude, longitude: minLongitude, length: 10)
-        let neGeohash = Geohash.encode(latitude: maxLatitude, longitude: maxLongitude, length: 10)
-
-        print("swGeohash = " + swGeohash)
-        print("neGeohash = " + neGeohash)
-        
-        usersCollection
-            .whereField("geohash", isLessThan: neGeohash)
-            .whereField("geohash", isGreaterThan: swGeohash)
-            .getDocuments { (snapshot, error) in
-                guard let snapshot = snapshot else { return }
-                var users = [User]()
-                for document in snapshot.documents {
-                    // display other users with at least 1 book
-                    let numberOfBooks = document.get("numberOfBooks") as? Int ?? 0
-                    if currentUser.uid != document.documentID && numberOfBooks > 0 {
-                        let user = User(from: document)
-                        print("user geohash = " + user.geohash!)
-                        users.append(user)
-                    }
+    // Get all the users
+    static func getUsers(completion: @escaping ([User]) -> Void) {
+        usersCollection.whereField("numberOfBooks", isGreaterThan: 0).getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            var users = [User]()
+            for document in snapshot.documents {
+                if currentUser.uid != document.documentID {
+                    users.append(User(from: document))
                 }
                 completion(users)
+            }
         }
     }
 
@@ -139,25 +110,85 @@ struct FirebaseManager {
         }
     }
 
-    static func setUserLocation(_ geoPoint: GeoPoint, completion: @escaping (Result<Bool, Error>) -> Void) {
-        geoFirestore.setLocation(geopoint: geoPoint, forDocumentWithID: currentUser.uid) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
-            }
+    static func setUserLocation(address: String, location: GeoPoint, completion: @escaping (Bool) -> Void) {
+        usersCollection.document(currentUser.uid).updateData(["address": address, "location": location]) { (error) in
+            completion(error == nil)
         }
     }
 
     static func deleteUser(completion: @escaping (Result<Bool, Error>) -> Void) {
-        //        userRef.child(currentUser.uid).removeValue()
-        //        Auth.auth().currentUser?.delete { error in
-        //            if let error = error {
-        //                completion(.failure(error))
-        //            } else {
-        //                completion(.success(true))
-        //            }
-        //        }
+
+        // Delete user books
+        FirebaseManager.getBooks(uid: currentUser.uid) { (books) in
+            let bookData = ["owners": FieldValue.arrayRemove([Session.user.uid])]
+            let batch = db.batch()
+            for book in books {
+                if let id = book.id {
+                    batch.updateData(bookData, forDocument: booksCollection.document(id))
+                }
+            }
+            batch.commit() { error in
+                print("Delete user books")
+                if let error = error {
+                    print("Error writing batch \(error)")
+                } else {
+                    print("Batch write succeeded.")
+                }
+            }
+        }
+        
+        // Delete the user wishlist
+        db.collectionGroup("wishlist")
+            .whereField("applicant", isEqualTo: currentUser.uid)
+            .getDocuments { (snapshot, error) in
+            if let snapshot = snapshot {
+                let batch = db.batch()
+                for document in snapshot.documents {
+                    let docRef = usersCollection.document(currentUser.uid).collection("wishlist").document(document.documentID)
+                    batch.deleteDocument(docRef)
+                }
+                batch.commit() { error in
+                    print("Delete the user wishlist")
+                    if let error = error {
+                        print("Error writing batch \(error)")
+                    } else {
+                        print("Batch write succeeded.")
+                    }
+                }
+            }
+        }
+        
+        // Delete the user's books in all the wishlists
+        db.collectionGroup("wishlist").whereField("owner", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
+            if let snapshot = snapshot {
+                let batch = db.batch()
+                for document in snapshot.documents {
+                    let uid = document.get("applicant") as! String
+                    let docRef = usersCollection.document(uid).collection("wishlist").document(document.documentID)
+                    batch.deleteDocument(docRef)
+                }
+                batch.commit() { error in
+                    print("Delete the user's books in all the wishlists")
+                    if let error = error {
+                        print("Error writing batch \(error)")
+                    } else {
+                        print("Batch write succeeded.")
+                    }
+                }
+            }
+        }
+
+        // Delete user data
+        usersCollection.document(currentUser.uid).delete()
+
+        // Delete user account
+        Auth.auth().currentUser?.delete { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            completion(.success(true))
+        }
     }
 
     // MARK: - Book management
@@ -172,29 +203,29 @@ struct FirebaseManager {
                 booksCollection.document(id).updateData(bookData) { error in
                     if let error = error {
                         completion(.failure(error))
-                    } else {
-                        // Add 1 to the number of books
-                        usersCollection.document(currentUser.uid).updateData(["numberOfBooks": FieldValue.increment(Int64(1))])
-                        completion(.success(true))
+                        return
                     }
+                    // Add 1 to the number of books
+                    usersCollection.document(currentUser.uid).updateData(["numberOfBooks": FieldValue.increment(Int64(1))])
+                    completion(.success(true))
                 }
-            } else {
-                // Create book
-                let bookData = ["title": book.title as Any,
-                                "authors": book.authors as Any,
-                                "description": book.bookDescription as Any,
-                                "imageURL": book.imageURL as Any,
-                                "language": book.language as Any,
-                                "owners": [Session.user.uid] as Any]
-                booksCollection.document(id).setData(bookData) { error in
-                    if let error = error {
-                        completion(.failure(error))
-                    } else {
-                        // Add 1 to the number of books
-                        usersCollection.document(currentUser.uid).updateData(["numberOfBooks": FieldValue.increment(Int64(1))])
-                        completion(.success(true))
-                    }
+                return
+            }
+            // Create book
+            let bookData = ["title": book.title as Any,
+                            "authors": book.authors as Any,
+                            "description": book.bookDescription as Any,
+                            "imageURL": book.imageURL as Any,
+                            "language": book.language as Any,
+                            "owners": [Session.user.uid] as Any]
+            booksCollection.document(id).setData(bookData) { error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
                 }
+                // Add 1 to the number of books
+                usersCollection.document(currentUser.uid).updateData(["numberOfBooks": FieldValue.increment(Int64(1))])
+                completion(.success(true))
             }
         }
     }
@@ -216,17 +247,39 @@ struct FirebaseManager {
         booksCollection.document(id).updateData(bookData) { error in
             if let error = error {
                 completion(.failure(error))
-            } else {
-                // Substract 1 to the number of books
-                usersCollection.document(currentUser.uid).updateData(["numberOfBooks": FieldValue.increment(Int64(-1))])
-                completion(.success(true))
+                return
+            }
+            // Substract 1 to the number of books
+            usersCollection.document(currentUser.uid).updateData(["numberOfBooks": FieldValue.increment(Int64(-1))])
+            
+            // Delete the book in all the wishlists
+            db.collectionGroup("wishlist")
+                .whereField("owner", isEqualTo: currentUser.uid)
+                .whereField("bookId", isEqualTo: id)
+                .getDocuments { (snapshot, error) in
+                    guard let snapshot = snapshot else { return }
+                    let batch = db.batch()
+                    for document in snapshot.documents {
+                        let uid = document.get("applicant") as! String
+                        let docRef = usersCollection.document(uid).collection("wishlist").document(document.documentID)
+                        batch.deleteDocument(docRef)
+                    }
+                    batch.commit() { error in
+                        if let error = error {
+                            print("Error writing batch \(error)")
+                            completion(.failure(error))
+                        } else {
+                            print("Batch write succeeded.")
+                            completion(.success(true))
+                        }
+                    }
             }
         }
     }
 
     // MARK: - Wishes management
 
-    // If matches are found, return the 1st book
+    // If matches are found, return the 1st book in the list
     static func getMatches(uid: String, completion: @escaping (String) -> Void) {
         db.collectionGroup("wishlist")
             .whereField("owner", isEqualTo: currentUser.uid)
@@ -235,6 +288,17 @@ struct FirebaseManager {
             .getDocuments { (snapshot, error) in
                 guard let snapshot = snapshot else { return }
                 completion(snapshot.documents.first?.get("bookTitle") as? String ?? "")
+        }
+    }
+    
+    static func isBookInWishlist(uid: String, _ book: Book, completion: @escaping (Bool) -> Void) {
+        guard let id = book.id else { return }
+        usersCollection.document(currentUser.uid).collection("wishlist").document(uid + id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                completion(true)
+                return
+            }
+            completion(false)
         }
     }
 

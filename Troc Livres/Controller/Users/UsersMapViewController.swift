@@ -36,10 +36,10 @@ class UsersMapViewController: MapViewController {
 
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        FirebaseManager.getUsers(center: userLocation, radius: 1, completion: { users in
+        FirebaseManager.getUsers { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
-        })
+        }
     }
 
     @IBAction func findMeButtonPressed(_ sender: AnyObject) {

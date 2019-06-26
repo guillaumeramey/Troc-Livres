@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import ProgressHUD
 
 class ChatViewController: UIViewController {
@@ -22,14 +21,13 @@ class ChatViewController: UIViewController {
 
     var chat: Chat!
     private var messages = [Message]()
-    private var user: User!
 
     // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        setTitle()
+        title = chat.name
         setKeyboardNotifications()
         chatTableView.register(UINib(nibName: Constants.Cell.message, bundle: nil), forCellReuseIdentifier: Constants.Cell.message)
     }
@@ -48,42 +46,11 @@ class ChatViewController: UIViewController {
         FirebaseManager.leaveChat()
     }
 
-    private func setTitle() {
-        let button =  UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        button.setTitle(chat.name, for: .normal)
-        button.setTitleColor(Constants.Color.button, for: .normal)
-        button.addTarget(self, action: #selector(titleButtonPressed), for: .touchUpInside)
-        navigationItem.titleView = button
-    }
-
-    @objc private func titleButtonPressed() {
-        ProgressHUD.show()
-        FirebaseManager.getUser(withUid: chat.uid, completion: { user in
-            if let user = user {
-                ProgressHUD.dismiss()
-                self.user = user
-                self.performSegue(withIdentifier: Constants.Segue.userTableVC, sender: self)
-            } else {
-                ProgressHUD.showError("Impossible de récupérer les données de l'utilisateur")
-            }
-        })
-    }
-
     private func enterChat() {
         FirebaseManager.getMessages(in: chat) { messages in
             self.messages = messages
             self.chatTableView.reloadData()
             self.scrollTableViewToBottom()
-        }
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.userTableVC {
-            let destinationVC = segue.destination as! UserTableViewController
-            destinationVC.user = user
         }
     }
 }

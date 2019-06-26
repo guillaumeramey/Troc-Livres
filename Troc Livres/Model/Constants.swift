@@ -28,15 +28,14 @@ struct Constants {
     }
 
     struct Image {
-        static let eyeShow = UIImage(named: "Image-EyeShow")!
-        static let eyeHide = UIImage(named: "Image-EyeHide")!
+        static let eyeShow = UIImage(named: "Image-Eye")!
+        static let eyeHide = UIImage(named: "Image-EyeSlash")!
         static let envelope = UIImage(named: "Image-Envelope")!
-        static let userIcon = UIImage(named: "Image-UserIcon")!
+        static let person = UIImage(named: "Image-Person")!
         static let lock = UIImage(named: "Image-Lock")!
         static let noBookCover = UIImage(named: "Image-NoBookCover")!
-        static let noUserImage = UIImage(named: "Image-NoUserImage")!
-        static let starFalse = UIImage(named: "Image-StarFalse")!
-        static let starTrue = UIImage(named: "Image-StarTrue")!
+        static let star = UIImage(named: "Image-Star")!
+        static let starFill = UIImage(named: "Image-StarFill")!
     }
 
     struct Segue {

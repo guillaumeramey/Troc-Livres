@@ -88,7 +88,7 @@ class WelcomeViewController: UIViewController {
         textFieldsView.layer.borderWidth = 1
         textFieldsView.layer.borderColor = Constants.Color.lightGray.cgColor
 
-        usernameTextField.setIcon(Constants.Image.userIcon)
+        usernameTextField.setIcon(Constants.Image.person)
         emailTextField.setIcon(Constants.Image.envelope)
         passwordTextField.setIcon(Constants.Image.lock)
     }
