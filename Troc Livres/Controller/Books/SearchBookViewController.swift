@@ -60,7 +60,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     private func scrollTableViewToTop() {

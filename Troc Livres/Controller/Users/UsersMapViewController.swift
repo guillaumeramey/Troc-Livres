@@ -22,18 +22,23 @@ class UsersMapViewController: MapViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         locationManager.delegate = self
-        
+        getCurrentUser()
         checkLocationServices()
         displayUsersOnMap()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
     }
-
+    
+    private func getCurrentUser() {
+        FirebaseManager.getUser(uid: Persist.uid) { user in
+            Session.user = user
+        }
+    }
+    
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
         FirebaseManager.getUsers { users in

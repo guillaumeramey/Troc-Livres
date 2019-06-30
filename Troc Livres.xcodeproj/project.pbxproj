@@ -21,6 +21,7 @@
 		A41351162293534500934188 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351152293534500934188 /* Persist.swift */; };
 		A41351182293701300934188 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351172293701300934188 /* WelcomeViewController.swift */; };
 		A413511A2293985100934188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41351192293985100934188 /* GoogleService-Info.plist */; };
+		A420883522C66843006ABB18 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A420883422C66843006ABB18 /* Switcher.swift */; };
 		A4264AF122A8661500760D8D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4264AF022A8661500760D8D /* Session.swift */; };
 		A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatViewController.swift */; };
 		A4478400229B081D00257636 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FF229B081D00257636 /* Message.swift */; };
@@ -73,6 +74,7 @@
 		A41351152293534500934188 /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
 		A41351172293701300934188 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A41351192293985100934188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A420883422C66843006ABB18 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		A4264AF022A8661500760D8D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A44783FB229AFDD900257636 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A44783FF229B081D00257636 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				A4478407229CD51800257636 /* Chat.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
 				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
+				A420883422C66843006ABB18 /* Switcher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */,
 				A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */,
 				A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */,
+				A420883522C66843006ABB18 /* Switcher.swift in Sources */,
 				A4E2ACFE22B73AFE006D1913 /* PaddingLabel.swift in Sources */,
 				A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */,
 				A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */,

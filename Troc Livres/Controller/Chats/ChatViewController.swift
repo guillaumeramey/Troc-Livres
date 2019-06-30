@@ -34,7 +34,7 @@ class ChatViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         tabBarController?.tabBar.isHidden = true
         FirebaseManager.markChatAsRead(id: chat.id)
         enterChat()
@@ -95,7 +95,7 @@ extension ChatViewController: UITextFieldDelegate {
     // Send button action
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard messageTextField.text?.isEmpty == false else { return false }
-        FirebaseManager.sendMessage(in: chat, content: messageTextField.text!)
+        FirebaseManager.sendMessage(in: chat, content: messageTextField.text!, system: false)
         messageTextField.text = nil
         return true
     }

@@ -24,7 +24,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titre" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hNy-R9-XBc">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Color-LightGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="mFn-j4-qV3"/>
                                         </constraints>
@@ -34,7 +34,7 @@
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Auteur" textAlignment="natural" minimumFontSize="14" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-JS-FPz">
                                         <rect key="frame" x="0.0" y="45" width="394" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Color-LightGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Cdf-Ka-PLY"/>
                                         </constraints>
@@ -58,15 +58,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pbs-Z2-9wo">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pbs-Z2-9wo">
                                 <rect key="frame" x="0.0" y="228" width="414" height="585"/>
-                                <color key="backgroundColor" name="Color-LightGray"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookViewCell" id="FNS-lS-HYI" customClass="BookViewCell" customModule="Troc_Livres" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FNS-lS-HYI" id="Cqc-so-SqA">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -80,7 +80,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="Color-LightGray"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cdJ-6p-fZ1" secondAttribute="trailing" constant="10" id="15q-Ue-e0u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pbs-Z2-9wo" secondAttribute="trailing" id="6yL-M2-Zh8"/>
@@ -94,7 +94,6 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Recherche" id="wZm-gI-EQy">
-                        <barButtonItem key="backBarButtonItem" title=" " id="29V-Lx-CFO"/>
                         <barButtonItem key="rightBarButtonItem" image="Image-Barcode" id="bEd-UB-vbc">
                             <color key="tintColor" name="Color-Button"/>
                             <connections>
@@ -123,7 +122,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" name="Color-LightGray"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="skW-61-Zgw" firstAttribute="top" secondItem="mgn-xo-oSe" secondAttribute="top" id="3Le-W1-qx6"/>
                         <constraint firstItem="skW-61-Zgw" firstAttribute="leading" secondItem="mgn-xo-oSe" secondAttribute="leading" constant="20" id="3po-Fu-2cH"/>
@@ -171,7 +170,7 @@
             </objects>
             <point key="canvasLocation" x="-474" y="1554"/>
         </scene>
-        <!--Carte-->
+        <!--Troc Livres-->
         <scene sceneID="qcB-Zk-MoP">
             <objects>
                 <viewController id="PSc-ue-5n7" customClass="UsersMapViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
@@ -196,7 +195,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cba-J3-4vn"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Carte" id="TJz-zF-sxA">
+                    <navigationItem key="navigationItem" title="Troc Livres" id="TJz-zF-sxA">
+                        <barButtonItem key="backBarButtonItem" title=" " id="l4O-bL-WT6"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="Image-Location" id="IeN-Hm-0Hg">
                             <color key="tintColor" name="Color-Button"/>
                             <connections>
@@ -225,10 +225,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGh-iV-qQi" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="609.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="639.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NlZ-ig-PTG">
-                                                <rect key="frame" x="10" y="10" width="394" height="589.5"/>
+                                                <rect key="frame" x="10" y="10" width="394" height="619.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ovq-HZ-0Sz">
                                                         <rect key="frame" x="20" y="0.0" width="354" height="490"/>
@@ -237,8 +237,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpX-d8-Gnf" customClass="PaddingLabel" customModule="Troc_Livres" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="500" width="394" height="24"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="0.0" y="500" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -258,8 +257,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-Ux-2bN" customClass="PaddingLabel" customModule="Troc_Livres" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="534" width="394" height="24"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="0.0" y="544" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -279,8 +277,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buI-rW-ug6" customClass="PaddingLabel" customModule="Troc_Livres" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="568" width="394" height="21.5"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="0.0" y="588" width="394" height="31.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -321,7 +318,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" name="Color-LightGray"/>
                                 <constraints>
                                     <constraint firstItem="RGh-iV-qQi" firstAttribute="top" secondItem="Xcw-Tb-KLB" secondAttribute="top" id="QsU-21-y59"/>
                                 </constraints>
@@ -361,16 +357,17 @@
         <scene sceneID="Lnq-Hg-oeQ">
             <objects>
                 <tableViewController id="Tkc-y3-UJj" customClass="UserTableViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wUu-O3-1bz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wUu-O3-1bz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Color-LightGray"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookViewCell" id="NTL-Vy-7oI" customClass="BookViewCell" customModule="Troc_Livres" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NTL-Vy-7oI" id="KAO-le-UB2">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -468,8 +465,34 @@
                     <navigationItem key="navigationItem" title="Discussions" largeTitleDisplayMode="always" id="oej-Xf-IZw">
                         <barButtonItem key="backBarButtonItem" title=" " id="hJz-G7-PPG"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableViewBackgroundView" destination="iCO-QQ-WKA" id="myv-49-k01"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rHS-Yi-Q1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="iCO-QQ-WKA">
+                    <rect key="frame" x="0.0" y="0.0" width="345" height="165"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vb-Dr-mTf">
+                            <rect key="frame" x="20" y="0.0" width="305" height="165"/>
+                            <string key="text">Aucune discussion.
+
+Les discussions sont créées quand un troc est disponible avec un utilisateur.</string>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="7Vb-Dr-mTf" firstAttribute="leading" secondItem="HYC-2y-Hm4" secondAttribute="leading" constant="20" id="82F-8s-eYY"/>
+                        <constraint firstItem="HYC-2y-Hm4" firstAttribute="trailing" secondItem="7Vb-Dr-mTf" secondAttribute="trailing" constant="20" id="GMK-Er-Yeh"/>
+                        <constraint firstAttribute="bottom" secondItem="7Vb-Dr-mTf" secondAttribute="bottom" id="ird-eX-wt0"/>
+                        <constraint firstItem="7Vb-Dr-mTf" firstAttribute="top" secondItem="iCO-QQ-WKA" secondAttribute="top" id="mix-b9-rL9"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="HYC-2y-Hm4"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="442" y="1554"/>
         </scene>
@@ -557,7 +580,7 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye4-fM-g2Z">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="9f7-id-L25">
+                                    <navigationItem id="9f7-id-L25">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="TwB-Ln-V84">
                                             <color key="tintColor" name="Color-Button"/>
                                             <connections>
@@ -568,11 +591,11 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ao6-7K-TMV">
-                                <rect key="frame" x="0.0" y="156" width="414" height="706"/>
+                                <rect key="frame" x="20" y="176" width="374" height="666"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placez le code-barres de votre livre dans la vue ci-dessous" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tT-cc-M2g">
-                                <rect key="frame" x="20" y="98" width="374" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placez le code-barres de votre livre dans la vue ci-dessous" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tT-cc-M2g">
+                                <rect key="frame" x="20" y="108" width="374" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -580,14 +603,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AnZ-kg-QZE" firstAttribute="trailing" secondItem="ao6-7K-TMV" secondAttribute="trailing" id="3qn-vf-iXV"/>
+                            <constraint firstItem="AnZ-kg-QZE" firstAttribute="trailing" secondItem="ao6-7K-TMV" secondAttribute="trailing" constant="20" id="3qn-vf-iXV"/>
                             <constraint firstItem="Ye4-fM-g2Z" firstAttribute="leading" secondItem="AnZ-kg-QZE" secondAttribute="leading" id="4qS-40-KRB"/>
-                            <constraint firstItem="7tT-cc-M2g" firstAttribute="top" secondItem="Ye4-fM-g2Z" secondAttribute="bottom" constant="10" id="5mQ-06-eVp"/>
-                            <constraint firstItem="ao6-7K-TMV" firstAttribute="leading" secondItem="AnZ-kg-QZE" secondAttribute="leading" id="7JW-8L-I1p"/>
+                            <constraint firstItem="7tT-cc-M2g" firstAttribute="top" secondItem="Ye4-fM-g2Z" secondAttribute="bottom" constant="20" id="5mQ-06-eVp"/>
+                            <constraint firstItem="ao6-7K-TMV" firstAttribute="leading" secondItem="AnZ-kg-QZE" secondAttribute="leading" constant="20" id="7JW-8L-I1p"/>
                             <constraint firstItem="Ye4-fM-g2Z" firstAttribute="trailing" secondItem="AnZ-kg-QZE" secondAttribute="trailing" id="7hG-5C-cZ6"/>
-                            <constraint firstItem="AnZ-kg-QZE" firstAttribute="bottom" secondItem="ao6-7K-TMV" secondAttribute="bottom" id="Nj1-Ur-GKP"/>
+                            <constraint firstItem="AnZ-kg-QZE" firstAttribute="bottom" secondItem="ao6-7K-TMV" secondAttribute="bottom" constant="20" id="Nj1-Ur-GKP"/>
                             <constraint firstItem="AnZ-kg-QZE" firstAttribute="trailing" secondItem="7tT-cc-M2g" secondAttribute="trailing" constant="20" id="l5e-QV-PI3"/>
-                            <constraint firstItem="ao6-7K-TMV" firstAttribute="top" secondItem="7tT-cc-M2g" secondAttribute="bottom" constant="10" id="m4T-xm-zWT"/>
+                            <constraint firstItem="ao6-7K-TMV" firstAttribute="top" secondItem="7tT-cc-M2g" secondAttribute="bottom" constant="20" id="m4T-xm-zWT"/>
                             <constraint firstItem="Ye4-fM-g2Z" firstAttribute="top" secondItem="AnZ-kg-QZE" secondAttribute="top" id="mkT-4G-YEH"/>
                             <constraint firstItem="7tT-cc-M2g" firstAttribute="leading" secondItem="AnZ-kg-QZE" secondAttribute="leading" constant="20" id="ybw-O8-Ra6"/>
                         </constraints>
@@ -605,20 +628,20 @@
         <scene sceneID="mV4-wY-jJJ">
             <objects>
                 <tableViewController id="0WK-Zi-x8w" customClass="MyBooksViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8M7-Ji-vfn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8M7-Ji-vfn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Color-LightGray"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BookViewCell" textLabel="Ydv-QD-c2b" style="IBUITableViewCellStyleDefault" id="ejt-oh-c67" customClass="BookViewCell" customModule="Troc_Livres" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ejt-oh-c67" id="bwD-Ky-IBd">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ydv-QD-c2b">
-                                            <rect key="frame" x="20" y="0.0" width="342" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -638,7 +661,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Mes livres" id="kbM-ee-iLi">
-                        <barButtonItem key="backBarButtonItem" title=" " id="cOs-Kn-ccI"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="umx-H5-02A">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="OgK-QO-zAm"/>
@@ -664,7 +686,7 @@ Appuyez sur + pour en ajouter.</string>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" name="Color-LightGray"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="xNH-ko-9Ug" secondAttribute="bottom" id="4u5-kM-nzO"/>
                         <constraint firstAttribute="trailing" secondItem="xNH-ko-9Ug" secondAttribute="trailing" constant="20" id="cLn-cB-AZb"/>
@@ -740,7 +762,7 @@ Appuyez sur + pour en ajouter.</string>
                     <navigationItem key="navigationItem" id="3bf-Eg-MpG">
                         <barButtonItem key="leftBarButtonItem" title="Déconnexion" id="3rr-Ec-nWT">
                             <connections>
-                                <segue destination="AfW-0I-7Ll" kind="unwind" identifier="unwindToWelcome" unwindAction="unwindToWelcomeWithSegue:" id="guc-xa-o5D"/>
+                                <action selector="signOut" destination="Bg9-VQ-NIP" id="yNi-2J-p2Z"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="I0E-He-EfT">
@@ -755,7 +777,6 @@ Appuyez sur + pour en ajouter.</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xd6-GU-ehU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="AfW-0I-7Ll" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="428.98550724637687" y="2447.5446428571427"/>
         </scene>
@@ -853,14 +874,14 @@ Appuyez sur + pour en ajouter.</string>
         <image name="Image-Location" width="26" height="26"/>
         <image name="Image-Pin" width="17" height="37"/>
         <namedColor name="Color-Button">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Color-LightGray">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZKF-7u-uUs"/>
+        <segue reference="2nG-3X-CF7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Color-Button"/>
 </document>

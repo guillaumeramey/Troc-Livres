@@ -17,6 +17,10 @@ class ChatListViewController: UITableViewController {
     var chats = [Chat]()
     var selectedChat: Chat!
 
+    // MARK: - Outlets
+    
+    @IBOutlet weak var tableViewBackgroundView: UIView!
+    
     // MARK: - Methods
 
     override func viewDidLoad() {
@@ -36,6 +40,7 @@ class ChatListViewController: UITableViewController {
         FirebaseManager.getUserChats { chats in
             ProgressHUD.dismiss()
             self.chats = chats
+            self.tableView.backgroundView = self.tableViewBackgroundView
             self.tableView.reloadData()
         }
     }
@@ -43,6 +48,7 @@ class ChatListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView?.isHidden = chats.count > 0 ? true : false
         return chats.count
     }
 

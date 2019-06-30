@@ -27,7 +27,16 @@ class MessageViewCell: UITableViewCell {
         messageDate.text = message.displayDate
         messageBackground.layer.cornerRadius = 5
 
-        if message.sender == Session.user.uid {
+        if message.sender == "system" {
+            // Message from the system
+            messageText.textColor = Constants.Color.button
+            messageDate.textColor = Constants.Color.button
+            messageBackground.layer.borderWidth = 2
+            messageBackground.layer.borderColor = Constants.Color.button.cgColor
+            leadingConstraint.constant = 10
+            trailingConstraint.constant = 10
+            
+        } else if message.sender == Persist.uid {
             // Message from the current user
             messageBackground.backgroundColor = Constants.Color.chatSender
             messageText.textColor = .white

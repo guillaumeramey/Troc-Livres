@@ -28,7 +28,7 @@ class BookViewCell: UITableViewCell {
     }
 
     private func updateCell() {
-        background.layer.cornerRadius = 8
+//        background.layer.cornerRadius = 8
 
         bookTitle.text = book.title
         bookAuthor.text = book.authors?.joined(separator: "\n")

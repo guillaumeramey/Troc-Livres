@@ -25,7 +25,7 @@ struct Message {
 
 //    init(_ text: String, to contact: Chat) {
 //        self.text = text
-//        self.senderUid = Session.user.uid
+//        self.senderUid = Persist.uid
 //        self.timestamp = nil
 //
 //        send(to: contact)

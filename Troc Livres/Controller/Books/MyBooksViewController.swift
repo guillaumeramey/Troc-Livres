@@ -13,6 +13,7 @@ class MyBooksViewController: UITableViewController {
 
     // MARK: - Properties
 
+    var books = [Book]()
     var selectedBook: Book!
 
     // MARK: - Outlets
@@ -24,30 +25,43 @@ class MyBooksViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: Constants.Cell.book, bundle: nil), forCellReuseIdentifier: Constants.Cell.book)
+        
+//        if Session.user == nil {
+//            FirebaseManager.getUser(uid: Persist.uid) { user in
+//                Session.user = user
+//                self.getUserBooks()
+//            }
+//        } else {
+            getUserBooks()
+//        }
+    }
 
-        FirebaseManager.getBooks(uid: Session.user.uid, completion: { books in
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        books = Session.user.books
+        tableView.reloadData()
+    }
+    
+    private func getUserBooks() {
+        FirebaseManager.getBooks(uid: Persist.uid, completion: { books in
+            self.books = books
             Session.user.books = books
             self.tableView.backgroundView = self.tableViewBackgroundView
             self.tableView.reloadData()
         })
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.reloadData()
-    }
-
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView.backgroundView?.isHidden = Session.user.books.count > 0 ? true : false
-        return Session.user.books.count
+        tableView.backgroundView?.isHidden = books.count > 0 ? true : false
+        return books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.book, for: indexPath) as! BookViewCell
-        cell.book = Session.user.books[indexPath.row]
+        cell.book = books[indexPath.row]
         return cell
     }
 
@@ -55,7 +69,7 @@ class MyBooksViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedBook = Session.user.books[indexPath.row]
+        selectedBook = books[indexPath.row]
         performSegue(withIdentifier: Constants.Segue.bookVC, sender: self)
     }
 

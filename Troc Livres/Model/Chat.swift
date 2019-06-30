@@ -19,7 +19,7 @@ class Chat {
     init(from document: DocumentSnapshot) {
         id = document.documentID
 
-        let data = document.get(Session.user.uid) as? [String: Any]
+        let data = document.get(Persist.uid) as? [String: Any]
         uid = data?["uid"] as? String ?? "Erreur UID"
         name = data?["name"] as? String ?? "Inconnu"
         unread = data?["unread"] as? Bool ?? true

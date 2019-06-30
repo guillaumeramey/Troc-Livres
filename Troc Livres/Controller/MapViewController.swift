@@ -12,7 +12,6 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
-    // MARK: - User location
     @IBOutlet weak var mapView: MKMapView!
 
     let locationManager = CLLocationManager()
@@ -50,16 +49,8 @@ class MapViewController: UIViewController {
 
     func centerMapViewOnUserLocation(){
         guard let location = locationManager.location?.coordinate else { return }
-
         userLocation = location
-
         let region = MKCoordinateRegion.init(center: location, latitudinalMeters: mapRadius, longitudinalMeters: mapRadius)
-
         mapView.setRegion(region, animated: true)
-    }
-
-    func getCenterLocation(for mapView: MKMapView)  -> CLLocation {
-        return CLLocation(latitude: mapView.centerCoordinate.latitude,
-                          longitude: mapView.centerCoordinate.longitude)
     }
 }

@@ -47,7 +47,6 @@ class WelcomeViewController: UIViewController {
 
     @IBAction func validateButtonPressed(_ sender: AnyObject) {
         validateButton.isEnabled = false
-        ProgressHUD.show()
         switch checkForm() {
         case .accepted:
             registration ? createUser() : authenticateUser()
@@ -58,7 +57,17 @@ class WelcomeViewController: UIViewController {
     }
 
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
-        #warning("todo")
+        if emailTextField.text == nil || emailTextField.text == "" {
+            ProgressHUD.showError("Entrez votre e-mail")
+            return
+        }
+        FirebaseManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
+            if let errorMessage = errorMessage {
+                ProgressHUD.showError(errorMessage)
+            } else {
+                self.alert(title: "E-mail envoyé !", message: "Consultez vos e-mails et suivez les instructions pour réinitialiser votre mot de passe.")
+            }
+        }
     }
 
     // MARK: - Methods
@@ -71,7 +80,6 @@ class WelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseManager.signOut()
         #warning("remove")
         passwordTextField.text = "123456"
         emailTextField.text = "tony.stark@avengers.com"
@@ -116,6 +124,7 @@ class WelcomeViewController: UIViewController {
     }
 
     private func createUser() {
+        ProgressHUD.show("Création de votre compte")
         FirebaseManager.createUser(email: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
@@ -128,7 +137,7 @@ class WelcomeViewController: UIViewController {
     private func setUserName() {
         FirebaseManager.setUserName(usernameTextField.text!) { success in
             if success {
-                self.getCurrentUserData()
+                self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {
                 ProgressHUD.showError("Impossible de sauvegarder le nom d'utilisateur")
             }
@@ -136,26 +145,14 @@ class WelcomeViewController: UIViewController {
     }
 
     private func authenticateUser() {
+        ProgressHUD.show("Connexion en cours")
         FirebaseManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {
-                self.getCurrentUserData()
+                self.performSegue(withIdentifier: "userLogged", sender: self)
             }
         }
-    }
-
-    private func getCurrentUserData() {
-        ProgressHUD.show("Récupération des données de l'utilisateur")
-        FirebaseManager.getUser(completion: { user in
-            if let user = user {
-                Session.user = user
-                ProgressHUD.dismiss()
-                self.performSegue(withIdentifier: "userLogged", sender: self)
-            } else {
-                ProgressHUD.showError("Erreur lors de l'accès aux données")
-            }
-        })
     }
 
     // MARK: - Navigation

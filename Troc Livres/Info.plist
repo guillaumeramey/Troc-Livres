@@ -25,10 +25,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Tu donnes l'accès !</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Tu donnes l'accès !</string>
+	<string>L&apos;accès à votre position est nécessaire au fontionnement de l&apos;application.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UILaunchStoryboardName</key>

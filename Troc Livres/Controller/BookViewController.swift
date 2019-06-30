@@ -42,7 +42,7 @@ class BookViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     private func setLabelsDesign() {
@@ -63,8 +63,8 @@ class BookViewController: UIViewController {
 
     // Different buttons depending if the book belongs to the user
     private func setRightBarButton() {
-        if user.uid == Session.user.uid {
-            if user.books.contains(where: { $0.id == book.id }) {
+        if user.uid == Persist.uid {
+            if Session.user.books.contains(where: { $0.id == book.id }) {
                 rightBarButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashTapped))
                 rightBarButton.tintColor = .red
             } else {
@@ -99,8 +99,8 @@ class BookViewController: UIViewController {
 
     // Remove the book from the user's collection
     @objc func trashTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "La suppression d'un livre est définitive et irréversible.", message: nil, preferredStyle: .actionSheet)
-        let actionDelete = UIAlertAction(title: "Supprimer", style: .destructive, handler: deleteHandler)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionDelete = UIAlertAction(title: "Supprimer le livre", style: .destructive, handler: deleteHandler)
         alert.addAction(actionDelete)
         let actionCancel = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
         alert.addAction(actionCancel)
@@ -134,18 +134,18 @@ class BookViewController: UIViewController {
         FirebaseManager.addBookToWishlist(uid: user.uid, book)
         
         // Check if this user wants one of my books
-        FirebaseManager.getMatches(uid: user.uid) { book in
+        FirebaseManager.getMatch(with: user.uid) { book in
             if book.isEmpty == false {
                 // Create a chat or reuse existing one
                 FirebaseManager.getChat(with: self.user, completion: { result in
                     switch result {
                     case .success(let chat):
-                        FirebaseManager.sendMessage(in: chat, content: "Message automatique ")
-                        self.alert(title: "Troc !", message: "\(self.user.name) veut également votre livre : \"\(book)\". Vous pouvez à présent discuter ensemble.")
+                        FirebaseManager.sendMessage(in: chat, content: "Message automatique pour un nouveau troc de livres : \"\(book)\" contre \"\(self.book.title ?? "")\"", system: true)
+                        self.alert(title: "Troc disponible !", message: "\(self.user.name) veut également votre livre : \"\(book)\". Une discussion a été créée pour vous permettre de les échanger.")
                         self.tabBarController?.tabBar.items?[1].badgeValue = "!"
                     case .failure(let error):
                         print(error.localizedDescription)
-                        ProgressHUD.showError("Impossible de créer un chat avec l'utilisateur")
+                        ProgressHUD.showError("Impossible de créer une discussion avec \(self.user.name)")
                     }
                 })
             }
