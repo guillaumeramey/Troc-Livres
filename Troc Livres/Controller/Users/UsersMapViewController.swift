@@ -23,7 +23,6 @@ class UsersMapViewController: MapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-        getCurrentUser()
         checkLocationServices()
         displayUsersOnMap()
     }
@@ -31,12 +30,6 @@ class UsersMapViewController: MapViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
-    }
-    
-    private func getCurrentUser() {
-        FirebaseManager.getUser(uid: Persist.uid) { user in
-            Session.user = user
-        }
     }
     
     private func displayUsersOnMap() {
@@ -64,14 +57,15 @@ extension UsersMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? User else { return nil }
         let identifier = "User"
-        var annotationView: MKPinAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+        var annotationView: MKMarkerAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             annotationView = dequeuedView
         } else {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
-            annotationView.animatesDrop = true
+            annotationView.animatesWhenAdded = true
+            annotationView.clusteringIdentifier = identifier
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return annotationView
@@ -80,12 +74,12 @@ extension UsersMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let user = view.annotation as? User else { return }
         selectedUser = user
-        performSegue(withIdentifier: Constants.Segue.userTableVC, sender: nil)
+        performSegue(withIdentifier: Constants.Segue.userVC, sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.userTableVC {
-            let destinationVC = segue.destination as! UserTableViewController
+        if segue.identifier == Constants.Segue.userVC {
+            let destinationVC = segue.destination as! UserViewController
             destinationVC.user = selectedUser
         }
     }

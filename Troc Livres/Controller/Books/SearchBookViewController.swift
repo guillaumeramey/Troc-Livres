@@ -12,9 +12,19 @@ import ProgressHUD
 
 class SearchBookViewController: UIViewController, ScannerDelegate {
 
+    // MARK: - Outlets
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var authorTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBackgroundView: UIView!
+    @IBOutlet weak var tableViewBackgroundLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
+
     // MARK: - Properties
 
-    var books = [Book]()
+    var results = [Book]()
+    var userBooks: [Book]!
     var selectedBook: Book!
     var backgroundText: String! {
         didSet {
@@ -32,14 +42,6 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
         }
     }
 
-    // MARK: - Outlets
-
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var authorTextField: UITextField!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewBackgroundView: UIView!
-    @IBOutlet weak var tableViewBackgroundLabel: UILabel!
-
     // MARK: - Actions
 
     @IBAction func searchButtonPressed(_ sender: Any) {
@@ -52,9 +54,10 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        searchButton.layer.cornerRadius = 8
         tableView.backgroundView = tableViewBackgroundView
         backgroundText = nil
-
+        tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: Constants.Cell.book, bundle: nil), forCellReuseIdentifier: Constants.Cell.book)
     }
 
@@ -81,7 +84,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
         bookService.getBooks(isbn: isbn, title: titleTextField.text!, author: authorTextField.text!) { result in
             switch result {
             case .success(let books):
-                self.books = books
+                self.results = books
                 self.tableView.reloadData()
                 self.scrollTableViewToTop()
             case .failure(let error):
@@ -101,7 +104,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
         case Constants.Segue.bookVC:
             let destinationVC = segue.destination as! BookViewController
             destinationVC.book = selectedBook
-            destinationVC.user = Session.user
+            destinationVC.books = userBooks
         default:
             break
         }
@@ -111,12 +114,12 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
 extension SearchBookViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        return results.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.book, for: indexPath) as! BookViewCell
-        cell.book = books[indexPath.row]
+        cell.book = results[indexPath.row]
         return cell
     }
 }
@@ -125,7 +128,7 @@ extension SearchBookViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedBook = books[indexPath.row]
+        selectedBook = results[indexPath.row]
         performSegue(withIdentifier: Constants.Segue.bookVC, sender: self)
     }
 }

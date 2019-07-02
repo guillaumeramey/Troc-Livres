@@ -8,13 +8,14 @@
 
 import UIKit
 import Firebase
+import ProgressHUD
 
 class MyBooksViewController: UITableViewController {
 
     // MARK: - Properties
 
-    var books = [Book]()
-    var selectedBook: Book!
+    private var books = [Book]()
+    private var selectedBook: Book!
 
     // MARK: - Outlets
 
@@ -25,28 +26,20 @@ class MyBooksViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: Constants.Cell.book, bundle: nil), forCellReuseIdentifier: Constants.Cell.book)
-        
-//        if Session.user == nil {
-//            FirebaseManager.getUser(uid: Persist.uid) { user in
-//                Session.user = user
-//                self.getUserBooks()
-//            }
-//        } else {
-            getUserBooks()
-//        }
+        tableView.tableFooterView = UIView()
+        getBooks()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
-        books = Session.user.books
-        tableView.reloadData()
     }
     
-    private func getUserBooks() {
+    private func getBooks() {
+        ProgressHUD.show()
         FirebaseManager.getBooks(uid: Persist.uid, completion: { books in
+            ProgressHUD.dismiss()
             self.books = books
-            Session.user.books = books
             self.tableView.backgroundView = self.tableViewBackgroundView
             self.tableView.reloadData()
         })
@@ -79,9 +72,26 @@ class MyBooksViewController: UITableViewController {
         if segue.identifier == Constants.Segue.bookVC {
             let destinationVC = segue.destination as! BookViewController
             destinationVC.book = selectedBook
-            destinationVC.user = Session.user
+            destinationVC.books = books
+            destinationVC.delegate = self
+        } else if segue.identifier == Constants.Segue.searchBookVC {
+            let destinationVC = segue.destination as! SearchBookViewController
+            destinationVC.userBooks = books
         }
     }
 
-    @IBAction func unwindToMyBooks(segue:UIStoryboardSegue) { }
+    @IBAction func unwindToMyBooks(segue: UIStoryboardSegue) {
+        if segue.source is BookViewController {
+            let sourceVC = segue.source as! BookViewController
+            books = sourceVC.books
+            tableView.reloadData()
+        }
+    }
+}
+
+extension MyBooksViewController: BookDelegate {
+    func updateBooks(_ books: [Book]) {
+        self.books = books
+        tableView.reloadData()
+    }
 }

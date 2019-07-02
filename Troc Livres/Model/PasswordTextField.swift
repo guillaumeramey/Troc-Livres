@@ -28,7 +28,6 @@ class PasswordTextField: CustomTextField {
         
         toggleSecureTextButton = UIButton(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
         toggleSecureTextButton.setImage(Constants.Image.eyeShow, for: .normal)
-//        toggleSecureTextButton.setImage(UIImage(systemName: "eye"), for: .normal)
         toggleSecureTextButton.imageView?.contentMode = .scaleAspectFit
         toggleSecureTextButton.tintColor = Constants.Color.button
         toggleSecureTextButton.addTarget(self, action: #selector(toggleSecureText), for: .touchUpInside)

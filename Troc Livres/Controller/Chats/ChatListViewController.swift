@@ -32,6 +32,7 @@ class ChatListViewController: UITableViewController {
         tabBarController?.tabBar.items?[1].badgeValue = nil
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
+        tableView.tableFooterView = UIView()
         getChats()
     }
 

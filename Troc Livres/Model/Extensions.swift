@@ -27,10 +27,6 @@ extension UIViewController {
         present(alert, animated: true)
     }
 
-    func goBack() {
-        navigationController?.popViewController(animated: true)
-    }
-
     enum FormError {
         case accepted
         case rejected(String)

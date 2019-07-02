@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import ProgressHUD
+import CoreLocation
 
 class WelcomeViewController: UIViewController {
 
@@ -19,7 +20,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var passwordTextField: PasswordTextField!
     @IBOutlet weak var usernameLine: UIView!
     @IBOutlet weak var textFieldsView: UIView!
-    @IBOutlet weak var validateButton: CustomButton!
+    @IBOutlet weak var validateButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -52,8 +53,8 @@ class WelcomeViewController: UIViewController {
             registration ? createUser() : authenticateUser()
         case .rejected(let error):
             ProgressHUD.showError(error)
+            validateButton.isEnabled = true
         }
-        validateButton.isEnabled = true
     }
 
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
@@ -89,8 +90,10 @@ class WelcomeViewController: UIViewController {
     private func setDesign() {
         registration = true
 
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: Constants.Font.button], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)], for: .normal)
 
+        validateButton.layer.cornerRadius = 8
+        
         textFieldsView.layer.cornerRadius = 8
         textFieldsView.layer.masksToBounds = true
         textFieldsView.layer.borderWidth = 1
@@ -128,9 +131,10 @@ class WelcomeViewController: UIViewController {
         FirebaseManager.createUser(email: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
-            } else {
-                self.setUserName()
+                self.validateButton.isEnabled = true
+                return
             }
+            self.setUserName()
         }
     }
 
@@ -140,6 +144,7 @@ class WelcomeViewController: UIViewController {
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {
                 ProgressHUD.showError("Impossible de sauvegarder le nom d'utilisateur")
+                self.validateButton.isEnabled = true
             }
         }
     }
@@ -149,9 +154,20 @@ class WelcomeViewController: UIViewController {
         FirebaseManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
-            } else {
-                self.performSegue(withIdentifier: "userLogged", sender: self)
+                self.validateButton.isEnabled = true
+                return
             }
+            FirebaseManager.getUser(uid: Persist.uid, completion: { user in
+                guard let user = user else {
+                    ProgressHUD.showError("Impossible de se connecter")
+                    self.validateButton.isEnabled = true
+                    return
+                }
+                Persist.name = user.name
+                Persist.address = user.address ?? "Non renseigné"
+                Persist.location = CLLocationCoordinate2D(latitude: user.location?.latitude ?? 0, longitude: user.location?.longitude ?? 0)
+                self.performSegue(withIdentifier: "userLogged", sender: self)
+            })
         }
     }
 

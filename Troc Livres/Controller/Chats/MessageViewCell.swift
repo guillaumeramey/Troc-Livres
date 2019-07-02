@@ -25,7 +25,10 @@ class MessageViewCell: UITableViewCell {
     func setCell() {
         messageText.text = message.content
         messageDate.text = message.displayDate
+        messageBackground.backgroundColor = .white
+        messageBackground.layer.borderWidth = 0
         messageBackground.layer.cornerRadius = 5
+        messageBackground.layer.borderColor = UIColor.white.cgColor
 
         if message.sender == "system" {
             // Message from the system

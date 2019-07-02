@@ -1,5 +1,5 @@
 //
-//  UserTableViewController.swift
+//  UserViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 19/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserTableViewController: UITableViewController {
+class UserViewController: UITableViewController {
 
     // MARK: - Properties
 

@@ -32,7 +32,9 @@ struct FirebaseManager {
 
     static func signOut() {
         Persist.uid = ""
-        Session.user = nil
+        Persist.name = ""
+        Persist.address = ""
+        Persist.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         do {
             try Auth.auth().signOut()
             Switcher.updateRootVC()
@@ -75,12 +77,12 @@ struct FirebaseManager {
     // MARK: - User management
 
     static func createUser(email: String, password: String, completion: @escaping (String?) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 completion(getErrorMessage(from: error))
                 return
             }
-            Persist.uid = user?.user.uid ?? ""
+            Persist.uid = result?.user.uid ?? ""
             completion(nil)
         }
     }
@@ -110,20 +112,42 @@ struct FirebaseManager {
     }
 
     static func setUserName(_ name: String, completion: @escaping (Bool) -> Void) {
-        let userData = ["name": name, "address": "Non défini", "numberOfBooks": 0] as [String : Any]
-        usersCollection.document(Persist.uid).setData(userData) { error in
+//        let userData = ["name": name,
+//                        "address": "Non renseigné",
+//                        "numberOfBooks": 0] as [String : Any]
+        Persist.name = name
+        usersCollection.document(Persist.uid).setData(["name": name]) { error in
             completion(error == nil)
         }
     }
 
-    static func setUserLocation(address: String, location: GeoPoint, completion: @escaping (Bool) -> Void) {
-        usersCollection.document(Persist.uid).updateData(["address": address, "location": location]) { (error) in
+    static func setUserLocation(address: String, location: CLLocation, completion: @escaping (Bool) -> Void) {
+        let geoPoint = GeoPoint(latitude: location.coordinate.latitude,
+                                longitude: location.coordinate.longitude)
+        usersCollection.document(Persist.uid)
+            .updateData(["address": address, "location": geoPoint]) { (error) in
             completion(error == nil)
         }
     }
 
     static func deleteUser(completion: @escaping (Result<Bool, Error>) -> Void) {
 
+        // Send a message in the user chats
+        getUserChats { chats in
+            let batch = db.batch()
+            for chat in chats {
+                sendMessage(in: chat, content: "Utilisateur supprimé", system: true)
+            }
+            batch.commit() { error in
+                print("Send messages in user chats")
+                if let error = error {
+                    print("Error writing batch \(error)")
+                } else {
+                    print("Batch write succeeded.")
+                }
+            }
+        }
+        
         // Delete user books
         FirebaseManager.getBooks(uid: Persist.uid) { (books) in
             let bookData = ["owners": FieldValue.arrayRemove([Persist.uid])]
@@ -330,7 +354,7 @@ struct FirebaseManager {
             "users": [Persist.uid, user.uid],
             "timestamp": FieldValue.serverTimestamp(),
             Persist.uid: ["name": user.name, "uid": user.uid, "unread": false] as [String : Any],
-            user.uid: ["name": Session.user.name, "uid": Persist.uid, "unread": true] as [String : Any]] as [String : Any]
+            user.uid: ["name": Persist.name, "uid": Persist.uid, "unread": true] as [String : Any]] as [String : Any]
         chatsCollection.document(id)
             .setData(chatData, completion: { error in
             if let error = error {

@@ -20,11 +20,6 @@ struct Constants {
         static let chatSender = UIColor(named: "Color-ChatSender")!
         static let chatReceiver = UIColor(named: "Color-ChatReceiver")!
         static let button = UIColor(named: "Color-Button")!
-        //        static let button = UIColor.systemTeal
-    }
-
-    struct Font {
-        static let button = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
 
     struct Image {
@@ -39,10 +34,12 @@ struct Constants {
     }
 
     struct Segue {
-        static let bookVC = "BookViewController"
-        static let chatVC = "ChatViewController"
-        static let userTableVC = "UserTableViewController"
-        static let scannerVC = "ScannerViewController"
+        static let bookVC = "BookVC"
+        static let chatVC = "ChatVC"
+        static let userVC = "UserVC"
+        static let scannerVC = "ScannerVC"
+        static let searchBookVC = "SearchBookVC"
+        static let changeLocationVC = "ChangeLocationVC"
     }
 
     // Wrapper for obtaining keys from keys.plist
