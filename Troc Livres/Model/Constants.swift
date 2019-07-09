@@ -11,8 +11,8 @@ import UIKit
 struct Constants {
 
     struct Cell {
-        static let book = "BookViewCell"
-        static let message = "MessageViewCell"
+        static let book = "BookCell"
+        static let message = "MessageCell"
     }
 
     struct Color {
@@ -26,9 +26,10 @@ struct Constants {
         static let eyeShow = UIImage(named: "Image-Eye")!
         static let eyeHide = UIImage(named: "Image-EyeSlash")!
         static let envelope = UIImage(named: "Image-Envelope")!
-        static let person = UIImage(named: "Image-Person")!
+        static let location = UIImage(named: "Image-Location")!
         static let lock = UIImage(named: "Image-Lock")!
         static let noBookCover = UIImage(named: "Image-NoBookCover")!
+        static let person = UIImage(named: "Image-Person")!
         static let star = UIImage(named: "Image-Star")!
         static let starFill = UIImage(named: "Image-StarFill")!
     }
@@ -36,7 +37,7 @@ struct Constants {
     struct Segue {
         static let bookVC = "BookVC"
         static let chatVC = "ChatVC"
-        static let userVC = "UserVC"
+        static let userBooksVC = "UserBooksVC"
         static let scannerVC = "ScannerVC"
         static let searchBookVC = "SearchBookVC"
         static let changeLocationVC = "ChangeLocationVC"

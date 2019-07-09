@@ -20,7 +20,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     @IBOutlet weak var tableViewBackgroundView: UIView!
     @IBOutlet weak var tableViewBackgroundLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
-
+    
     // MARK: - Properties
 
     var results = [Book]()
@@ -49,7 +49,6 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     }
 
     // MARK: - Methods
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +87,8 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
                 self.tableView.reloadData()
                 self.scrollTableViewToTop()
             case .failure(let error):
+                self.results.removeAll()
+                self.tableView.reloadData()
                 self.tableViewBackgroundLabel.text = error.rawValue
             }
             ProgressHUD.dismiss()
@@ -97,16 +98,13 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case Constants.Segue.scannerVC:
+        if segue.identifier == Constants.Segue.scannerVC {
             let destinationVC = segue.destination as! ScannerViewController
             destinationVC.delegate = self
-        case Constants.Segue.bookVC:
+        } else if segue.identifier == Constants.Segue.bookVC {
             let destinationVC = segue.destination as! BookViewController
             destinationVC.book = selectedBook
-            destinationVC.books = userBooks
-        default:
-            break
+            destinationVC.userBooks = userBooks
         }
     }
 }
@@ -118,7 +116,7 @@ extension SearchBookViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.book, for: indexPath) as! BookViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.book, for: indexPath) as! BookCell
         cell.book = results[indexPath.row]
         return cell
     }

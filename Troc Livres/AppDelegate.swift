@@ -17,25 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         Switcher.updateRootVC()
-//
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//
-//        var storyboardName = "Welcome"
-//        var initialVCId = "WelcomeViewController"
-//
-//        // User is already signed in ?
-//        if Auth.auth().currentUser != nil {
-//            FirebaseManager.currentUser = Auth.auth().currentUser
-//            storyboardName = "Main"
-//            initialVCId = "Main"
-//        }
-//
-//        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-//        let initialViewController = storyboard.instantiateViewController(withIdentifier: initialVCId)
-//
-//        self.window?.rootViewController = initialViewController
-//        self.window?.makeKeyAndVisible()
-
         return true
     }
 

@@ -20,7 +20,7 @@ struct Item: Decodable {
 
 struct Book: Decodable {
     var id: String?
-    let title: String?
+    let title: String
     let authors: [String]?
     let bookDescription: String?
     let imageLinks: ImageLinks?

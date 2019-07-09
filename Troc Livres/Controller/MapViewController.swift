@@ -15,8 +15,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     let locationManager = CLLocationManager()
-    let mapRadius: CLLocationDistance = 5000
-    var userLocation = CLLocationCoordinate2D()
+    let mapRadius: CLLocationDistance = 2500
 
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
@@ -35,11 +34,13 @@ class MapViewController: UIViewController {
         case .authorizedWhenInUse:
             centerMapViewOnUserLocation()
         case .denied:
-            alert(title: "Impossible d'accéder aux données de localisation", message: "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.")
+            alert(title: "Impossible d'accéder aux données de localisation",
+                  message: "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.")
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            alert(title: "Impossible d'accéder aux données de localisation", message: "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.")
+            alert(title: "Impossible d'accéder aux données de localisation",
+                  message: "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.")
         case .authorizedAlways:
             break
         @unknown default:
@@ -47,10 +48,11 @@ class MapViewController: UIViewController {
         }
     }
 
-    func centerMapViewOnUserLocation(){
+    func centerMapViewOnUserLocation() {
         guard let location = locationManager.location?.coordinate else { return }
-        userLocation = location
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: mapRadius, longitudinalMeters: mapRadius)
+        let region = MKCoordinateRegion.init(center: location,
+                                             latitudinalMeters: mapRadius,
+                                             longitudinalMeters: mapRadius)
         mapView.setRegion(region, animated: true)
     }
 }

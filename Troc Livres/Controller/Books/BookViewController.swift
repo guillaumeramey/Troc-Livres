@@ -28,7 +28,7 @@ class BookViewController: UITableViewController {
 
     var delegate: BookDelegate?
     var book: Book!
-    var books: [Book]!
+    var userBooks: [Book]!
     var user: User!
     private var rightBarButton: UIBarButtonItem!
     private var bookIsInWishlist: Bool! {
@@ -43,6 +43,7 @@ class BookViewController: UITableViewController {
         super.viewDidLoad()
         setRightBarButton()
         setBookData()
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,10 +53,16 @@ class BookViewController: UITableViewController {
 
     private func setBookData() {
         titleLabel.text = book.title
-        authorLabel.text = book.authors?.joined(separator: "\n")
-        descriptionLabel.text = book.bookDescription == nil ?
-            "Non disponible" :
-            book.bookDescription
+        if let authors = book.authors {
+            authorLabel.text = authors.joined(separator: "\n")
+        } else {
+            authorLabel.text = "Non disponible"
+        }
+        if let description = book.bookDescription {
+            descriptionLabel.text = description
+        } else {
+            descriptionLabel.text = "Non disponible"
+        }
         if let imageURL = book.imageURL, imageURL != "", let url = URL(string: imageURL) {
             imageView.kf.setImage(with: url)
         }
@@ -71,7 +78,7 @@ class BookViewController: UITableViewController {
     // Different buttons depending if the book belongs to the user
     private func setRightBarButton() {
         if user == nil {
-            if books.contains(where: { $0.id == book.id }) {
+            if userBooks.contains(where: { $0.id == book.id }) {
                 rightBarButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashTapped))
                 rightBarButton.tintColor = .red
             } else {
@@ -79,9 +86,9 @@ class BookViewController: UITableViewController {
             }
         } else {
             rightBarButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(starTapped))
-            FirebaseManager.isBookInWishlist(uid: user.uid, book, completion: { (bookIsInWishlist) in
+            FirebaseManager.isBookInWishlist(uid: user.uid, book) { bookIsInWishlist in
                 self.bookIsInWishlist = bookIsInWishlist
-            })
+            }
         }
         navigationItem.rightBarButtonItem = rightBarButton
     }
@@ -95,12 +102,11 @@ class BookViewController: UITableViewController {
             switch result {
             case .success(_):
                 ProgressHUD.showSuccess("Livre ajouté")
-                self.books.append(self.book)
-                self.delegate?.updateBooks(self.books)
-                self.performSegue(withIdentifier: "unwindToMyBooks", sender: self)
+                self.userBooks.append(self.book)
+                self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
             case .failure(let error):
                 print(error.localizedDescription)
-                ProgressHUD.showError("Echec de l'ajout du livre")
+                ProgressHUD.showError("Impossible d'ajouter le livre")
             }
         }
     }
@@ -121,44 +127,59 @@ class BookViewController: UITableViewController {
             switch result {
             case .success(_):
                 ProgressHUD.showSuccess("Livre supprimé")
-                self.books.removeAll(where: { $0.id == self.book.id })
-                self.delegate?.updateBooks(self.books)
-                self.performSegue(withIdentifier: "unwindToMyBooks", sender: self)
+                self.userBooks.removeAll(where: { $0.id == self.book.id })
+                self.delegate?.updateBooks(self.userBooks)
+                self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
             case .failure(let error):
                 print(error.localizedDescription)
-                ProgressHUD.showError("Echec de la suppression du livre")
+                ProgressHUD.showError("Impossible de supprimer le livre")
             }
         }
     }
     
     // Add or remove the book from the wishlist
     @objc func starTapped(_ sender: Any) {
-        bookIsInWishlist.toggle()
+        rightBarButton.isEnabled = false
         if bookIsInWishlist {
-            FirebaseManager.addBookToWishlist(uid: user.uid, book)
-            getMatch()
+            FirebaseManager.removeBookFromWishlist(uid: user.uid, book) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    ProgressHUD.showError("Impossible de supprimer le livre de votre liste de souhaits")
+                } else {
+                    self.bookIsInWishlist.toggle()
+                }
+                self.rightBarButton.isEnabled = true
+            }
         } else {
-            FirebaseManager.removeBookFromWishlist(uid: user.uid, book)
+            FirebaseManager.addBookToWishlist(uid: user.uid, book) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    ProgressHUD.showError("Impossible d'ajouter le livre à votre liste de souhaits")
+                } else {
+                    self.bookIsInWishlist.toggle()
+                    self.getMatch()
+                }
+                self.rightBarButton.isEnabled = true
+            }
         }
     }
     
     // Check if this user wants one of the current user's books
     private func getMatch() {
         FirebaseManager.getMatch(with: user.uid) { book in
-            if book.isEmpty == false {
-                // Create a chat or reuse existing one
-                FirebaseManager.getChat(with: self.user, completion: { result in
-                    switch result {
-                    case .success(let chat):
-                        FirebaseManager.sendMessage(in: chat, content: "Message automatique pour un troc : \"\(book)\" contre \"\(self.book.title ?? "")\"", system: true)
-                        self.alert(title: "Troc disponible !", message: "\(self.user.name) veut également votre livre : \"\(book)\". Une discussion a été créée pour vous permettre de les échanger.")
-                        self.tabBarController?.tabBar.items?[1].badgeValue = "!"
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        ProgressHUD.showError("Impossible de créer une discussion avec \(self.user.name)")
-                    }
-                })
-            }
+            if book.isEmpty { return }
+            // Create a chat or reuse existing one
+            FirebaseManager.getChat(with: self.user, completion: { result in
+                switch result {
+                case .success(let chat):
+                    FirebaseManager.sendMessage(in: chat, content: "Message automatique pour un troc : \"\(book)\" contre \"\(self.book.title)\"", system: true)
+                    self.alert(title: "Troc disponible !", message: "\(self.user.name) veut également votre livre : \"\(book)\". Une discussion a été créée pour vous permettre de les échanger.")
+                    self.tabBarController?.tabBar.items?[1].badgeValue = "!"
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    ProgressHUD.showError("Impossible de créer une discussion avec \(self.user.name)")
+                }
+            })
         }
     }
 }

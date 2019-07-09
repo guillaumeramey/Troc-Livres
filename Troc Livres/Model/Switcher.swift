@@ -11,7 +11,7 @@ import Firebase
 
 class Switcher {
     
-    static func updateRootVC(){
+    static func updateRootVC() {
         
         var storyboardName = "Welcome"
         var rootVCId = "WelcomeViewController"

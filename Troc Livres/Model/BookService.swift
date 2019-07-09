@@ -49,10 +49,13 @@ class BookService {
 
     func getBooks(isbn: String = "", title: String = "", author: String = "", langRestrict: String = "fr", completion: @escaping (Result<[Book], NetworkError>) -> Void) {
 
-        let requestURLString = createRequest(isbn: isbn, title: title.trimmingCharacters(in: CharacterSet(charactersIn: " ")), author: author.trimmingCharacters(in: CharacterSet(charactersIn: " ")), langRestrict: langRestrict)
+        let request = createRequest(isbn: isbn,
+                                    title: title.trimmingCharacters(in: CharacterSet(charactersIn: " ")),
+                                    author: author.trimmingCharacters(in: CharacterSet(charactersIn: " ")),
+                                    langRestrict: langRestrict)
 
         // removes forbidden characters
-        guard let encodeString = requestURLString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let url = URL(string: encodeString) else {
+        guard let encodeString = request.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let url = URL(string: encodeString) else {
             completion(.failure(.badURL))
             return
         }

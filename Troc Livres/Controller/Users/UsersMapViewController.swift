@@ -14,6 +14,10 @@ import ProgressHUD
 
 class UsersMapViewController: MapViewController {
 
+    // MARK: - Outlets
+    
+    @IBOutlet weak var centerOnUserLocationButton: UIButton!
+    
     // MARK: - Properties
     
     var selectedUser: User!
@@ -22,7 +26,12 @@ class UsersMapViewController: MapViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Alert user to check his profile tab if he did not choose an address
+        Persist.address == "" ? tabBarController?.tabBar.items?[3].badgeValue = "!" : nil
+        
         locationManager.delegate = self
+        centerOnUserLocationButton.layer.cornerRadius = 8
         checkLocationServices()
         displayUsersOnMap()
     }
@@ -30,6 +39,12 @@ class UsersMapViewController: MapViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func displayUsersOnMap() {
@@ -40,7 +55,7 @@ class UsersMapViewController: MapViewController {
         }
     }
 
-    @IBAction func findMeButtonPressed(_ sender: AnyObject) {
+    @IBAction func centerOnUserLocationButtonPressed() {
         centerMapViewOnUserLocation()
     }
 }
@@ -74,12 +89,12 @@ extension UsersMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let user = view.annotation as? User else { return }
         selectedUser = user
-        performSegue(withIdentifier: Constants.Segue.userVC, sender: nil)
+        performSegue(withIdentifier: Constants.Segue.userBooksVC, sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segue.userVC {
-            let destinationVC = segue.destination as! UserViewController
+        if segue.identifier == Constants.Segue.userBooksVC {
+            let destinationVC = segue.destination as! UserBooksViewController
             destinationVC.user = selectedUser
         }
     }

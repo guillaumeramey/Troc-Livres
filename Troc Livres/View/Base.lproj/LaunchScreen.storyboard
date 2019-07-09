@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,36 +19,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-nz-zji">
-                                <rect key="frame" x="20" y="350.5" width="374" height="195"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-Background" translatesAutoresizingMaskIntoConstraints="NO" id="G6u-BV-tVh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo by Gregory Culmer on Unsplash" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJs-E2-rbD">
+                                <rect key="frame" x="20" y="832.5" width="374" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zMq-4q-h3y">
+                                <rect key="frame" x="20" y="64" width="374" height="57"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="« Quelle meilleure chose, en effet, que d'être le soir au coin du feu avec un livre, pendant que le vent bat les carreaux. »" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMd-sG-Co8">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="144.5"/>
-                                        <fontDescription key="fontDescription" name="Baskerville-Italic" family="Baskerville" pointSize="32"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Troc" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkT-f3-QXD">
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="57"/>
+                                        <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="45"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Madame Bovary (1857) de Gustave Flaubert" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gj1-3U-Nr0">
-                                        <rect key="frame" x="0.0" y="174.5" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Livres" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ne0-8E-Ajh">
+                                        <rect key="frame" x="167" y="0.0" width="207" height="57"/>
+                                        <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="45"/>
+                                        <color key="textColor" name="Color-Button"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chargement en cours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDI-V7-btK">
+                                <rect key="frame" x="113.5" y="141" width="187" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1gg-nz-zji" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="O2F-5X-T3K"/>
-                            <constraint firstAttribute="trailing" secondItem="1gg-nz-zji" secondAttribute="trailing" constant="20" id="TAy-7f-Mz4"/>
-                            <constraint firstItem="1gg-nz-zji" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="UT9-zb-OB1"/>
+                            <constraint firstItem="zMq-4q-h3y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="05a-NS-zsh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bJs-E2-rbD" secondAttribute="trailing" constant="20" id="5Ms-bU-YeU"/>
+                            <constraint firstItem="G6u-BV-tVh" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="AIq-f3-uk9"/>
+                            <constraint firstItem="UDI-V7-btK" firstAttribute="top" secondItem="zMq-4q-h3y" secondAttribute="bottom" constant="20" id="Kff-BQ-2tn"/>
+                            <constraint firstItem="bJs-E2-rbD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-10" id="MZ5-ww-XR7"/>
+                            <constraint firstItem="G6u-BV-tVh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OQE-vC-qPv"/>
+                            <constraint firstItem="bJs-E2-rbD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Uib-JZ-DoB"/>
+                            <constraint firstAttribute="bottom" secondItem="G6u-BV-tVh" secondAttribute="bottom" id="V9F-PJ-1Uw"/>
+                            <constraint firstItem="zMq-4q-h3y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Z0a-s5-mg6"/>
+                            <constraint firstItem="G6u-BV-tVh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tP0-Dr-WBT"/>
+                            <constraint firstItem="UDI-V7-btK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uIW-bx-LPx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zMq-4q-h3y" secondAttribute="trailing" constant="20" id="yHA-PY-Bj4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image-Background" width="3499" height="5142"/>
+        <namedColor name="Color-Button">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

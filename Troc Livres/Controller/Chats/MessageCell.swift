@@ -1,5 +1,5 @@
 //
-//  MessageViewCell.swift
+//  MessageCell.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 28/05/2019.

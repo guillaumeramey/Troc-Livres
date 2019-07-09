@@ -112,9 +112,6 @@ struct FirebaseManager {
     }
 
     static func setUserName(_ name: String, completion: @escaping (Bool) -> Void) {
-//        let userData = ["name": name,
-//                        "address": "Non renseigné",
-//                        "numberOfBooks": 0] as [String : Any]
         Persist.name = name
         usersCollection.document(Persist.uid).setData(["name": name]) { error in
             completion(error == nil)
@@ -132,13 +129,21 @@ struct FirebaseManager {
 
     static func deleteUser(completion: @escaping (Result<Bool, Error>) -> Void) {
 
+        // Delete user account
+        Auth.auth().currentUser?.delete { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+        }
+        
         // Send a message in the user chats
         getUserChats { chats in
             let batch = db.batch()
             for chat in chats {
                 sendMessage(in: chat, content: "Utilisateur supprimé", system: true)
             }
-            batch.commit() { error in
+            batch.commit { error in
                 print("Send messages in user chats")
                 if let error = error {
                     print("Error writing batch \(error)")
@@ -157,7 +162,7 @@ struct FirebaseManager {
                     batch.updateData(bookData, forDocument: booksCollection.document(id))
                 }
             }
-            batch.commit() { error in
+            batch.commit { error in
                 print("Delete user books")
                 if let error = error {
                     print("Error writing batch \(error)")
@@ -177,7 +182,7 @@ struct FirebaseManager {
                     let docRef = usersCollection.document(Persist.uid).collection("wishlist").document(document.documentID)
                     batch.deleteDocument(docRef)
                 }
-                batch.commit() { error in
+                batch.commit { error in
                     print("Delete the user wishlist")
                     if let error = error {
                         print("Error writing batch \(error)")
@@ -197,7 +202,7 @@ struct FirebaseManager {
                     let docRef = usersCollection.document(uid).collection("wishlist").document(document.documentID)
                     batch.deleteDocument(docRef)
                 }
-                batch.commit() { error in
+                batch.commit { error in
                     print("Delete the user's books in all the wishlists")
                     if let error = error {
                         print("Error writing batch \(error)")
@@ -210,15 +215,8 @@ struct FirebaseManager {
 
         // Delete user data
         usersCollection.document(Persist.uid).delete()
-
-        // Delete user account
-        Auth.auth().currentUser?.delete { error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            completion(.success(true))
-        }
+        
+        completion(.success(true))
     }
 
     // MARK: - Book management
@@ -261,7 +259,8 @@ struct FirebaseManager {
     }
 
     static func getBooks(uid: String, completion: @escaping ([Book]) -> Void) {
-        booksCollection.whereField("owners", arrayContains: uid).getDocuments { (snapshot, error) in
+        booksCollection.whereField("owners", arrayContains: uid)
+            .getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             var books = [Book]()
             for document in snapshot.documents {
@@ -294,7 +293,7 @@ struct FirebaseManager {
                         let docRef = usersCollection.document(uid).collection("wishlist").document(document.documentID)
                         batch.deleteDocument(docRef)
                     }
-                    batch.commit() { error in
+                    batch.commit { error in
                         if let error = error {
                             print("Error writing batch \(error)")
                             completion(.failure(error))
@@ -332,19 +331,24 @@ struct FirebaseManager {
         }
     }
 
-    static func addBookToWishlist(uid: String, _ book: Book) {
-        guard let id = book.id, let title = book.title else { return }
+    static func addBookToWishlist(uid: String, _ book: Book, completion: @escaping (Error?) -> Void) {
+        guard let id = book.id else { return }
         let data = ["applicant": Persist.uid,
                     "owner": uid,
-                    "bookTitle": title,
+                    "bookTitle": book.title,
                     "bookId": id,
                     "timestamp": FieldValue.serverTimestamp()] as [String : Any]
-        usersCollection.document(Persist.uid).collection("wishlist").document(uid + id).setData(data)
+        usersCollection.document(Persist.uid).collection("wishlist").document(uid + id)
+            .setData(data, completion: { error in
+                completion(error)
+        })
     }
 
-    static func removeBookFromWishlist(uid: String, _ book: Book) {
+    static func removeBookFromWishlist(uid: String, _ book: Book, completion: @escaping (Error?) -> Void) {
         guard let id = book.id else { return }
-        usersCollection.document(Persist.uid).collection("wishlist").document(uid + id).delete()
+        usersCollection.document(Persist.uid).collection("wishlist").document(uid + id).delete { error in
+            completion(error)
+        }
     }
 
     // MARK: - Chat management

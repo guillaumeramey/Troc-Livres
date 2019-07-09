@@ -24,7 +24,6 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
-
     // MARK: - Properties
 
     var registration: Bool! {
@@ -65,9 +64,9 @@ class WelcomeViewController: UIViewController {
         FirebaseManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
-            } else {
-                self.alert(title: "E-mail envoyé !", message: "Consultez vos e-mails et suivez les instructions pour réinitialiser votre mot de passe.")
+                return
             }
+            self.alert(title: "E-mail envoyé !", message: "Consultez vos e-mails et suivez les instructions pour réinitialiser votre mot de passe.")
         }
     }
 
@@ -81,9 +80,9 @@ class WelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        #warning("remove")
+        #warning("remove id")
         passwordTextField.text = "123456"
-        emailTextField.text = "tony.stark@avengers.com"
+        emailTextField.text = "marie.dupont@mail.com"
         usernameTextField.text = nil
     }
 
@@ -164,8 +163,9 @@ class WelcomeViewController: UIViewController {
                     return
                 }
                 Persist.name = user.name
-                Persist.address = user.address ?? "Non renseigné"
-                Persist.location = CLLocationCoordinate2D(latitude: user.location?.latitude ?? 0, longitude: user.location?.longitude ?? 0)
+                Persist.address = user.address ?? ""
+                Persist.location = CLLocationCoordinate2D(latitude: user.location?.latitude ?? 0,
+                                                          longitude: user.location?.longitude ?? 0)
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             })
         }
@@ -173,7 +173,7 @@ class WelcomeViewController: UIViewController {
 
     // MARK: - Navigation
 
-    @IBAction func unwindToWelcome(segue:UIStoryboardSegue) {
+    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
         ProgressHUD.dismiss()
     }
 }
