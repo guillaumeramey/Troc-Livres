@@ -49,7 +49,7 @@ class UsersMapViewController: MapViewController {
     
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        FirebaseManager.getUsers { users in
+        UserManager.getUsers { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
         }

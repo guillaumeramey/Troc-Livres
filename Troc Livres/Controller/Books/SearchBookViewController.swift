@@ -79,8 +79,8 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     func getBooks(isbn: String = "") {
         ProgressHUD.show("Recherche en cours")
         backgroundText = ""
-        let bookService = BookService()
-        bookService.getBooks(isbn: isbn, title: titleTextField.text!, author: authorTextField.text!) { result in
+        let networkManager = NetworkManager()
+        networkManager.getBooks(isbn: isbn, title: titleTextField.text!, author: authorTextField.text!) { result in
             switch result {
             case .success(let books):
                 self.results = books

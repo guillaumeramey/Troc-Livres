@@ -20,7 +20,7 @@ class UserBooksViewController: UITableViewController {
 
     var user: User!
     private var userBooks = [Book]()
-    private var tableViewData = [(header: Character, books: [Book])]()
+    private var sortedBooks = [(header: Character, books: [Book])]()
     private var selectedBook: Book!
 
     // MARK: - Methods
@@ -28,7 +28,8 @@ class UserBooksViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDisplay()
-        tableView.register(UINib(nibName: Constants.Cell.book, bundle: nil), forCellReuseIdentifier: Constants.Cell.book)
+        let nib = UINib(nibName: Constants.Cell.book, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: Constants.Cell.book)
         tableView.tableFooterView = UIView()
         getBooks()
     }
@@ -37,6 +38,12 @@ class UserBooksViewController: UITableViewController {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+        updateTableView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ProgressHUD.dismiss()
     }
 
     private func setDisplay() {
@@ -51,7 +58,7 @@ class UserBooksViewController: UITableViewController {
     private func getBooks() {
         ProgressHUD.show()
         let uid = user != nil ? user.uid : Persist.uid
-        FirebaseManager.getBooks(uid: uid, completion: { books in
+        BookManager.getBooks(uid: uid, completion: { books in
             ProgressHUD.dismiss()
             self.userBooks = books
             self.updateTableView()
@@ -59,17 +66,23 @@ class UserBooksViewController: UITableViewController {
     }
 
     private func updateTableView() {
-        tableViewData.removeAll()
+        sortedBooks.removeAll()
         userBooks.sorted(by: { $0.title < $1.title }).forEach { book in
             guard let letter = book.title.first else { return }
 
-            if let section = self.tableViewData.firstIndex(where: { $0.header == letter }) {
-                self.tableViewData[section].books.append(book)
+            if let section = self.sortedBooks.firstIndex(where: { $0.header == letter }) {
+                self.sortedBooks[section].books.append(book)
             } else {
-                self.tableViewData.append((header: letter, books: [book]))
+                self.sortedBooks.append((header: letter, books: [book]))
             }
         }
-        tableView.backgroundView = self.tableViewBackgroundView
+        
+        if sortedBooks.count > 0 {
+            tableView.backgroundView = nil
+        } else {
+            tableView.backgroundView = self.tableViewBackgroundView
+        }
+
         tableView.reloadData()
     }
     
@@ -82,21 +95,20 @@ class UserBooksViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tableViewData.count
+        return sortedBooks.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return tableViewData[section].header.description
+        return sortedBooks[section].header.description
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView.backgroundView?.isHidden = tableViewData.count > 0 ? true : false
-        return tableViewData[section].books.count
+        return sortedBooks[section].books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.book, for: indexPath) as! BookCell
-        cell.book = tableViewData[indexPath.section].books[indexPath.row]
+        cell.book = sortedBooks[indexPath.section].books[indexPath.row]
         return cell
     }
 
@@ -104,7 +116,7 @@ class UserBooksViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedBook = tableViewData[indexPath.section].books[indexPath.row]
+        selectedBook = sortedBooks[indexPath.section].books[indexPath.row]
         performSegue(withIdentifier: Constants.Segue.bookVC, sender: self)
     }
 
@@ -116,7 +128,6 @@ class UserBooksViewController: UITableViewController {
             destinationVC.book = selectedBook
             destinationVC.user = user
             destinationVC.userBooks = userBooks
-            destinationVC.delegate = self
         } else if segue.identifier == Constants.Segue.searchBookVC {
             let destinationVC = segue.destination as! SearchBookViewController
             destinationVC.userBooks = userBooks
@@ -129,12 +140,5 @@ class UserBooksViewController: UITableViewController {
             userBooks = sourceVC.userBooks
             updateTableView()
         }
-    }
-}
-
-extension UserBooksViewController: BookDelegate {
-    func updateBooks(_ books: [Book]) {
-        userBooks = books
-        updateTableView()
     }
 }

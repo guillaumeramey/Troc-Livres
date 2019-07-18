@@ -38,7 +38,6 @@ class MessageCell: UITableViewCell {
             messageBackground.layer.borderColor = Constants.Color.button.cgColor
             leadingConstraint.constant = 10
             trailingConstraint.constant = 10
-            
         } else if message.sender == Persist.uid {
             // Message from the current user
             messageBackground.backgroundColor = Constants.Color.chatSender

@@ -9,6 +9,7 @@ target 'Troc Livres' do
 pod 'Firebase/Auth'
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'
+pod 'Firebase/Messaging'
 pod 'ProgressHUD'
 pod 'Kingfisher'
 

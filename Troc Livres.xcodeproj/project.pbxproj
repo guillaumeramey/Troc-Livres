@@ -24,12 +24,21 @@
 		A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatViewController.swift */; };
 		A4478400229B081D00257636 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FF229B081D00257636 /* Message.swift */; };
 		A4478408229CD51800257636 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478407229CD51800257636 /* Chat.swift */; };
+		A4556A0522D79E5100DC15C2 /* FirebaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4556A0422D79E5100DC15C2 /* FirebaseManagerTests.swift */; };
+		A45E7CBA22D502080011A29C /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E7CB922D502080011A29C /* NetworkManagerTests.swift */; };
 		A46041C6229F429200E78852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46041C5229F429200E78852 /* Assets.xcassets */; };
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
 		A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */; };
 		A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471E40722D2B7A000125D05 /* PassThroughView.swift */; };
 		A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* MessageCell.swift */; };
 		A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* MessageCell.xib */; };
+		A48C035122DFF59800AAED99 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035022DFF59800AAED99 /* ChatManager.swift */; };
+		A48C035322DFF64800AAED99 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035222DFF64800AAED99 /* AccountManager.swift */; };
+		A48C035522DFF6F200AAED99 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035422DFF6F200AAED99 /* UserManager.swift */; };
+		A48C035722DFF76400AAED99 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035622DFF76400AAED99 /* BookManager.swift */; };
+		A48C035922DFF7EB00AAED99 /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035822DFF7EB00AAED99 /* WishlistManager.swift */; };
+		A48E5CA122D8D51E0061B27A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5CA022D8D51E0061B27A /* DataManager.swift */; };
+		A48E5CA322D8D5680061B27A /* FirebaseManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5CA222D8D5680061B27A /* FirebaseManagerMock.swift */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */; };
 		A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2632B22A42CBD00B82141 /* MapViewController.swift */; };
@@ -40,10 +49,15 @@
 		A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */; };
 		A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBE9228D0F4400180F09 /* Main.storyboard */; };
 		A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */; };
-		A4E3CBFB228D0F4600180F09 /* Troc_LivresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */; };
-		A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC05228D0FB800180F09 /* BookService.swift */; };
+		A4E3CC06228D0FB800180F09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC05228D0FB800180F09 /* NetworkManager.swift */; };
 		A4E3CC08228D124A00180F09 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC07228D124A00180F09 /* Book.swift */; };
 		A4E5D8E222AAB15D00806A8B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */; };
+		A4F4EFD022D4FCD70011D93B /* Book.json in Resources */ = {isa = PBXBuildFile; fileRef = A4F4EFCF22D4FCD70011D93B /* Book.json */; };
+		A4F4EFD322D4FD190011D93B /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */; };
+		A4F4EFD822D4FFF10011D93B /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */; };
+		A4F4EFDA22D5000F0011D93B /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */; };
+		A4FCE5F022DE706D000016DA /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FCE5EF22DE706D000016DA /* PushNotificationManager.swift */; };
+		A4FCE5F222DE736F000016DA /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FCE5F122DE736F000016DA /* PushNotificationSender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,16 +88,26 @@
 		A44783FB229AFDD900257636 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A44783FF229B081D00257636 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A4478407229CD51800257636 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		A4556A0422D79E5100DC15C2 /* FirebaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManagerTests.swift; sourceTree = "<group>"; };
+		A45E7CB922D502080011A29C /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A46041C5229F429200E78852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordTextField.swift; path = ../Model/PasswordTextField.swift; sourceTree = "<group>"; };
 		A471E40722D2B7A000125D05 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		A475130F229DDEB3002EA87E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A4751310229DDEB3002EA87E /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A48C035022DFF59800AAED99 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		A48C035222DFF64800AAED99 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountManager.swift; path = ../AccountManager.swift; sourceTree = "<group>"; };
+		A48C035422DFF6F200AAED99 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = ../UserManager.swift; sourceTree = "<group>"; };
+		A48C035622DFF76400AAED99 /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookManager.swift; path = ../BookManager.swift; sourceTree = "<group>"; };
+		A48C035822DFF7EB00AAED99 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WishlistManager.swift; path = ../WishlistManager.swift; sourceTree = "<group>"; };
+		A48E5CA022D8D51E0061B27A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A48E5CA222D8D5680061B27A /* FirebaseManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManagerMock.swift; sourceTree = "<group>"; };
+		A48E5CA422DD57260061B27A /* Troc Livres.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Troc Livres.entitlements"; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksViewController.swift; sourceTree = "<group>"; };
 		A4C2632B22A42CBD00B82141 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = ../FirebaseManager.swift; sourceTree = "<group>"; };
 		A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		A4DF67BD22AD575A00D6929C /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		A4DF67BE22AD575A00D6929C /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
@@ -93,11 +117,16 @@
 		A4E3CBEF228D0F4500180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4E3CBF1228D0F4500180F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E3CBF6228D0F4600180F09 /* Troc LivresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Troc LivresTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Troc_LivresTests.swift; sourceTree = "<group>"; };
 		A4E3CBFC228D0F4600180F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4E3CC05228D0FB800180F09 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		A4E3CC05228D0FB800180F09 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A4E3CC07228D124A00180F09 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A4F4EFCF22D4FCD70011D93B /* Book.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Book.json; sourceTree = "<group>"; };
+		A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
+		A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		A4FCE5EF22DE706D000016DA /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		A4FCE5F122DE736F000016DA /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		C13AB8DA023E5C7AE6FF92FC /* Pods-Troc LivresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Troc LivresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Troc LivresTests/Pods-Troc LivresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3726D53EFF532DAF2F3882E /* Pods_Troc_Livres.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Troc_Livres.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4CC064FA0D183D1BF8A546 /* Pods-Troc Livres.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Troc Livres.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,16 +176,17 @@
 		A4051E5E22909F67002A5D18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A48C035A22DFFD8C00AAED99 /* Firebase */,
 				A4051E682290F7AA002A5D18 /* Constants.swift */,
 				A41351152293534500934188 /* Persist.swift */,
 				A4051E7622926241002A5D18 /* Extensions.swift */,
-				A4E3CC05228D0FB800180F09 /* BookService.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
 				A4478407229CD51800257636 /* Chat.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
-				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
 				A420883422C66843006ABB18 /* Switcher.swift */,
+				A4E3CC05228D0FB800180F09 /* NetworkManager.swift */,
+				A48E5CA022D8D51E0061B27A /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +257,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A48C035A22DFFD8C00AAED99 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
+				A48C035822DFF7EB00AAED99 /* WishlistManager.swift */,
+				A48C035622DFF76400AAED99 /* BookManager.swift */,
+				A48C035422DFF6F200AAED99 /* UserManager.swift */,
+				A48C035222DFF64800AAED99 /* AccountManager.swift */,
+				A48C035022DFF59800AAED99 /* ChatManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		A494111122A1B82B009DD9C1 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,10 +310,13 @@
 		A4E3CBE4228D0F4400180F09 /* Troc Livres */ = {
 			isa = PBXGroup;
 			children = (
+				A48E5CA422DD57260061B27A /* Troc Livres.entitlements */,
 				A4051E5E22909F67002A5D18 /* Model */,
 				A4051E5F22909F6E002A5D18 /* View */,
 				A465C9E222909F3E0048D3D5 /* Controller */,
 				A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */,
+				A4FCE5F122DE736F000016DA /* PushNotificationSender.swift */,
+				A4FCE5EF22DE706D000016DA /* PushNotificationManager.swift */,
 				A46041C5229F429200E78852 /* Assets.xcassets */,
 				A4E3CBF1228D0F4500180F09 /* Info.plist */,
 				A41351192293985100934188 /* GoogleService-Info.plist */,
@@ -281,8 +327,14 @@
 		A4E3CBF9228D0F4600180F09 /* Troc LivresTests */ = {
 			isa = PBXGroup;
 			children = (
-				A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */,
+				A4556A0422D79E5100DC15C2 /* FirebaseManagerTests.swift */,
+				A45E7CB922D502080011A29C /* NetworkManagerTests.swift */,
 				A4E3CBFC228D0F4600180F09 /* Info.plist */,
+				A4F4EFCF22D4FCD70011D93B /* Book.json */,
+				A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */,
+				A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */,
+				A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */,
+				A48E5CA222D8D5680061B27A /* FirebaseManagerMock.swift */,
 			);
 			path = "Troc LivresTests";
 			sourceTree = "<group>";
@@ -340,6 +392,11 @@
 				TargetAttributes = {
 					A4E3CBE1228D0F4400180F09 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A4E3CBF5228D0F4600180F09 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -385,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F4EFD022D4FCD70011D93B /* Book.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48C035122DFF59800AAED99 /* ChatManager.swift in Sources */,
 				A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,
@@ -467,17 +526,24 @@
 				A4044D5822BBB8CA0028F187 /* ChangeLocationViewController.swift in Sources */,
 				A4478408229CD51800257636 /* Chat.swift in Sources */,
 				A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */,
+				A48C035522DFF6F200AAED99 /* UserManager.swift in Sources */,
 				A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */,
 				A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* UsersMapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
+				A48C035722DFF76400AAED99 /* BookManager.swift in Sources */,
 				A4E5D8E222AAB15D00806A8B /* CustomTextField.swift in Sources */,
+				A4FCE5F222DE736F000016DA /* PushNotificationSender.swift in Sources */,
 				A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */,
 				A4051E712292399E002A5D18 /* User.swift in Sources */,
 				A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */,
+				A48C035922DFF7EB00AAED99 /* WishlistManager.swift in Sources */,
 				A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */,
-				A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */,
+				A4FCE5F022DE706D000016DA /* PushNotificationManager.swift in Sources */,
+				A48E5CA122D8D51E0061B27A /* DataManager.swift in Sources */,
+				A4E3CC06228D0FB800180F09 /* NetworkManager.swift in Sources */,
 				A420883522C66843006ABB18 /* Switcher.swift in Sources */,
+				A48C035322DFF64800AAED99 /* AccountManager.swift in Sources */,
 				A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */,
 				A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */,
 				A41351182293701300934188 /* WelcomeViewController.swift in Sources */,
@@ -493,7 +559,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4E3CBFB228D0F4600180F09 /* Troc_LivresTests.swift in Sources */,
+				A48E5CA322D8D5680061B27A /* FirebaseManagerMock.swift in Sources */,
+				A4556A0522D79E5100DC15C2 /* FirebaseManagerTests.swift in Sources */,
+				A45E7CBA22D502080011A29C /* NetworkManagerTests.swift in Sources */,
+				A4F4EFDA22D5000F0011D93B /* URLSessionMock.swift in Sources */,
+				A4F4EFD822D4FFF10011D93B /* URLSessionDataTaskMock.swift in Sources */,
+				A4F4EFD322D4FD190011D93B /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +727,7 @@
 			baseConfigurationReference = CC4CC064FA0D183D1BF8A546 /* Pods-Troc Livres.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Troc Livres/Troc Livres.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A53F8H373H;
 				INFOPLIST_FILE = "Troc Livres/Info.plist";
@@ -676,6 +748,7 @@
 			baseConfigurationReference = 2FDF7527B112BBE6DAE36852 /* Pods-Troc Livres.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Troc Livres/Troc Livres.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A53F8H373H;
 				INFOPLIST_FILE = "Troc Livres/Info.plist";

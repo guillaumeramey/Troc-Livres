@@ -20,35 +20,36 @@ class ChatViewController: UIViewController {
     // MARK: - Properties
 
     var chat: Chat!
-    private var messages = [Message]()
 
     // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
         title = chat.name
+        hideKeyboardWhenTappedAround()
         setKeyboardNotifications()
-        chatTableView.register(UINib(nibName: Constants.Cell.message, bundle: nil), forCellReuseIdentifier: Constants.Cell.message)
+        let nib = UINib(nibName: Constants.Cell.message, bundle: nil)
+        chatTableView.register(nib, forCellReuseIdentifier: Constants.Cell.message)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
         tabBarController?.tabBar.isHidden = true
-        FirebaseManager.markChatAsRead(id: chat.id)
+        chat.markAsRead()
         enterChat()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FirebaseManager.markChatAsRead(id: chat.id)
-        FirebaseManager.leaveChat()
+        chat.markAsRead()
+        chat.leave()
+        ProgressHUD.dismiss()
     }
 
     private func enterChat() {
-        FirebaseManager.getMessages(in: chat) { messages in
-            self.messages = messages
+        chat.getMessages { success in
+            guard success else { return }
             self.chatTableView.reloadData()
             self.scrollTableViewToBottom()
         }
@@ -84,9 +85,9 @@ extension ChatViewController: UITextFieldDelegate {
     }
 
     private func scrollTableViewToBottom() {
-        if messages.count > 0 {
+        if let messages = chat.messages, messages.count > 0 {
             DispatchQueue.main.async {
-                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                let indexPath = IndexPath(row: messages.count - 1, section: 0)
                 self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
             }
         }
@@ -95,8 +96,13 @@ extension ChatViewController: UITextFieldDelegate {
     // Send button action
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard messageTextField.text?.isEmpty == false else { return false }
-        FirebaseManager.sendMessage(in: chat, content: messageTextField.text!, system: false)
-        messageTextField.text = nil
+        chat.sendMessage(content: messageTextField.text!) { success in
+            if success {
+                self.messageTextField.text = nil                
+            } else {
+                ProgressHUD.showError("Impossible d'envoyer le message")
+            }
+        }
         return true
     }
 }
@@ -106,12 +112,12 @@ extension ChatViewController: UITextFieldDelegate {
 extension ChatViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return chat.messages?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.message, for: indexPath) as! MessageCell
-        cell.message = messages[indexPath.row]
+        cell.message = chat.messages?[indexPath.row]
         return cell
     }
 }

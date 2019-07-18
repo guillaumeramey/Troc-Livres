@@ -61,7 +61,7 @@ class WelcomeViewController: UIViewController {
             ProgressHUD.showError("Entrez votre e-mail")
             return
         }
-        FirebaseManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
+        AccountManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
                 return
@@ -127,36 +127,25 @@ class WelcomeViewController: UIViewController {
 
     private func createUser() {
         ProgressHUD.show("Création de votre compte")
-        FirebaseManager.createUser(email: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
-            if let errorMessage = errorMessage {
-                ProgressHUD.showError(errorMessage)
+        UserManager.createUser(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
+            if let error = error {
+                ProgressHUD.showError(error)
                 self.validateButton.isEnabled = true
                 return
             }
-            self.setUserName()
-        }
-    }
-
-    private func setUserName() {
-        FirebaseManager.setUserName(usernameTextField.text!) { success in
-            if success {
-                self.performSegue(withIdentifier: "userLogged", sender: self)
-            } else {
-                ProgressHUD.showError("Impossible de sauvegarder le nom d'utilisateur")
-                self.validateButton.isEnabled = true
-            }
+            self.performSegue(withIdentifier: "userLogged", sender: self)
         }
     }
 
     private func authenticateUser() {
         ProgressHUD.show("Connexion en cours")
-        FirebaseManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
+        AccountManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
                 self.validateButton.isEnabled = true
                 return
             }
-            FirebaseManager.getUser(uid: Persist.uid, completion: { user in
+            UserManager.getUser(uid: Persist.uid, completion: { user in
                 guard let user = user else {
                     ProgressHUD.showError("Impossible de se connecter")
                     self.validateButton.isEnabled = true

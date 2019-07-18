@@ -10,10 +10,6 @@ import UIKit
 import ProgressHUD
 import Firebase
 
-protocol BookDelegate {
-    func updateBooks(_ books: [Book])
-}
-
 class BookViewController: UITableViewController {
 
     // MARK: - Outlets
@@ -26,7 +22,6 @@ class BookViewController: UITableViewController {
     
     // MARK: - Properties
 
-    var delegate: BookDelegate?
     var book: Book!
     var userBooks: [Book]!
     var user: User!
@@ -86,7 +81,7 @@ class BookViewController: UITableViewController {
             }
         } else {
             rightBarButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(starTapped))
-            FirebaseManager.isBookInWishlist(uid: user.uid, book) { bookIsInWishlist in
+            WishlistManager.isBookInWishlist(uid: user.uid, book) { bookIsInWishlist in
                 self.bookIsInWishlist = bookIsInWishlist
             }
         }
@@ -98,16 +93,15 @@ class BookViewController: UITableViewController {
     // Add the book to the user's collection
     @objc func addTapped(_ sender: Any) {
         ProgressHUD.show("Ajout du livre")
-        FirebaseManager.addBook(book) { result in
-            switch result {
-            case .success(_):
-                ProgressHUD.showSuccess("Livre ajouté")
-                self.userBooks.append(self.book)
-                self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
-            case .failure(let error):
+        BookManager.addBook(book) { error in
+            if let error = error {
                 print(error.localizedDescription)
                 ProgressHUD.showError("Impossible d'ajouter le livre")
+                return
             }
+            ProgressHUD.showSuccess("Livre ajouté")
+            self.userBooks.append(self.book)
+            self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
         }
     }
 
@@ -123,17 +117,15 @@ class BookViewController: UITableViewController {
 
     private func deleteHandler(alert: UIAlertAction) {
         ProgressHUD.show("Suppression du livre")
-        FirebaseManager.deleteBook(book) { result in
-            switch result {
-            case .success(_):
-                ProgressHUD.showSuccess("Livre supprimé")
-                self.userBooks.removeAll(where: { $0.id == self.book.id })
-                self.delegate?.updateBooks(self.userBooks)
-                self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
-            case .failure(let error):
+        BookManager.deleteBook(book) {  error in
+            if let error = error {
                 print(error.localizedDescription)
                 ProgressHUD.showError("Impossible de supprimer le livre")
+                return
             }
+            ProgressHUD.showSuccess("Livre supprimé")
+            self.userBooks.removeAll(where: { $0.id == self.book.id })
+            self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
         }
     }
     
@@ -141,7 +133,7 @@ class BookViewController: UITableViewController {
     @objc func starTapped(_ sender: Any) {
         rightBarButton.isEnabled = false
         if bookIsInWishlist {
-            FirebaseManager.removeBookFromWishlist(uid: user.uid, book) { error in
+            WishlistManager.removeBookFromWishlist(uid: user.uid, book) { error in
                 if let error = error {
                     print(error.localizedDescription)
                     ProgressHUD.showError("Impossible de supprimer le livre de votre liste de souhaits")
@@ -151,7 +143,7 @@ class BookViewController: UITableViewController {
                 self.rightBarButton.isEnabled = true
             }
         } else {
-            FirebaseManager.addBookToWishlist(uid: user.uid, book) { error in
+            WishlistManager.addBookToWishlist(uid: user.uid, book) { error in
                 if let error = error {
                     print(error.localizedDescription)
                     ProgressHUD.showError("Impossible d'ajouter le livre à votre liste de souhaits")
@@ -160,26 +152,34 @@ class BookViewController: UITableViewController {
                     self.getMatch()
                 }
                 self.rightBarButton.isEnabled = true
+                
+                PushNotificationManager().registerForPushNotifications()
             }
         }
     }
     
     // Check if this user wants one of the current user's books
     private func getMatch() {
-        FirebaseManager.getMatch(with: user.uid) { book in
-            if book.isEmpty { return }
+        WishlistManager.getMatch(with: user.uid) { bookTitle in
+            guard let bookTitle = bookTitle, bookTitle != "" else { return }
             // Create a chat or reuse existing one
-            FirebaseManager.getChat(with: self.user, completion: { result in
+            ChatManager.getChat(with: self.user) { result in
                 switch result {
                 case .success(let chat):
-                    FirebaseManager.sendMessage(in: chat, content: "Message automatique pour un troc : \"\(book)\" contre \"\(self.book.title)\"", system: true)
-                    self.alert(title: "Troc disponible !", message: "\(self.user.name) veut également votre livre : \"\(book)\". Une discussion a été créée pour vous permettre de les échanger.")
-                    self.tabBarController?.tabBar.items?[1].badgeValue = "!"
+                    let message = "\(bookTitle)\" contre \"\(self.book.title)\""
+                    chat.sendMessage(content: message, system: true) { success in
+                        if success {
+                            self.alert(title: "Troc disponible !", message: "\(self.user.name) veut également votre livre : \"\(bookTitle)\". Une discussion a été créée pour vous permettre de les échanger.")
+                            self.tabBarController?.tabBar.items?[1].badgeValue = "!"
+                        } else {
+                            ProgressHUD.showError("Erreur lors de la création du troc")
+                        }
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                     ProgressHUD.showError("Impossible de créer une discussion avec \(self.user.name)")
                 }
-            })
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ class ChatListViewController: UITableViewController {
 
     private func getChats() {
         ProgressHUD.show()
-        FirebaseManager.getUserChats { chats in
+        ChatManager.getUserChats { chats in
             ProgressHUD.dismiss()
             self.chats = chats
             self.tableView.backgroundView = self.tableViewBackgroundView

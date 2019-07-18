@@ -27,6 +27,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>L&apos;accès à votre position est nécessaire au fontionnement de l&apos;application.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>L&apos;accès à la caméra est nécessaire pour scanner les codes-barres</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UILaunchStoryboardName</key>
