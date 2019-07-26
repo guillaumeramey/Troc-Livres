@@ -12,7 +12,7 @@ import CoreLocation
 import Firebase
 import ProgressHUD
 
-class UsersMapViewController: MapViewController {
+class UsersMapViewController: MapViewController, DataManagerInjectable {
 
     // MARK: - Outlets
     
@@ -21,11 +21,20 @@ class UsersMapViewController: MapViewController {
     // MARK: - Properties
     
     var selectedUser: User!
-
+    
     // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get the current user data
+        dataManager.getCurrentUser { success in
+            if success {
+                currentUser.getWishes()
+            } else {
+                Switcher.updateRootVC()
+            }
+        }
         
         // Alert user to check his profile tab if he did not choose an address
         Persist.address == "" ? tabBarController?.tabBar.items?[3].badgeValue = "!" : nil
@@ -49,7 +58,7 @@ class UsersMapViewController: MapViewController {
     
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        UserManager.getUsers { users in
+        dataManager.getUsers { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
         }
@@ -94,7 +103,7 @@ extension UsersMapViewController: MKMapViewDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segue.userBooksVC {
-            let destinationVC = segue.destination as! UserBooksViewController
+            let destinationVC = segue.destination as! BookListViewController
             destinationVC.user = selectedUser
         }
     }

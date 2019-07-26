@@ -9,9 +9,13 @@
 import Foundation
 import Firebase
 
-class ChatManager: FirebaseManager {
+protocol <#name#> {
+    <#requirements#>
+}
+
+class FChatManager: FirebaseManager {
     
-    private static func createChat(id: String, with user: User, completion: @escaping (Result<Chat, Error>) -> Void) {
+    private func createChat(id: String, with user: User, completion: @escaping (Result<Chat, Error>) -> Void) {
         let user1Data = ["name": user.name,
                          "uid": user.uid,
                          "unread": false,
@@ -35,7 +39,7 @@ class ChatManager: FirebaseManager {
     }
     
     // the current user chats
-    static func getUserChats(completion: @escaping ([Chat]) -> Void) {
+    func getUserChats(completion: @escaping ([Chat]) -> Void) {
         chatsCollection
             .whereField("users", arrayContains: Persist.uid)
             .order(by: "timestamp", descending: true)
@@ -49,7 +53,7 @@ class ChatManager: FirebaseManager {
         }
     }
     
-    static func getChat(with user: User, completion: @escaping (Result<Chat, Error>) -> Void) {
+    func getChat(with user: User, completion: @escaping (Result<Chat, Error>) -> Void) {
         // Unique chat id between 2 users
         let chatId = Persist.uid < user.uid ? Persist.uid + user.uid : user.uid + Persist.uid
         
@@ -69,9 +73,9 @@ class ChatManager: FirebaseManager {
         }
     }
     
-    static var chatListener: ListenerRegistration!
+    var chatListener: ListenerRegistration!
     
-    static func getMessages(in chat: Chat, completion: @escaping ([Message]) -> Void) {
+    func getMessages(in chat: Chat, completion: @escaping ([Message]) -> Void) {
         chatListener = chatsCollection.document(chat.id).collection("messages")
             .order(by: "timestamp")
             .addSnapshotListener { (snapshot, error) in
@@ -84,11 +88,11 @@ class ChatManager: FirebaseManager {
         }
     }
     
-    static func leaveChat() {
+    func leaveChat() {
         chatListener.remove()
     }
     
-    static func sendMessage(in chat: Chat, content: String, system: Bool, completion: @escaping (Error?) -> Void) {
+    func sendMessage(in chat: Chat, content: String, system: Bool, completion: @escaping (Error?) -> Void) {
         let document = chatsCollection.document(chat.id)
         let message = ["content": content,
                        "sender": system ? "system" : Persist.uid,
@@ -117,7 +121,7 @@ class ChatManager: FirebaseManager {
         }
     }
     
-    static func markChatAsRead(id: String) {
+    func markChatAsRead(id: String) {
         chatsCollection.document(id).updateData(["\(Persist.uid).unread": false])
     }
 }

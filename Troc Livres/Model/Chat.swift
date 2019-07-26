@@ -9,53 +9,56 @@
 import Foundation
 import Firebase
 
-class Chat {
+class Chat: Equatable, DataManagerInjectable {
     let id: String
-    let uid: String
-    let name: String
-    let fcmToken: String
+    let user: User
     let timestamp: Timestamp?
-    let unread: Bool
+    var unread: Bool
     var messages: [Message]?
-
+    
     init(from document: DocumentSnapshot) {
         id = document.documentID
-
         let data = document.get(Persist.uid) as? [String: Any]
-        uid = data?["uid"] as? String ?? "Erreur UID"
-        name = data?["name"] as? String ?? "Erreur nom"
-        fcmToken = data?["fcmToken"] as? String ?? "Erreur token"
+        let uid = data?["uid"] as? String ?? "Erreur UID"
+        let name = data?["name"] as? String ?? "Erreur nom"
+        let fcmToken = data?["fcmToken"] as? String ?? "Erreur token"
+        user = User(uid: uid, name: name, fcmToken: fcmToken)
         unread = data?["unread"] as? Bool ?? true
         timestamp = document.get("timestamp") as? Timestamp
     }
 
     init(id: String, with user: User) {
+        self.user = user
         self.id = id
-        self.uid = user.uid
-        self.name = user.name
-        self.fcmToken = user.fcmToken
         timestamp = nil
         unread = true
     }
     
+    // MARK: - Methods
+    
+    static func == (lhs: Chat, rhs: Chat) -> Bool {
+        return lhs.user.uid == rhs.user.uid
+    }
+
+    func newMessage(content: String, system: Bool = false, completion: @escaping (Bool) -> Void) {
+        dataManager.newMessage(in: self, content: content, system: system, completion: { error in
+            completion(error == nil)
+        })
+    }
+    
     func getMessages(completion: @escaping (Bool) -> Void) {
-        ChatManager.getMessages(in: self) { messages in
+        dataManager.getMessages(in: self) { messages in
             self.messages = messages
             completion(true)
         }
     }
     
-    func sendMessage(content: String, system: Bool = false, completion: @escaping (Bool) -> Void) {
-        ChatManager.sendMessage(in: self, content: content, system: system, completion: { error in
-            completion(error == nil)
-        })
-    }
-    
     func markAsRead() {
-        ChatManager.markChatAsRead(id: id)
+        dataManager.markChatAsRead(self)
+        unread = false
     }
     
     func leave() {
-        ChatManager.leaveChat()
+        FirebaseManager.leaveChat()
     }
 }

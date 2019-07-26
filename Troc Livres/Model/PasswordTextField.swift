@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Add the show / hide button in the rightView
 class PasswordTextField: CustomTextField {
 
     var toggleSecureTextButton: UIButton!

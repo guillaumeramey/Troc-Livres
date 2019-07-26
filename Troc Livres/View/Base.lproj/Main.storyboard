@@ -389,7 +389,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="Color-Button"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="chatCell" textLabel="zfi-EU-Poy" style="IBUITableViewCellStyleDefault" id="kXn-ar-CKQ" customClass="ContactViewCell" customModule="Troc_Livres" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatCell" textLabel="zfi-EU-Poy" style="IBUITableViewCellStyleDefault" id="kXn-ar-CKQ" customClass="ContactViewCell" customModule="Troc_Livres" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kXn-ar-CKQ" id="PM4-jd-lew">
@@ -578,10 +578,10 @@ Les discussions sont créées quand un troc est disponible.</string>
             </objects>
             <point key="canvasLocation" x="3467" y="-285"/>
         </scene>
-        <!--User Books View Controller-->
+        <!--Book List View Controller-->
         <scene sceneID="mV4-wY-jJJ">
             <objects>
-                <tableViewController id="0WK-Zi-x8w" customClass="UserBooksViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="0WK-Zi-x8w" customClass="BookListViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8M7-Ji-vfn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

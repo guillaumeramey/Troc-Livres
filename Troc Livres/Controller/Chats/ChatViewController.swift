@@ -25,7 +25,7 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = chat.name
+        title = chat.user.name
         hideKeyboardWhenTappedAround()
         setKeyboardNotifications()
         let nib = UINib(nibName: Constants.Cell.message, bundle: nil)
@@ -96,7 +96,7 @@ extension ChatViewController: UITextFieldDelegate {
     // Send button action
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard messageTextField.text?.isEmpty == false else { return false }
-        chat.sendMessage(content: messageTextField.text!) { success in
+        chat.newMessage(content: messageTextField.text!) { success in
             if success {
                 self.messageTextField.text = nil                
             } else {

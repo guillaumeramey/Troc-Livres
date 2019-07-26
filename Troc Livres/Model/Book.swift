@@ -18,7 +18,7 @@ struct Item: Decodable {
     var volumeInfo: Book
 }
 
-struct Book: Decodable {
+struct Book: Decodable, Equatable, DataManagerInjectable {
     var id: String?
     let title: String
     let authors: [String]?
@@ -39,6 +39,15 @@ struct Book: Decodable {
     struct ImageLinks: Decodable {
         let thumbnail: String?
     }
+    
+    init(id: String, title: String) {
+        self.id = id
+        self.title = title
+        authors = nil
+        bookDescription = nil
+        imageLinks = nil
+        language = nil
+    }
 
     init(from document: DocumentSnapshot) {
         self.id = document.documentID
@@ -48,4 +57,9 @@ struct Book: Decodable {
         self.imageLinks = ImageLinks(thumbnail: document.get("imageURL") as? String)
         self.language = document.get("language")  as? String
     }
+    
+    static func == (lhs: Book, rhs: Book) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
 }

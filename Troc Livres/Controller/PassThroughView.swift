@@ -8,6 +8,7 @@
 
 import MapKit
 
+// Allow the user to tap through the map
 class PassThroughView: MKMapView {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return false

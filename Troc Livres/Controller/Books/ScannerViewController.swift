@@ -14,17 +14,25 @@ protocol ScannerDelegate {
 }
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var scannerView: UIView!
+
+    // MARK: - Properties
 
     var delegate: ScannerDelegate?
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
 
-    @IBOutlet weak var scannerView: UIView!
+    // MARK: - Actions
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

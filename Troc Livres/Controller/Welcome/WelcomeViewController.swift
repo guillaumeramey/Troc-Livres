@@ -11,7 +11,7 @@ import Firebase
 import ProgressHUD
 import CoreLocation
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, DataManagerInjectable {
 
     // MARK: - Outlets
 
@@ -61,7 +61,7 @@ class WelcomeViewController: UIViewController {
             ProgressHUD.showError("Entrez votre e-mail")
             return
         }
-        AccountManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
+        dataManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
                 return
@@ -71,7 +71,7 @@ class WelcomeViewController: UIViewController {
     }
 
     // MARK: - Methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -127,37 +127,37 @@ class WelcomeViewController: UIViewController {
 
     private func createUser() {
         ProgressHUD.show("Création de votre compte")
-        UserManager.createUser(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
+        dataManager.createUser(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
             if let error = error {
                 ProgressHUD.showError(error)
-                self.validateButton.isEnabled = true
-                return
+            } else {
+                self.logIn()
             }
-            self.performSegue(withIdentifier: "userLogged", sender: self)
+            self.validateButton.isEnabled = true
         }
     }
 
     private func authenticateUser() {
         ProgressHUD.show("Connexion en cours")
-        AccountManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
+        dataManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
-                self.validateButton.isEnabled = true
-                return
+            } else {
+                self.logIn()
             }
-            UserManager.getUser(uid: Persist.uid, completion: { user in
-                guard let user = user else {
-                    ProgressHUD.showError("Impossible de se connecter")
-                    self.validateButton.isEnabled = true
-                    return
-                }
-                Persist.name = user.name
-                Persist.address = user.address ?? ""
-                Persist.location = CLLocationCoordinate2D(latitude: user.location?.latitude ?? 0,
-                                                          longitude: user.location?.longitude ?? 0)
-                self.performSegue(withIdentifier: "userLogged", sender: self)
-            })
+            self.validateButton.isEnabled = true
         }
+    }
+    
+    private func logIn() {
+        dataManager.getCurrentUser(completion: { success in
+            if success {
+                self.performSegue(withIdentifier: "userLogged", sender: self)
+            } else {
+                ProgressHUD.showError("Impossible de se connecter")
+            }
+            self.validateButton.isEnabled = true
+        })
     }
 
     // MARK: - Navigation

@@ -1,5 +1,5 @@
 //
-//  UserBooksViewController.swift
+//  BookListViewController.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 22/05/2019.
@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class UserBooksViewController: UITableViewController {
+class BookListViewController: UITableViewController, DataManagerInjectable {
 
     // MARK: - Outlets
     
@@ -19,10 +19,15 @@ class UserBooksViewController: UITableViewController {
     // MARK: - Properties
 
     var user: User!
-    private var userBooks = [Book]()
+    var loading = false {
+        didSet {
+            loading ? ProgressHUD.show() : ProgressHUD.dismiss()
+        }
+    }
     private var sortedBooks = [(header: Character, books: [Book])]()
     private var selectedBook: Book!
 
+    
     // MARK: - Methods
 
     override func viewDidLoad() {
@@ -30,15 +35,18 @@ class UserBooksViewController: UITableViewController {
         setDisplay()
         let nib = UINib(nibName: Constants.Cell.book, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: Constants.Cell.book)
+        tableView.backgroundView = nil
         tableView.tableFooterView = UIView()
-        getBooks()
+        getUserBooks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        updateTableView()
+        if !loading {
+            updateTableView()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,39 +58,35 @@ class UserBooksViewController: UITableViewController {
         if user != nil {
             title = user.name
         } else {
+            user = currentUser
             title = "Mes livres"
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         }
     }
 
-    private func getBooks() {
-        ProgressHUD.show()
-        let uid = user != nil ? user.uid : Persist.uid
-        BookManager.getBooks(uid: uid, completion: { books in
-            ProgressHUD.dismiss()
-            self.userBooks = books
+    private func getUserBooks() {
+        loading = true
+        user.getBooks {
+            self.loading = false
             self.updateTableView()
-        })
+        }
     }
 
     private func updateTableView() {
         sortedBooks.removeAll()
-        userBooks.sorted(by: { $0.title < $1.title }).forEach { book in
-            guard let letter = book.title.first else { return }
-
-            if let section = self.sortedBooks.firstIndex(where: { $0.header == letter }) {
-                self.sortedBooks[section].books.append(book)
-            } else {
-                self.sortedBooks.append((header: letter, books: [book]))
+        if user.books.isEmpty {
+            tableView.backgroundView = tableViewBackgroundView
+        } else {
+            tableView.backgroundView = nil
+            user.books.sorted(by: { $0.title < $1.title }).forEach { book in
+                guard let letter = book.title.first else { return }
+                if let section = self.sortedBooks.firstIndex(where: { $0.header == letter }) {
+                    sortedBooks[section].books.append(book)
+                } else {
+                    sortedBooks.append((header: letter, books: [book]))
+                }
             }
         }
-        
-        if sortedBooks.count > 0 {
-            tableView.backgroundView = nil
-        } else {
-            tableView.backgroundView = self.tableViewBackgroundView
-        }
-
         tableView.reloadData()
     }
     
@@ -126,19 +130,11 @@ class UserBooksViewController: UITableViewController {
         if segue.identifier == Constants.Segue.bookVC {
             let destinationVC = segue.destination as! BookViewController
             destinationVC.book = selectedBook
-            destinationVC.user = user
-            destinationVC.userBooks = userBooks
-        } else if segue.identifier == Constants.Segue.searchBookVC {
-            let destinationVC = segue.destination as! SearchBookViewController
-            destinationVC.userBooks = userBooks
+            destinationVC.bookOwner = user
         }
     }
 
     @IBAction func unwindToUserBooks(segue: UIStoryboardSegue) {
-        if segue.source is BookViewController {
-            let sourceVC = segue.source as! BookViewController
-            userBooks = sourceVC.userBooks
-            updateTableView()
-        }
+        updateTableView()
     }
 }

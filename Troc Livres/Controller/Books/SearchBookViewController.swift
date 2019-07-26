@@ -24,9 +24,8 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     // MARK: - Properties
 
     var results = [Book]()
-    var userBooks: [Book]!
     var selectedBook: Book!
-    var backgroundText: String! {
+    private var backgroundText: String! {
         didSet {
             if backgroundText != nil {
                 tableViewBackgroundLabel.text = backgroundText
@@ -104,7 +103,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
         } else if segue.identifier == Constants.Segue.bookVC {
             let destinationVC = segue.destination as! BookViewController
             destinationVC.book = selectedBook
-            destinationVC.userBooks = userBooks
+            destinationVC.bookOwner = currentUser
         }
     }
 }

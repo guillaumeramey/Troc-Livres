@@ -10,11 +10,10 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class ChatListViewController: UITableViewController {
+class ChatListViewController: UITableViewController, DataManagerInjectable {
 
     // MARK: - Properties
 
-    var chats = [Chat]()
     var selectedChat: Chat!
 
     // MARK: - Outlets
@@ -22,11 +21,7 @@ class ChatListViewController: UITableViewController {
     @IBOutlet weak var tableViewBackgroundView: UIView!
     
     // MARK: - Methods
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.items?[1].badgeValue = nil
@@ -38,10 +33,9 @@ class ChatListViewController: UITableViewController {
 
     private func getChats() {
         ProgressHUD.show()
-        ChatManager.getUserChats { chats in
+        currentUser.getChats {
             ProgressHUD.dismiss()
-            self.chats = chats
-            self.tableView.backgroundView = self.tableViewBackgroundView
+            self.tableView.backgroundView = currentUser.chats.count > 0 ? nil : self.tableViewBackgroundView
             self.tableView.reloadData()
         }
     }
@@ -49,14 +43,13 @@ class ChatListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView.backgroundView?.isHidden = chats.count > 0 ? true : false
-        return chats.count
+        return currentUser.chats.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
-        cell.textLabel?.text = chats[indexPath.row].name
-        cell.textLabel?.isHighlighted = chats[indexPath.row].unread
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.chat, for: indexPath)
+        cell.textLabel?.text = currentUser.chats[indexPath.row].user.name
+        cell.textLabel?.isHighlighted = currentUser.chats[indexPath.row].unread
         return cell
     }
 
@@ -64,7 +57,7 @@ class ChatListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedChat = chats[indexPath.row]
+        selectedChat = currentUser.chats[indexPath.row]
         performSegue(withIdentifier: Constants.Segue.chatVC, sender: self)
     }
 

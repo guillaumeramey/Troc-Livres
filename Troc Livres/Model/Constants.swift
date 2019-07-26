@@ -8,10 +8,13 @@
 
 import UIKit
 
-struct Constants {
+var currentUser = User(uid: "", name: "", fcmToken: "")
 
+struct Constants {
+    
     struct Cell {
         static let book = "BookCell"
+        static let chat = "ChatCell"
         static let message = "MessageCell"
     }
 
@@ -43,17 +46,12 @@ struct Constants {
         static let changeLocationVC = "ChangeLocationVC"
     }
 
-    // Wrapper for obtaining keys from keys.plist
+    // Get the API key from plist file
     static func valueForAPIKey(_ keyname: String) -> String {
-        // Get the file path for keys.plist
-        let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
-
-        // Put the keys in a dictionary
-        let plist = NSDictionary(contentsOfFile: filePath!)
-
-        // Pull the value for the key
-        let value: String = plist?.object(forKey: keyname) as! String
-
-        return value
+        var nsDictionary: NSDictionary?
+        if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") {
+            nsDictionary = NSDictionary(contentsOfFile: path)
+        }
+        return nsDictionary?.object(forKey: keyname) as! String
     }
 }

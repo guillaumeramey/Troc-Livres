@@ -35,9 +35,11 @@ class NetworkManager {
                                     langRestrict: langRestrict)
 
         // remove forbidden characters
-        guard let encodeString = request.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let url = URL(string: encodeString) else {
-            completion(.failure(.badURL))
-            return
+        guard
+            let encodeString = request.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
+            let url = URL(string: encodeString) else {
+                completion(.failure(.badURL))
+                return
         }
 
         task?.cancel()

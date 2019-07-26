@@ -10,11 +10,15 @@ import UIKit
 
 class MessageCell: UITableViewCell {
 
+    // MARK: - Outlets
+
     @IBOutlet weak var messageBackground: UIView!
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var messageDate: UILabel!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+
+    // MARK: - Properties
 
     var message: Message! {
         didSet {
@@ -22,7 +26,9 @@ class MessageCell: UITableViewCell {
         }
     }
 
-    func setCell() {
+    // MARK: - Methods
+
+    private func setCell() {
         messageText.text = message.content
         messageDate.text = message.displayDate
         messageBackground.backgroundColor = .white
@@ -32,26 +38,28 @@ class MessageCell: UITableViewCell {
 
         if message.sender == "system" {
             // Message from the system
-            messageText.textColor = Constants.Color.button
-            messageDate.textColor = Constants.Color.button
             messageBackground.layer.borderWidth = 2
             messageBackground.layer.borderColor = Constants.Color.button.cgColor
+            setTextColor(Constants.Color.button)
             leadingConstraint.constant = 10
             trailingConstraint.constant = 10
         } else if message.sender == Persist.uid {
             // Message from the current user
             messageBackground.backgroundColor = Constants.Color.chatSender
-            messageText.textColor = .white
-            messageDate.textColor = .white
+            setTextColor(.white)
             leadingConstraint.constant = 80
             trailingConstraint.constant = 10
         } else {
             // Message from the other user
             messageBackground.backgroundColor = Constants.Color.chatReceiver
-            messageText.textColor = .darkText
-            messageDate.textColor = .darkText
+            setTextColor(.darkText)
             leadingConstraint.constant = 10
             trailingConstraint.constant = 80
         }
+    }
+    
+    private func setTextColor(_ color: UIColor) {
+        messageText.textColor = color
+        messageDate.textColor = color
     }
 }

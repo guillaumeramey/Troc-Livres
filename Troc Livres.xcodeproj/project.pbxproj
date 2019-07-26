@@ -15,6 +15,7 @@
 		A4051E712292399E002A5D18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E702292399E002A5D18 /* User.swift */; };
 		A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7422925E5B002A5D18 /* BookViewController.swift */; };
 		A4051E7722926241002A5D18 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7622926241002A5D18 /* Extensions.swift */; };
+		A407504222E894B0002BE9BA /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407504122E894B0002BE9BA /* Wish.swift */; };
 		A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4135111229336AC00934188 /* SearchBookViewController.swift */; };
 		A41351142293516C00934188 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351132293516C00934188 /* ProfileViewController.swift */; };
 		A41351162293534500934188 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351152293534500934188 /* Persist.swift */; };
@@ -32,15 +33,9 @@
 		A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471E40722D2B7A000125D05 /* PassThroughView.swift */; };
 		A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* MessageCell.swift */; };
 		A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* MessageCell.xib */; };
-		A48C035122DFF59800AAED99 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035022DFF59800AAED99 /* ChatManager.swift */; };
-		A48C035322DFF64800AAED99 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035222DFF64800AAED99 /* AccountManager.swift */; };
-		A48C035522DFF6F200AAED99 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035422DFF6F200AAED99 /* UserManager.swift */; };
-		A48C035722DFF76400AAED99 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035622DFF76400AAED99 /* BookManager.swift */; };
-		A48C035922DFF7EB00AAED99 /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C035822DFF7EB00AAED99 /* WishlistManager.swift */; };
-		A48E5CA122D8D51E0061B27A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5CA022D8D51E0061B27A /* DataManager.swift */; };
 		A48E5CA322D8D5680061B27A /* FirebaseManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5CA222D8D5680061B27A /* FirebaseManagerMock.swift */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
-		A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */; };
+		A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* BookListViewController.swift */; };
 		A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2632B22A42CBD00B82141 /* MapViewController.swift */; };
 		A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C27F7A22A858E50060902E /* FirebaseManager.swift */; };
 		A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */; };
@@ -79,6 +74,7 @@
 		A4051E702292399E002A5D18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A4051E7422925E5B002A5D18 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		A4051E7622926241002A5D18 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A407504122E894B0002BE9BA /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
 		A4135111229336AC00934188 /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
 		A41351132293516C00934188 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A41351152293534500934188 /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
@@ -96,18 +92,12 @@
 		A471E40722D2B7A000125D05 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		A475130F229DDEB3002EA87E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A4751310229DDEB3002EA87E /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
-		A48C035022DFF59800AAED99 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		A48C035222DFF64800AAED99 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountManager.swift; path = ../AccountManager.swift; sourceTree = "<group>"; };
-		A48C035422DFF6F200AAED99 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = ../UserManager.swift; sourceTree = "<group>"; };
-		A48C035622DFF76400AAED99 /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookManager.swift; path = ../BookManager.swift; sourceTree = "<group>"; };
-		A48C035822DFF7EB00AAED99 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WishlistManager.swift; path = ../WishlistManager.swift; sourceTree = "<group>"; };
-		A48E5CA022D8D51E0061B27A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A48E5CA222D8D5680061B27A /* FirebaseManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManagerMock.swift; sourceTree = "<group>"; };
 		A48E5CA422DD57260061B27A /* Troc Livres.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Troc Livres.entitlements"; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
-		A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBooksViewController.swift; sourceTree = "<group>"; };
+		A4AE8F0E2296520A008DA01B /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		A4C2632B22A42CBD00B82141 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = ../FirebaseManager.swift; sourceTree = "<group>"; };
+		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		A4DF67BD22AD575A00D6929C /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		A4DF67BE22AD575A00D6929C /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
@@ -176,17 +166,17 @@
 		A4051E5E22909F67002A5D18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A48C035A22DFFD8C00AAED99 /* Firebase */,
+				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
 				A4051E682290F7AA002A5D18 /* Constants.swift */,
 				A41351152293534500934188 /* Persist.swift */,
 				A4051E7622926241002A5D18 /* Extensions.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
+				A407504122E894B0002BE9BA /* Wish.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
 				A4478407229CD51800257636 /* Chat.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
 				A420883422C66843006ABB18 /* Switcher.swift */,
 				A4E3CC05228D0FB800180F09 /* NetworkManager.swift */,
-				A48E5CA022D8D51E0061B27A /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				A4051E7422925E5B002A5D18 /* BookViewController.swift */,
-				A4AE8F0E2296520A008DA01B /* UserBooksViewController.swift */,
+				A4AE8F0E2296520A008DA01B /* BookListViewController.swift */,
 				A4135111229336AC00934188 /* SearchBookViewController.swift */,
 				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
 				A4DF67BD22AD575A00D6929C /* BookCell.swift */,
@@ -255,19 +245,6 @@
 				A4751310229DDEB3002EA87E /* MessageCell.xib */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		A48C035A22DFFD8C00AAED99 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
-				A48C035822DFF7EB00AAED99 /* WishlistManager.swift */,
-				A48C035622DFF76400AAED99 /* BookManager.swift */,
-				A48C035422DFF6F200AAED99 /* UserManager.swift */,
-				A48C035222DFF64800AAED99 /* AccountManager.swift */,
-				A48C035022DFF59800AAED99 /* ChatManager.swift */,
-			);
-			path = Firebase;
 			sourceTree = "<group>";
 		};
 		A494111122A1B82B009DD9C1 /* Welcome */ = {
@@ -517,8 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A48C035122DFF59800AAED99 /* ChatManager.swift in Sources */,
-				A4AE8F0F2296520A008DA01B /* UserBooksViewController.swift in Sources */,
+				A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,
 				A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */,
@@ -526,24 +502,20 @@
 				A4044D5822BBB8CA0028F187 /* ChangeLocationViewController.swift in Sources */,
 				A4478408229CD51800257636 /* Chat.swift in Sources */,
 				A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */,
-				A48C035522DFF6F200AAED99 /* UserManager.swift in Sources */,
 				A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */,
 				A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */,
+				A407504222E894B0002BE9BA /* Wish.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* UsersMapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
-				A48C035722DFF76400AAED99 /* BookManager.swift in Sources */,
 				A4E5D8E222AAB15D00806A8B /* CustomTextField.swift in Sources */,
 				A4FCE5F222DE736F000016DA /* PushNotificationSender.swift in Sources */,
 				A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */,
 				A4051E712292399E002A5D18 /* User.swift in Sources */,
 				A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */,
-				A48C035922DFF7EB00AAED99 /* WishlistManager.swift in Sources */,
 				A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */,
 				A4FCE5F022DE706D000016DA /* PushNotificationManager.swift in Sources */,
-				A48E5CA122D8D51E0061B27A /* DataManager.swift in Sources */,
 				A4E3CC06228D0FB800180F09 /* NetworkManager.swift in Sources */,
 				A420883522C66843006ABB18 /* Switcher.swift in Sources */,
-				A48C035322DFF64800AAED99 /* AccountManager.swift in Sources */,
 				A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */,
 				A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */,
 				A41351182293701300934188 /* WelcomeViewController.swift in Sources */,

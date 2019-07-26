@@ -8,7 +8,6 @@
 
 import UIKit
 import UserNotifications
-import Firebase
 
 class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate {
     
@@ -17,23 +16,7 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert, .badge, .sound],
             completionHandler: {_, _ in })
-        // For iOS 10 data message (sent via FCM)
-//        Messaging.messaging().delegate = self
-
         UIApplication.shared.registerForRemoteNotifications()
-        UserManager.setToken()
+        FirebaseManager().setToken()
     }
-
-//
-//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-//        print(remoteMessage.appData)
-//    }
-//
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-//        updateFirestorePushTokenIfNeeded()
-//    }
-    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        print(response)
-//    }
 }
