@@ -18,7 +18,7 @@ struct Item: Decodable {
     var volumeInfo: Book
 }
 
-struct Book: Decodable, Equatable, DataManagerInjectable {
+struct Book: Decodable, Equatable {
     var id: String?
     let title: String
     let authors: [String]?

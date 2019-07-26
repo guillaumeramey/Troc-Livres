@@ -11,7 +11,7 @@ import Firebase
 import ProgressHUD
 import CoreLocation
 
-class WelcomeViewController: UIViewController, DataManagerInjectable {
+class WelcomeViewController: UIViewController, AccountManagerInjectable {
 
     // MARK: - Outlets
 
@@ -61,7 +61,7 @@ class WelcomeViewController: UIViewController, DataManagerInjectable {
             ProgressHUD.showError("Entrez votre e-mail")
             return
         }
-        dataManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
+        accountManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
                 return
@@ -127,7 +127,7 @@ class WelcomeViewController: UIViewController, DataManagerInjectable {
 
     private func createUser() {
         ProgressHUD.show("Création de votre compte")
-        dataManager.createUser(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
+        accountManager.createAccount(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
             if let error = error {
                 ProgressHUD.showError(error)
             } else {
@@ -139,7 +139,7 @@ class WelcomeViewController: UIViewController, DataManagerInjectable {
 
     private func authenticateUser() {
         ProgressHUD.show("Connexion en cours")
-        dataManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
+        accountManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {
@@ -148,9 +148,17 @@ class WelcomeViewController: UIViewController, DataManagerInjectable {
             self.validateButton.isEnabled = true
         }
     }
-    
+
+    // MARK: - Navigation
+
+    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
+        ProgressHUD.dismiss()
+    }
+}
+
+extension WelcomeViewController: UserManagerInjectable {
     private func logIn() {
-        dataManager.getCurrentUser(completion: { success in
+        userManager.getCurrentUser(completion: { success in
             if success {
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {
@@ -158,12 +166,6 @@ class WelcomeViewController: UIViewController, DataManagerInjectable {
             }
             self.validateButton.isEnabled = true
         })
-    }
-
-    // MARK: - Navigation
-
-    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
-        ProgressHUD.dismiss()
     }
 }
 

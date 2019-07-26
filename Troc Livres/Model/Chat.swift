@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class Chat: Equatable, DataManagerInjectable {
+class Chat: Equatable {
     let id: String
     let user: User
     let timestamp: Timestamp?
@@ -34,27 +34,28 @@ class Chat: Equatable, DataManagerInjectable {
         unread = true
     }
     
-    // MARK: - Methods
-    
     static func == (lhs: Chat, rhs: Chat) -> Bool {
         return lhs.user.uid == rhs.user.uid
     }
+}
 
+extension Chat: ChatManagerInjectable {
+    
     func newMessage(content: String, system: Bool = false, completion: @escaping (Bool) -> Void) {
-        dataManager.newMessage(in: self, content: content, system: system, completion: { error in
+        chatManager.newMessage(in: self, content: content, system: system, completion: { error in
             completion(error == nil)
         })
     }
     
     func getMessages(completion: @escaping (Bool) -> Void) {
-        dataManager.getMessages(in: self) { messages in
+        chatManager.getMessages(in: self) { messages in
             self.messages = messages
             completion(true)
         }
     }
     
     func markAsRead() {
-        dataManager.markChatAsRead(self)
+        chatManager.markAsRead(self)
         unread = false
     }
     

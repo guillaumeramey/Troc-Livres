@@ -11,7 +11,7 @@ import MapKit
 import Firebase
 import CoreLocation
 
-class User: NSObject, MKAnnotation, DataManagerInjectable {
+class User: NSObject, MKAnnotation {
     let uid: String
     var name: String
     var fcmToken: String
@@ -53,11 +53,12 @@ class User: NSObject, MKAnnotation, DataManagerInjectable {
         return CLLocationCoordinate2D.init(latitude: location?.latitude ?? 0,
                                            longitude: location?.longitude ?? 0)
     }
-    
-    // MARK: - Books methods
+}
+
+extension User: BookManagerInjectable {
     
     func addBook(_ book: Book, completion: @escaping (Error?) -> Void) {
-        dataManager.addBook(book) { error in
+        bookManager.add(book) { error in
             if error == nil {
                 self.books.append(book)
             }
@@ -66,25 +67,26 @@ class User: NSObject, MKAnnotation, DataManagerInjectable {
     }
     
     func getBooks(completion: @escaping () -> Void) {
-        dataManager.getBooks(ownedBy: self) { books in
+        bookManager.getAll(ownedBy: self) { books in
             self.books = books
             completion()
         }
     }
     
     func removeBook(_ book: Book, completion: @escaping (Error?) -> Void) {
-        dataManager.removeBook(book) { error in
+        bookManager.remove(book) { error in
             if error == nil, let index = self.books.firstIndex(of: book) {
                 self.books.remove(at: index)
             }
             completion(error)
         }
     }
-    
-    // MARK: - Wishes methods
+}
+
+extension User: WishManagerInjectable {
     
     func addWish(_ wish: Wish, completion: @escaping (Error?) -> Void) {
-        dataManager.addWish(wish) { error in
+        wishManager.add(wish) { error in
             if error == nil {
                 self.wishes.append(wish)
             }
@@ -93,13 +95,13 @@ class User: NSObject, MKAnnotation, DataManagerInjectable {
     }
     
     func getWishes() {
-        dataManager.getWishes() { wishes in
+        wishManager.getAll() { wishes in
             self.wishes = wishes
         }
     }
     
     func removeWish(_ wish: Wish, completion: @escaping (Error?) -> Void) {
-        dataManager.removeWish(wish) { error in
+        wishManager.delete(wish) { error in
             if error == nil, let index = self.wishes.firstIndex(of: wish) {
                 self.wishes.remove(at: index)
             }
@@ -108,15 +110,17 @@ class User: NSObject, MKAnnotation, DataManagerInjectable {
     }
     
     func getMatch(with user: User, completion: @escaping (Wish?) -> Void) {
-        dataManager.getMatch(with: user) { wish in
+        wishManager.getMatch(with: user) { wish in
             completion(wish)
         }
     }
-    
-    // MARK: - Chats methods
+}
+
+
+extension User: ChatManagerInjectable {
     
     func newChat(with user: User, completion: @escaping (Error?) -> Void) {
-        dataManager.newChat(with: user) { result in
+        chatManager.newChat(with: user) { result in
             switch result {
             case .success(let chat):
                 self.chats.append(chat)
@@ -128,7 +132,7 @@ class User: NSObject, MKAnnotation, DataManagerInjectable {
     }
     
     func getChats(completion: @escaping () -> Void) {
-        dataManager.getChats { chats in
+        chatManager.getAll { chats in
             currentUser.chats = chats
             completion()
         }

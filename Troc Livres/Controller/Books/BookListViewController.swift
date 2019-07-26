@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class BookListViewController: UITableViewController, DataManagerInjectable {
+class BookListViewController: UITableViewController {
 
     // MARK: - Outlets
     

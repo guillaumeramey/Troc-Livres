@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class ChatListViewController: UITableViewController, DataManagerInjectable {
+class ChatListViewController: UITableViewController {
 
     // MARK: - Properties
 

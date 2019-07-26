@@ -36,6 +36,11 @@
 		A48E5CA322D8D5680061B27A /* FirebaseManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5CA222D8D5680061B27A /* FirebaseManagerMock.swift */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* BookListViewController.swift */; };
+		A4B7EBFF22EB39BD008F8407 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B7EBFE22EB39BD008F8407 /* AccountManager.swift */; };
+		A4B7EC0322EB3B81008F8407 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B7EC0222EB3B81008F8407 /* UserManager.swift */; };
+		A4B7EC0522EB3CC2008F8407 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B7EC0422EB3CC2008F8407 /* BookManager.swift */; };
+		A4B7EC0722EB3DD7008F8407 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B7EC0622EB3DD7008F8407 /* ChatManager.swift */; };
+		A4B7EC0922EB3E04008F8407 /* WishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B7EC0822EB3E04008F8407 /* WishManager.swift */; };
 		A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2632B22A42CBD00B82141 /* MapViewController.swift */; };
 		A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C27F7A22A858E50060902E /* FirebaseManager.swift */; };
 		A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */; };
@@ -96,6 +101,11 @@
 		A48E5CA422DD57260061B27A /* Troc Livres.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Troc Livres.entitlements"; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		A4B7EBFE22EB39BD008F8407 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		A4B7EC0222EB3B81008F8407 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		A4B7EC0422EB3CC2008F8407 /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManager.swift; sourceTree = "<group>"; };
+		A4B7EC0622EB3DD7008F8407 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		A4B7EC0822EB3E04008F8407 /* WishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishManager.swift; sourceTree = "<group>"; };
 		A4C2632B22A42CBD00B82141 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -166,7 +176,6 @@
 		A4051E5E22909F67002A5D18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
 				A4051E682290F7AA002A5D18 /* Constants.swift */,
 				A41351152293534500934188 /* Persist.swift */,
 				A4051E7622926241002A5D18 /* Extensions.swift */,
@@ -176,7 +185,6 @@
 				A4478407229CD51800257636 /* Chat.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
 				A420883422C66843006ABB18 /* Switcher.swift */,
-				A4E3CC05228D0FB800180F09 /* NetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +263,20 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		A4B7EC0A22EB3FAC008F8407 /* Data Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A4E3CC05228D0FB800180F09 /* NetworkManager.swift */,
+				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
+				A4B7EBFE22EB39BD008F8407 /* AccountManager.swift */,
+				A4B7EC0422EB3CC2008F8407 /* BookManager.swift */,
+				A4B7EC0622EB3DD7008F8407 /* ChatManager.swift */,
+				A4B7EC0822EB3E04008F8407 /* WishManager.swift */,
+				A4B7EC0222EB3B81008F8407 /* UserManager.swift */,
+			);
+			path = "Data Managers";
+			sourceTree = "<group>";
+		};
 		A4C2632A22A4237000B82141 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				A48E5CA422DD57260061B27A /* Troc Livres.entitlements */,
+				A4B7EC0A22EB3FAC008F8407 /* Data Managers */,
 				A4051E5E22909F67002A5D18 /* Model */,
 				A4051E5F22909F6E002A5D18 /* View */,
 				A465C9E222909F3E0048D3D5 /* Controller */,
@@ -497,17 +520,21 @@
 				A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,
+				A4B7EBFF22EB39BD008F8407 /* AccountManager.swift in Sources */,
 				A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */,
 				A4478400229B081D00257636 /* Message.swift in Sources */,
 				A4044D5822BBB8CA0028F187 /* ChangeLocationViewController.swift in Sources */,
 				A4478408229CD51800257636 /* Chat.swift in Sources */,
+				A4B7EC0322EB3B81008F8407 /* UserManager.swift in Sources */,
 				A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */,
 				A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */,
 				A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */,
 				A407504222E894B0002BE9BA /* Wish.swift in Sources */,
+				A4B7EC0522EB3CC2008F8407 /* BookManager.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* UsersMapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
 				A4E5D8E222AAB15D00806A8B /* CustomTextField.swift in Sources */,
+				A4B7EC0922EB3E04008F8407 /* WishManager.swift in Sources */,
 				A4FCE5F222DE736F000016DA /* PushNotificationSender.swift in Sources */,
 				A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */,
 				A4051E712292399E002A5D18 /* User.swift in Sources */,
@@ -515,6 +542,7 @@
 				A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */,
 				A4FCE5F022DE706D000016DA /* PushNotificationManager.swift in Sources */,
 				A4E3CC06228D0FB800180F09 /* NetworkManager.swift in Sources */,
+				A4B7EC0722EB3DD7008F8407 /* ChatManager.swift in Sources */,
 				A420883522C66843006ABB18 /* Switcher.swift in Sources */,
 				A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */,
 				A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */,

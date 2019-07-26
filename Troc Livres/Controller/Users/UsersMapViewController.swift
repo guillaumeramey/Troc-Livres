@@ -12,7 +12,7 @@ import CoreLocation
 import Firebase
 import ProgressHUD
 
-class UsersMapViewController: MapViewController, DataManagerInjectable {
+class UsersMapViewController: MapViewController, UserManagerInjectable {
 
     // MARK: - Outlets
     
@@ -28,7 +28,7 @@ class UsersMapViewController: MapViewController, DataManagerInjectable {
         super.viewDidLoad()
         
         // Get the current user data
-        dataManager.getCurrentUser { success in
+        userManager.getCurrentUser { success in
             if success {
                 currentUser.getWishes()
             } else {
@@ -58,7 +58,7 @@ class UsersMapViewController: MapViewController, DataManagerInjectable {
     
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        dataManager.getUsers { users in
+        userManager.getAll { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
         }
