@@ -12,29 +12,29 @@ import CoreLocation
 
 class FirebaseManager {
     
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     
-    var usersCollection: CollectionReference {
+    private var usersCollection: CollectionReference {
         return db.collection("users")
     }
     
-    var chatsCollection: CollectionReference {
+    private var chatsCollection: CollectionReference {
         return db.collection("chats")
     }
     
-    var booksCollection: CollectionReference {
+    private var booksCollection: CollectionReference {
         return db.collection("books")
     }
     
-    var wishlistCollection: CollectionReference {
+    private var wishlistCollection: CollectionReference {
         return usersCollection.document(currentUser.uid).collection("wishlist")
     }
     
-    var wishlistCollectionGroup: Query {
+    private var wishlistCollectionGroup: Query {
         return db.collectionGroup("wishlist")
     }
     
-    func getErrorMessage(from error: Error) -> String {
+    private func getErrorMessage(from error: Error) -> String {
         if let errorCode = AuthErrorCode(rawValue: error._code) {
             switch errorCode {
             case .invalidEmail:
@@ -55,9 +55,9 @@ class FirebaseManager {
     }
 }
 
-// MARK: - Account
+extension FirebaseManager: DataManager {
 
-extension FirebaseManager: AccountManager {
+    // MARK: - Account
 
     func signIn(withEmail email: String, password: String, completion: @escaping (String?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
@@ -121,14 +121,11 @@ extension FirebaseManager: AccountManager {
             completion(nil)
         }
     }
-}
 
-// MARK: - User
+    // MARK: - User
 
-extension FirebaseManager: UserManager {
-    
     func getCurrentUser(completion: @escaping (Bool) -> Void) {
-        get(uid: Persist.uid) { user in
+        getUser(uid: Persist.uid) { user in
             guard let user = user else {
                 completion(false)
                 return
@@ -144,7 +141,7 @@ extension FirebaseManager: UserManager {
     }
     
     // Get a specific user
-    func get(uid: String, completion: @escaping (User?) -> Void) {
+    func getUser(uid: String, completion: @escaping (User?) -> Void) {
         usersCollection.document(uid).getDocument { (document, error) in
             guard error == nil else {
                 completion(nil)
@@ -157,7 +154,7 @@ extension FirebaseManager: UserManager {
     }
     
     // Get all the users
-    func getAll(completion: @escaping ([User]) -> Void) {
+    func getUsers(completion: @escaping ([User]) -> Void) {
         usersCollection.whereField("numberOfBooks", isGreaterThan: 0).getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             var users = [User]()
@@ -169,30 +166,28 @@ extension FirebaseManager: UserManager {
         }
     }
     
-    func setLocation(address: String, location: CLLocation, completion: @escaping (Bool) -> Void) {
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
-        let geoPoint = GeoPoint(latitude: latitude, longitude: longitude)
+    func setLocation(address: String, location: CLLocation, completion: @escaping (Error?) -> Void) {
+        let geoPoint = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let data = ["address": address, "location": geoPoint] as [String : Any]
         usersCollection.document(currentUser.uid).updateData(data) { error in
-            completion(error == nil)
+            completion(error)
         }
     }
     
-    func delete(completion: @escaping (Error?) -> Void) {
-        deleteBooks { error in
+    func deleteUser(completion: @escaping (Error?) -> Void) {
+        deleteUserBooks { error in
             if let error = error {
                 print(error.localizedDescription)
                 completion(error)
                 return
             }
-            self.deleteBooksInWishlists { error in
+            self.deleteUserBooksInWishes { error in
                 if let error = error {
                     print(error.localizedDescription)
                     completion(error)
                     return
                 }
-                self.deleteAll { error in
+                self.deleteWishes { error in
                     if let error = error {
                         print(error.localizedDescription)
                         completion(error)
@@ -214,8 +209,8 @@ extension FirebaseManager: UserManager {
         
     }
     
-    func deleteBooks(completion: @escaping (Error?) -> Void) {
-        getAll(ownedBy: currentUser) { books in
+    func deleteUserBooks(completion: @escaping (Error?) -> Void) {
+        getBooks(ownedBy: currentUser) { books in
             let batch = self.db.batch()
             books.forEach { book in
                 guard let id = book.id else { return }
@@ -230,7 +225,7 @@ extension FirebaseManager: UserManager {
     }
     
     // Delete the user's books in all the wishlists
-    func deleteBooksInWishlists(completion: @escaping (Error?) -> Void) {
+    func deleteUserBooksInWishes(completion: @escaping (Error?) -> Void) {
         wishlistCollectionGroup.whereField("owner", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
             guard error == nil else {
                 completion(error)
@@ -247,14 +242,11 @@ extension FirebaseManager: UserManager {
             }
         }
     }
-}
 
-// MARK: - Book
-
-extension FirebaseManager: BookManager {
+    // MARK: - Book
 
     // Update an existing book's owners or create a new entry
-    func add(_ book: Book, completion: @escaping (Error?) -> Void) {
+    func addBook(_ book: Book, completion: @escaping (Error?) -> Void) {
         guard let id = book.id else { return }
         
         booksCollection.document(id).getDocument { (document, error) in
@@ -280,7 +272,7 @@ extension FirebaseManager: BookManager {
         }
     }
     
-    func getAll(ownedBy owner: User, completion: @escaping ([Book]) -> Void) {
+    func getBooks(ownedBy owner: User, completion: @escaping ([Book]) -> Void) {
         booksCollection.whereField("owners", arrayContains: owner.uid).getDocuments { (snapshot, error) in
             guard error == nil, let snapshot = snapshot else { return }
             var books = [Book]()
@@ -291,7 +283,7 @@ extension FirebaseManager: BookManager {
         }
     }
     
-    func remove(_ book: Book, completion: @escaping (Error?) -> Void) {
+    func removeBook(_ book: Book, completion: @escaping (Error?) -> Void) {
         guard let id = book.id else { return }
         
         wishlistCollectionGroup.whereField("owner", isEqualTo: currentUser.uid).whereField("bookId", isEqualTo: id)
@@ -318,40 +310,45 @@ extension FirebaseManager: BookManager {
                 }
         }
     }
-}
 
-// MARK: - Chat
-
-extension FirebaseManager: ChatManager {
-
+    // MARK: - Chat
+    
+    // Unique chat id between 2 users
+    static func getChatId(_ uid: String) -> String {
+        return currentUser.uid < uid ? currentUser.uid + uid : uid + currentUser.uid
+    }
+    
     func newChat(with user: User, completion: @escaping (Result<Chat, Error>) -> Void) {
-        // Unique chat id between 2 users
-        let chatId = currentUser.uid < user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid
-        
-        let user1Data = ["name": user.name,
-                         "uid": user.uid,
-                         "unread": false,
-                         "fcmToken": user.fcmToken] as [String : Any]
-        let user2Data = ["name": currentUser.name,
-                         "uid": currentUser.uid,
-                         "unread": true,
-                         "fcmToken": Messaging.messaging().fcmToken as Any] as [String : Any]
-        let chatData = ["users": [currentUser.uid, user.uid],
-                        "timestamp": FieldValue.serverTimestamp(),
-                        currentUser.uid: user1Data,
-                        user.uid: user2Data] as [String : Any]
+        print("newchat from firebase")
+        let user1Data : [String : Any] = [
+            "name": user.name,
+            "uid": user.uid,
+            "unread": false
+        ]
+        let user2Data : [String : Any] = [
+            "name": currentUser.name,
+            "uid": currentUser.uid,
+            "unread": true
+        ]
+        let chatData : [String : Any] = [
+            "users": [currentUser.uid, user.uid],
+            "timestamp": FieldValue.serverTimestamp(),
+            currentUser.uid: user1Data,
+            user.uid: user2Data
+        ]
+        let chatId = FirebaseManager.getChatId(user.uid)
         
         chatsCollection.document(chatId).setData(chatData, completion: { error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(Chat(id: chatId, with: user)))
+                completion(.success(Chat(with: user)))
             }
         })
     }
     
     // the current user chats
-    func getAll(completion: @escaping ([Chat]) -> Void) {
+    func getChats(completion: @escaping ([Chat]) -> Void) {
         chatsCollection
             .whereField("users", arrayContains: currentUser.uid)
             .order(by: "timestamp", descending: true)
@@ -366,10 +363,11 @@ extension FirebaseManager: ChatManager {
         }
     }
     
-    static var chatListener: ListenerRegistration!
+    static var messageListener: ListenerRegistration!
     
     func getMessages(in chat: Chat, completion: @escaping ([Message]) -> Void) {
-        FirebaseManager.chatListener = chatsCollection.document(chat.id).collection("messages")
+        let chatId = FirebaseManager.getChatId(chat.user.uid)
+        FirebaseManager.messageListener = chatsCollection.document(chatId).collection("messages")
             .order(by: "timestamp")
             .addSnapshotListener { (snapshot, error) in
                 var messages = [Message]()
@@ -382,25 +380,21 @@ extension FirebaseManager: ChatManager {
         }
     }
     
-    static func leaveChat() {
-        FirebaseManager.chatListener.remove()
+    func leaveChat() {
+        FirebaseManager.messageListener.remove()
     }
     
     func newMessage(in chat: Chat, content: String, system: Bool, completion: @escaping (Error?) -> Void) {
-        let document = chatsCollection.document(chat.id)
+        let chatId = FirebaseManager.getChatId(chat.user.uid)
+        let document = chatsCollection.document(chatId)
         let message = ["content": content,
-                       "sender": system ? "system" : Persist.uid,
+                       "sender": system ? "system" : currentUser.uid,
                        "timestamp": FieldValue.serverTimestamp() as Any]
         let batch = db.batch()
         batch.setData(message, forDocument: document.collection("messages").document())
         
         // mark the chat as unread for the receiver
         batch.updateData(["\(chat.user.uid).unread": true], forDocument: document)
-        
-        // send notification
-        let sender = PushNotificationSender()
-        let notificationTitle = system ? "Nouveau troc !" : "Message de \(currentUser.name)"
-        sender.sendPushNotification(to: chat.user.fcmToken, title: notificationTitle, body: content)
         
         // if it's an automatic message, mark the chat as unread for the current user
         if system {
@@ -416,15 +410,13 @@ extension FirebaseManager: ChatManager {
     }
     
     func markAsRead(_ chat: Chat) {
-        chatsCollection.document(chat.id).updateData(["\(currentUser.uid).unread": false])
+        let chatId = FirebaseManager.getChatId(chat.user.uid)
+        chatsCollection.document(chatId).updateData(["\(currentUser.uid).unread": false])
     }
-}
 
-// MARK: - Wishlist
+    // MARK: - Wishes
 
-extension FirebaseManager: WishManager {
-
-    func getAll(completion: @escaping ([Wish]) -> Void) {
+    func getWishes(completion: @escaping ([Wish]) -> Void) {
         wishlistCollection.getDocuments { (snapshot, error) in
             var wishes = [Wish]()
             if let snapshot = snapshot {
@@ -451,26 +443,28 @@ extension FirebaseManager: WishManager {
         }
     }
     
-    func add(_ wish: Wish, completion: @escaping (Error?) -> Void) {
+    func addWish(_ wish: Wish, completion: @escaping (Error?) -> Void) {
         guard let bookId = wish.book.id else { return }
-        let data = ["applicant": currentUser.uid,
-                    "owner": wish.owner.uid,
-                    "bookTitle": wish.book.title,
-                    "bookId": bookId,
-                    "timestamp": FieldValue.serverTimestamp()] as [String : Any]
+        let data : [String : Any] = [
+            "applicant": currentUser.uid,
+            "owner": wish.owner.uid,
+            "bookTitle": wish.book.title,
+            "bookId": bookId,
+            "timestamp": FieldValue.serverTimestamp()
+        ]
         wishlistCollection.document(wish.owner.uid + bookId).setData(data, completion: { error in
             completion(error)
         })
     }
     
-    func delete(_ wish: Wish, completion: @escaping (Error?) -> Void) {
+    func deleteWish(_ wish: Wish, completion: @escaping (Error?) -> Void) {
         guard let bookId = wish.book.id else { return }
         wishlistCollection.document(wish.owner.uid + bookId).delete { error in
             completion(error)
         }
     }
     
-    func deleteAll(completion: @escaping (Error?) -> Void) {
+    func deleteWishes(completion: @escaping (Error?) -> Void) {
         wishlistCollection.getDocuments { (snapshot, error) in
             guard error == nil else {
                 completion(error)

@@ -21,7 +21,7 @@ class User: NSObject, MKAnnotation {
     var chats = [Chat]()
     var address: String?
     var location: GeoPoint?
-
+    
     init(uid: String, name: String, fcmToken: String) {
         self.uid = uid
         self.name = name
@@ -55,10 +55,12 @@ class User: NSObject, MKAnnotation {
     }
 }
 
-extension User: BookManagerInjectable {
+extension User {
+
+    // MARK: - Books
     
     func addBook(_ book: Book, completion: @escaping (Error?) -> Void) {
-        bookManager.add(book) { error in
+        DependencyInjection.shared.dataManager.addBook(book) { error in
             if error == nil {
                 self.books.append(book)
             }
@@ -67,26 +69,25 @@ extension User: BookManagerInjectable {
     }
     
     func getBooks(completion: @escaping () -> Void) {
-        bookManager.getAll(ownedBy: self) { books in
+        DependencyInjection.shared.dataManager.getBooks(ownedBy: self) { books in
             self.books = books
             completion()
         }
     }
     
     func removeBook(_ book: Book, completion: @escaping (Error?) -> Void) {
-        bookManager.remove(book) { error in
+        DependencyInjection.shared.dataManager.removeBook(book) { error in
             if error == nil, let index = self.books.firstIndex(of: book) {
                 self.books.remove(at: index)
             }
             completion(error)
         }
     }
-}
-
-extension User: WishManagerInjectable {
+    
+    // MARK: - Wishes
     
     func addWish(_ wish: Wish, completion: @escaping (Error?) -> Void) {
-        wishManager.add(wish) { error in
+        DependencyInjection.shared.dataManager.addWish(wish) { error in
             if error == nil {
                 self.wishes.append(wish)
             }
@@ -95,32 +96,24 @@ extension User: WishManagerInjectable {
     }
     
     func getWishes() {
-        wishManager.getAll() { wishes in
+        DependencyInjection.shared.dataManager.getWishes() { wishes in
             self.wishes = wishes
         }
     }
     
     func removeWish(_ wish: Wish, completion: @escaping (Error?) -> Void) {
-        wishManager.delete(wish) { error in
+        DependencyInjection.shared.dataManager.deleteWish(wish) { error in
             if error == nil, let index = self.wishes.firstIndex(of: wish) {
                 self.wishes.remove(at: index)
             }
             completion(error)
         }
     }
-    
-    func getMatch(with user: User, completion: @escaping (Wish?) -> Void) {
-        wishManager.getMatch(with: user) { wish in
-            completion(wish)
-        }
-    }
-}
 
+    // MARK: - Chats
 
-extension User: ChatManagerInjectable {
-    
     func newChat(with user: User, completion: @escaping (Error?) -> Void) {
-        chatManager.newChat(with: user) { result in
+        DependencyInjection.shared.dataManager.newChat(with: user) { result in
             switch result {
             case .success(let chat):
                 self.chats.append(chat)
@@ -132,7 +125,7 @@ extension User: ChatManagerInjectable {
     }
     
     func getChats(completion: @escaping () -> Void) {
-        chatManager.getAll { chats in
+        DependencyInjection.shared.dataManager.getChats { chats in
             currentUser.chats = chats
             completion()
         }

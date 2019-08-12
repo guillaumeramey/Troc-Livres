@@ -12,7 +12,7 @@ import CoreLocation
 import Firebase
 import ProgressHUD
 
-class UsersMapViewController: MapViewController, UserManagerInjectable {
+class UsersMapViewController: MapViewController {
 
     // MARK: - Outlets
     
@@ -26,19 +26,6 @@ class UsersMapViewController: MapViewController, UserManagerInjectable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Get the current user data
-        userManager.getCurrentUser { success in
-            if success {
-                currentUser.getWishes()
-            } else {
-                Switcher.updateRootVC()
-            }
-        }
-        
-        // Alert user to check his profile tab if he did not choose an address
-        Persist.address == "" ? tabBarController?.tabBar.items?[3].badgeValue = "!" : nil
-        
         locationManager.delegate = self
         centerOnUserLocationButton.layer.cornerRadius = 8
         checkLocationServices()
@@ -58,7 +45,7 @@ class UsersMapViewController: MapViewController, UserManagerInjectable {
     
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        userManager.getAll { users in
+        DependencyInjection.shared.dataManager.getUsers { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
         }

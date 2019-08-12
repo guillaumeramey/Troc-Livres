@@ -9,10 +9,11 @@
 import Foundation
 import Firebase
 
+import ProgressHUD
+
 class Switcher {
     
     static func updateRootVC() {
-        
         var storyboardName = "Welcome"
         var rootVCId = "WelcomeViewController"
         

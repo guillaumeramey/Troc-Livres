@@ -24,6 +24,7 @@ class BookViewController: UITableViewController {
 
     var book: Book!
     var bookOwner: User!
+    private var imageData: Bool!
     private var rightBarButton: UIBarButtonItem!
     private var bookIsAWish: Bool! {
         didSet {
@@ -59,12 +60,17 @@ class BookViewController: UITableViewController {
         }
         if let imageURL = book.imageURL, imageURL != "", let url = URL(string: imageURL) {
             imageView.kf.setImage(with: url)
+            imageData = imageView.image?.pngData()?.base64EncodedString() != Constants.noImageData
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Don't display the image if unavailable
         if section == 0 {
             guard let imageURL = book.imageURL, imageURL != "" else {
+                return 0
+            }
+            guard imageData else {
                 return 0
             }
         }
@@ -153,7 +159,7 @@ class BookViewController: UITableViewController {
             }
             self.rightBarButton.isEnabled = true
             
-            PushNotificationManager().registerForPushNotifications()
+            NetworkManager().registerForPushNotifications()
         }
     }
     
@@ -171,15 +177,15 @@ class BookViewController: UITableViewController {
     
     // Check if this user wants one of the current user's books
     private func getMatch() {
-        currentUser.getMatch(with: bookOwner) { wish in
+        DependencyInjection.shared.dataManager.getMatch(with: bookOwner) { wish in
             guard let wish = wish else { return }
-            self.createMessage(regarding: wish)
+            self.createMessage(for: wish)
         }
     }
     
-    private func createMessage(regarding wish: Wish) {
+    private func createMessage(for wish: Wish) {
         
-        let message = "\(wish.book.title)\" contre \"\(book.title)\""
+        let message = "\"\(wish.book.title)\" contre \"\(book.title)\""
         
         // Create a new chat if it does not exist
         let index = currentUser.chats.firstIndex(where: { $0.user == bookOwner })

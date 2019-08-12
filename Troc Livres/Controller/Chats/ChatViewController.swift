@@ -25,6 +25,7 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        chat.getUser()
         title = chat.user.name
         hideKeyboardWhenTappedAround()
         setKeyboardNotifications()
@@ -43,7 +44,7 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         chat.markAsRead()
-        chat.leave()
+        DependencyInjection.shared.dataManager.leaveChat()
         ProgressHUD.dismiss()
     }
 
@@ -85,9 +86,9 @@ extension ChatViewController: UITextFieldDelegate {
     }
 
     private func scrollTableViewToBottom() {
-        if let messages = chat.messages, messages.count > 0 {
+        if chat.messages.count > 0 {
             DispatchQueue.main.async {
-                let indexPath = IndexPath(row: messages.count - 1, section: 0)
+                let indexPath = IndexPath(row: self.chat.messages.count - 1, section: 0)
                 self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
             }
         }
@@ -112,12 +113,12 @@ extension ChatViewController: UITextFieldDelegate {
 extension ChatViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chat.messages?.count ?? 0
+        return chat.messages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.message, for: indexPath) as! MessageCell
-        cell.message = chat.messages?[indexPath.row]
+        cell.message = chat.messages[indexPath.row]
         return cell
     }
 }

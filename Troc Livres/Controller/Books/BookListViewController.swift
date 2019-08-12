@@ -51,7 +51,7 @@ class BookListViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ProgressHUD.dismiss()
+        loading = false
     }
 
     private func setDisplay() {

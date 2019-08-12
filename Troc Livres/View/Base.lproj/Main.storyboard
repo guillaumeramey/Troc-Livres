@@ -357,10 +357,10 @@
             </objects>
             <point key="canvasLocation" x="-475" y="-285"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="OVP-U5-MWe">
             <objects>
-                <tabBarController storyboardIdentifier="Main" id="AqA-he-DIP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" id="AqA-he-DIP" customClass="CustomTabBarController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="x88-2o-qRm"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yr1-9N-79a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>

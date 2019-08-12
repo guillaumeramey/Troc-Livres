@@ -25,12 +25,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>L&apos;accès à votre position est nécessaire au fontionnement de l&apos;application.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>L&apos;accès à la caméra est nécessaire pour scanner les codes-barres</string>
+	<string>L'accès à la caméra est nécessaire pour scanner les codes-barres</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>L'accès à votre position est nécessaire au fontionnement de l'application.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

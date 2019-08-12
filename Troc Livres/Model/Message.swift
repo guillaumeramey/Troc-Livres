@@ -28,4 +28,10 @@ struct Message {
         sender = document.get("sender") as? String ?? "Erreur sender"
         timestamp = document.get("timestamp") as? Timestamp
     }
+    
+    init(content: String, sender: String) {
+        self.content = content
+        self.sender = sender
+        timestamp = Timestamp()
+    }
 }

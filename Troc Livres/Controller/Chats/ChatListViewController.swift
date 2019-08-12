@@ -21,7 +21,10 @@ class ChatListViewController: UITableViewController {
     @IBOutlet weak var tableViewBackgroundView: UIView!
     
     // MARK: - Methods
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(getChats), name: .updateChats, object: nil)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.items?[1].badgeValue = nil
@@ -30,14 +33,23 @@ class ChatListViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         getChats()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ProgressHUD.dismiss()
+    }
 
-    private func getChats() {
+    @objc private func getChats() {
         ProgressHUD.show()
         currentUser.getChats {
             ProgressHUD.dismiss()
-            self.tableView.backgroundView = currentUser.chats.count > 0 ? nil : self.tableViewBackgroundView
-            self.tableView.reloadData()
+            self.setBackgroundView()
         }
+    }
+    
+    private func setBackgroundView() {
+        if currentUser.chats.count == 0 { tableView.backgroundView = tableViewBackgroundView }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source

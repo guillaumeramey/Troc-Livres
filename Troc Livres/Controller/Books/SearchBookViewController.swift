@@ -71,10 +71,6 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
         }
     }
 
-    private func validateData() {
-        #warning("tester les données saisies")
-    }
-
     func getBooks(isbn: String = "") {
         ProgressHUD.show("Recherche en cours")
         backgroundText = ""

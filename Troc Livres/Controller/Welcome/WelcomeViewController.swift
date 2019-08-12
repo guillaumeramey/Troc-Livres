@@ -11,7 +11,7 @@ import Firebase
 import ProgressHUD
 import CoreLocation
 
-class WelcomeViewController: UIViewController, AccountManagerInjectable {
+class WelcomeViewController: UIViewController {
 
     // MARK: - Outlets
 
@@ -25,7 +25,7 @@ class WelcomeViewController: UIViewController, AccountManagerInjectable {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     // MARK: - Properties
-
+    
     var registration: Bool! {
         didSet {
             updateDisplay()
@@ -61,7 +61,7 @@ class WelcomeViewController: UIViewController, AccountManagerInjectable {
             ProgressHUD.showError("Entrez votre e-mail")
             return
         }
-        accountManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
+        DependencyInjection.shared.dataManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
                 return
@@ -127,7 +127,7 @@ class WelcomeViewController: UIViewController, AccountManagerInjectable {
 
     private func createUser() {
         ProgressHUD.show("Création de votre compte")
-        accountManager.createAccount(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
+        DependencyInjection.shared.dataManager.createAccount(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
             if let error = error {
                 ProgressHUD.showError(error)
             } else {
@@ -139,7 +139,7 @@ class WelcomeViewController: UIViewController, AccountManagerInjectable {
 
     private func authenticateUser() {
         ProgressHUD.show("Connexion en cours")
-        accountManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
+        DependencyInjection.shared.dataManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {
@@ -148,17 +148,9 @@ class WelcomeViewController: UIViewController, AccountManagerInjectable {
             self.validateButton.isEnabled = true
         }
     }
-
-    // MARK: - Navigation
-
-    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
-        ProgressHUD.dismiss()
-    }
-}
-
-extension WelcomeViewController: UserManagerInjectable {
+    
     private func logIn() {
-        userManager.getCurrentUser(completion: { success in
+        DependencyInjection.shared.dataManager.getCurrentUser(completion: { success in
             if success {
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {
@@ -166,6 +158,12 @@ extension WelcomeViewController: UserManagerInjectable {
             }
             self.validateButton.isEnabled = true
         })
+    }
+
+    // MARK: - Navigation
+
+    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
+        ProgressHUD.dismiss()
     }
 }
 

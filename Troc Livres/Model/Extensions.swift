@@ -32,3 +32,8 @@ extension UIViewController {
         case rejected(String)
     }
 }
+
+extension Notification.Name {
+    static let pushNotificationReceived = Notification.Name("pushNotificationReceived")
+    static let updateChats = Notification.Name("updateChats")
+}
