@@ -80,9 +80,9 @@ class WelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        #warning("remove id")
-        passwordTextField.text = "123456"
-        emailTextField.text = "marie.dupont@mail.com"
+//        #warning("remove id")
+//        passwordTextField.text = "123456"
+//        emailTextField.text = "marie.dupont@mail.com"
         usernameTextField.text = nil
     }
 

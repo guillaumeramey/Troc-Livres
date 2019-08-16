@@ -25,6 +25,7 @@ class ChatListViewController: UITableViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(getChats), name: .updateChats, object: nil)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.items?[1].badgeValue = nil
@@ -48,7 +49,11 @@ class ChatListViewController: UITableViewController {
     }
     
     private func setBackgroundView() {
-        if currentUser.chats.count == 0 { tableView.backgroundView = tableViewBackgroundView }
+        if currentUser.chats.count == 0 {
+            tableView.backgroundView = tableViewBackgroundView
+        } else {
+            tableView.backgroundView = nil
+        }
         tableView.reloadData()
     }
 

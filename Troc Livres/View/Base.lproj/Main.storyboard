@@ -480,11 +480,11 @@ Les discussions sont créées quand un troc est disponible.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBN-7A-Mdx">
                                 <rect key="frame" x="0.0" y="769" width="414" height="44"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2e-e4-6lU">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2e-e4-6lU">
                                         <rect key="frame" x="10" y="5" width="394" height="34"/>
                                         <color key="backgroundColor" name="Color-LightGray"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="send"/>
                                         <connections>
                                             <outlet property="delegate" destination="DTO-uG-2fa" id="27Q-HU-Gg1"/>

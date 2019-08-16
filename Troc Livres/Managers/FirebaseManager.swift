@@ -159,7 +159,7 @@ extension FirebaseManager: DataManager {
             guard let snapshot = snapshot else { return }
             var users = [User]()
             snapshot.documents.forEach { document in
-                guard currentUser.uid != document.documentID else { return }
+                guard Auth.auth().currentUser?.uid != document.documentID else { return }
                 users.append(User(from: document))
             }
             completion(users)
