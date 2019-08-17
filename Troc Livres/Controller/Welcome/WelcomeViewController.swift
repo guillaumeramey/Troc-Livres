@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import ProgressHUD
+import CoreLocation
 
 class WelcomeViewController: UIViewController {
 
@@ -19,13 +20,12 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var passwordTextField: PasswordTextField!
     @IBOutlet weak var usernameLine: UIView!
     @IBOutlet weak var textFieldsView: UIView!
-    @IBOutlet weak var validateButton: CustomButton!
+    @IBOutlet weak var validateButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
-
     // MARK: - Properties
-
+    
     var registration: Bool! {
         didSet {
             updateDisplay()
@@ -47,22 +47,31 @@ class WelcomeViewController: UIViewController {
 
     @IBAction func validateButtonPressed(_ sender: AnyObject) {
         validateButton.isEnabled = false
-        ProgressHUD.show()
         switch checkForm() {
         case .accepted:
             registration ? createUser() : authenticateUser()
         case .rejected(let error):
             ProgressHUD.showError(error)
+            validateButton.isEnabled = true
         }
-        validateButton.isEnabled = true
     }
 
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
-        #warning("todo")
+        if emailTextField.text == nil || emailTextField.text == "" {
+            ProgressHUD.showError("Entrez votre e-mail")
+            return
+        }
+        DependencyInjection.shared.dataManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
+            if let errorMessage = errorMessage {
+                ProgressHUD.showError(errorMessage)
+                return
+            }
+            self.alert(title: "E-mail envoyé !", message: "Consultez vos e-mails et suivez les instructions pour réinitialiser votre mot de passe.")
+        }
     }
 
     // MARK: - Methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -71,24 +80,25 @@ class WelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseManager.signOut()
-        #warning("remove")
-        passwordTextField.text = "123456"
-        emailTextField.text = "tony.stark@avengers.com"
+//        #warning("remove id")
+//        passwordTextField.text = "123456"
+//        emailTextField.text = "marie.dupont@mail.com"
         usernameTextField.text = nil
     }
 
     private func setDesign() {
         registration = true
 
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: Constants.Font.button], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)], for: .normal)
 
+        validateButton.layer.cornerRadius = 8
+        
         textFieldsView.layer.cornerRadius = 8
         textFieldsView.layer.masksToBounds = true
         textFieldsView.layer.borderWidth = 1
         textFieldsView.layer.borderColor = Constants.Color.lightGray.cgColor
 
-        usernameTextField.setIcon(Constants.Image.userIcon)
+        usernameTextField.setIcon(Constants.Image.person)
         emailTextField.setIcon(Constants.Image.envelope)
         passwordTextField.setIcon(Constants.Image.lock)
     }
@@ -116,50 +126,43 @@ class WelcomeViewController: UIViewController {
     }
 
     private func createUser() {
-        FirebaseManager.createUser(email: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
-            if let errorMessage = errorMessage {
-                ProgressHUD.showError(errorMessage)
+        ProgressHUD.show("Création de votre compte")
+        DependencyInjection.shared.dataManager.createAccount(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
+            if let error = error {
+                ProgressHUD.showError(error)
             } else {
-                self.setUsername()
+                self.logIn()
             }
-        }
-    }
-
-    private func setUsername() {
-        FirebaseManager.setUsername(usernameTextField.text!) { success in
-            if success {
-                self.getUserData()
-            } else {
-                ProgressHUD.showError("Impossible de sauvegarder le nom d'utilisateur")
-            }
+            self.validateButton.isEnabled = true
         }
     }
 
     private func authenticateUser() {
-        FirebaseManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
+        ProgressHUD.show("Connexion en cours")
+        DependencyInjection.shared.dataManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
             } else {
-                self.getUserData()
+                self.logIn()
             }
+            self.validateButton.isEnabled = true
         }
     }
-
-    private func getUserData() {
-        ProgressHUD.show("Récupération des données de l'utilisateur")
-        FirebaseManager.getCurrentUserData(completion: { success in
+    
+    private func logIn() {
+        DependencyInjection.shared.dataManager.getCurrentUser(completion: { success in
             if success {
-                ProgressHUD.dismiss()
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {
-                ProgressHUD.showError("Erreur lors de l'accès aux données")
+                ProgressHUD.showError("Impossible de se connecter")
             }
+            self.validateButton.isEnabled = true
         })
     }
 
     // MARK: - Navigation
 
-    @IBAction func unwindToWelcome(segue:UIStoryboardSegue) {
+    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
         ProgressHUD.dismiss()
     }
 }

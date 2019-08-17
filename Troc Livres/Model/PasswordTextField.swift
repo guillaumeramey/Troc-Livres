@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Add the show / hide button in the rightView
 class PasswordTextField: CustomTextField {
 
     var toggleSecureTextButton: UIButton!
@@ -22,28 +23,19 @@ class PasswordTextField: CustomTextField {
         setup()
     }
 
-    func setup() {
-//        leftView = setLabel()
-//        leftViewMode = .always
-        rightView = setToggleSecureTextButton()
-        rightViewMode = .always
-    }
-
-//    func setLabel() -> UILabel {
-//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
-//        label.text = " 🔒"
-//        label.tintColor = Constants.Color.button
-//        return label
-//    }
-
     // Show / hide password button
-    func setToggleSecureTextButton() -> UIButton {
-        toggleSecureTextButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+    func setup() {
+        let containerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        
+        toggleSecureTextButton = UIButton(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
         toggleSecureTextButton.setImage(Constants.Image.eyeShow, for: .normal)
-//        toggleSecureTextButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        toggleSecureTextButton.imageView?.contentMode = .scaleAspectFit
         toggleSecureTextButton.tintColor = Constants.Color.button
         toggleSecureTextButton.addTarget(self, action: #selector(toggleSecureText), for: .touchUpInside)
-        return toggleSecureTextButton
+        containerView.addSubview(toggleSecureTextButton)
+
+        rightView = containerView
+        rightViewMode = .always
     }
     
     @objc func toggleSecureText() {

@@ -10,38 +10,41 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class SearchBookViewController: UIViewController {
-
-    // MARK: - Properties
-
-    var books = [Book]()
-    var selectedBook: Book!
-    private let cellId = "bookCell"
+class SearchBookViewController: UIViewController, ScannerDelegate {
 
     // MARK: - Outlets
-
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var authorTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBackgroundView: UIView!
+    @IBOutlet weak var tableViewBackgroundLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
+    
+    // MARK: - Properties
+
+    var results = [Book]()
+    var selectedBook: Book!
+    private var backgroundText: String! {
+        didSet {
+            if backgroundText != nil {
+                tableViewBackgroundLabel.text = backgroundText
+            } else {
+                tableViewBackgroundLabel.text = """
+                    Scannez le code-barres
+
+                    - ou -
+
+                    Remplissez les champs de texte
+                    """
+            }
+        }
+    }
 
     // MARK: - Actions
 
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-
     @IBAction func searchButtonPressed(_ sender: Any) {
-        let bookService = BookService()
-        bookService.getBook(title: titleTextField.text!, author: authorTextField.text!) { result in
-            switch result {
-            case .success(let books):
-                self.books = books
-                self.tableView.reloadData()
-                self.scrollTableViewToTop()
-            case .failure(let error):
-                ProgressHUD.showError(error.localizedDescription)
-            }
-        }
+        getBooks()
     }
 
     // MARK: - Methods
@@ -49,15 +52,17 @@ class SearchBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        tableView.register(UINib(nibName: "BookViewCell", bundle: nil), forCellReuseIdentifier: cellId)
-        tableView.backgroundView = UINib(nibName: "SearchBookAdviceView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UIView
+        searchButton.layer.cornerRadius = 8
+        tableView.backgroundView = tableViewBackgroundView
+        backgroundText = nil
+        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: Constants.Cell.book, bundle: nil), forCellReuseIdentifier: Constants.Cell.book)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
     }
-
 
     private func scrollTableViewToTop() {
         DispatchQueue.main.async {
@@ -66,19 +71,35 @@ class SearchBookViewController: UIViewController {
         }
     }
 
-    private func validateData() {
-        #warning("tester les données saisies")
+    func getBooks(isbn: String = "") {
+        ProgressHUD.show("Recherche en cours")
+        backgroundText = ""
+        let networkManager = NetworkManager()
+        networkManager.getBooks(isbn: isbn, title: titleTextField.text!, author: authorTextField.text!) { result in
+            switch result {
+            case .success(let books):
+                self.results = books
+                self.tableView.reloadData()
+                self.scrollTableViewToTop()
+            case .failure(let error):
+                self.results.removeAll()
+                self.tableView.reloadData()
+                self.tableViewBackgroundLabel.text = error.rawValue
+            }
+            ProgressHUD.dismiss()
+        }
     }
 
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "scanner" {
+        if segue.identifier == Constants.Segue.scannerVC {
             let destinationVC = segue.destination as! ScannerViewController
             destinationVC.delegate = self
-        }
-        if segue.identifier == "bookDetail" {
+        } else if segue.identifier == Constants.Segue.bookVC {
             let destinationVC = segue.destination as! BookViewController
             destinationVC.book = selectedBook
-            destinationVC.user = Session.user
+            destinationVC.bookOwner = currentUser
         }
     }
 }
@@ -86,37 +107,21 @@ class SearchBookViewController: UIViewController {
 extension SearchBookViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        return results.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookViewCell
-        cell.book = books[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.book, for: indexPath) as! BookCell
+        cell.book = results[indexPath.row]
         return cell
     }
 }
+
 extension SearchBookViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedBook = books[indexPath.row]
-        performSegue(withIdentifier: "bookDetail", sender: self)
-    }
-}
-
-extension SearchBookViewController: ScannerDelegate {
-
-    // Barcode successfully scanned
-    func getBook(isbn: String) {
-        let bookService = BookService()
-        bookService.getBook(isbn: isbn) { result in
-            switch result {
-            case .success(let books):
-                self.books = books
-                self.tableView.reloadData()
-            case .failure(let error):
-                ProgressHUD.showError(error.localizedDescription)
-            }
-        }
+        selectedBook = results[indexPath.row]
+        performSegue(withIdentifier: Constants.Segue.bookVC, sender: self)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BookViewCell.swift
+//  BookCell.swift
 //  Troc Livres
 //
 //  Created by Guillaume Ramey on 09/06/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class BookViewCell: UITableViewCell {
+class BookCell: UITableViewCell {
 
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
@@ -28,10 +28,10 @@ class BookViewCell: UITableViewCell {
     }
 
     private func updateCell() {
-        background.layer.cornerRadius = 8
+//        background.layer.cornerRadius = 8
 
         bookTitle.text = book.title
-        bookAuthor.text = book.authors?.joined(separator: " & ")
+        bookAuthor.text = book.authors?.joined(separator: "\n")
         if let imageURL = book.imageURL, let url = URL(string: imageURL) {
             bookImage.kf.indicatorType = .activity
             bookImage.kf.setImage(with: url)

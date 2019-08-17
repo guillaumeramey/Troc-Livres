@@ -10,21 +10,29 @@ import AVFoundation
 import UIKit
 
 protocol ScannerDelegate {
-    func getBook(isbn: String)
+    func getBooks(isbn: String)
 }
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var scannerView: UIView!
+
+    // MARK: - Properties
 
     var delegate: ScannerDelegate?
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
 
-    @IBOutlet weak var scannerView: UIView!
+    // MARK: - Actions
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -96,17 +104,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            delegate?.getBook(isbn: stringValue)
+            delegate?.getBooks(isbn: stringValue)
         }
 
         dismiss(animated: true)
     }
-//
-//    override var prefersStatusBarHidden: Bool {
-//        return true
-//    }
-//
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        return .portrait
-//    }
 }

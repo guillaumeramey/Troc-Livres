@@ -3,53 +3,60 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4E81B3C264FFE69889B9A1A5 /* Pods_Troc_LivresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DD8E720A965BDE2B23C9C2 /* Pods_Troc_LivresTests.framework */; };
 		928B9203BE124DE59EC52D9D /* Pods_Troc_Livres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3726D53EFF532DAF2F3882E /* Pods_Troc_Livres.framework */; };
+		A4044D5822BBB8CA0028F187 /* ChangeLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4044D5722BBB8CA0028F187 /* ChangeLocationViewController.swift */; };
 		A4051E6122909FAA002A5D18 /* UsersMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */; };
 		A4051E692290F7AA002A5D18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E682290F7AA002A5D18 /* Constants.swift */; };
 		A4051E712292399E002A5D18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E702292399E002A5D18 /* User.swift */; };
-		A4051E73229245F0002A5D18 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E72229245F0002A5D18 /* UserTableViewController.swift */; };
 		A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7422925E5B002A5D18 /* BookViewController.swift */; };
 		A4051E7722926241002A5D18 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4051E7622926241002A5D18 /* Extensions.swift */; };
+		A407504222E894B0002BE9BA /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407504122E894B0002BE9BA /* Wish.swift */; };
 		A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4135111229336AC00934188 /* SearchBookViewController.swift */; };
 		A41351142293516C00934188 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351132293516C00934188 /* ProfileViewController.swift */; };
 		A41351162293534500934188 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351152293534500934188 /* Persist.swift */; };
 		A41351182293701300934188 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351172293701300934188 /* WelcomeViewController.swift */; };
-		A413511A2293985100934188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41351192293985100934188 /* GoogleService-Info.plist */; };
-		A4264AF122A8661500760D8D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4264AF022A8661500760D8D /* Session.swift */; };
+		A420883522C66843006ABB18 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A420883422C66843006ABB18 /* Switcher.swift */; };
+		A4314A8222F48CAB009443A8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4314A8122F48CAB009443A8 /* DataManager.swift */; };
 		A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatViewController.swift */; };
 		A4478400229B081D00257636 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FF229B081D00257636 /* Message.swift */; };
-		A4478408229CD51800257636 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478407229CD51800257636 /* Contact.swift */; };
+		A4478408229CD51800257636 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4478407229CD51800257636 /* Chat.swift */; };
+		A4556A0522D79E5100DC15C2 /* UserTestsSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4556A0422D79E5100DC15C2 /* UserTestsSuccess.swift */; };
+		A45E7CBA22D502080011A29C /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E7CB922D502080011A29C /* NetworkManagerTests.swift */; };
 		A46041C6229F429200E78852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46041C5229F429200E78852 /* Assets.xcassets */; };
+		A4620E132301B7E800C3E89D /* ChatTestsFail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4620E122301B7E800C3E89D /* ChatTestsFail.swift */; };
+		A4620E152301BAAA00C3E89D /* UserTestsFail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4620E142301BAAA00C3E89D /* UserTestsFail.swift */; };
 		A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */; };
 		A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */; };
-		A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* ChatViewCell.swift */; };
-		A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* ChatViewCell.xib */; };
-		A47D0A5422B140C7000378E0 /* SearchBookAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */; };
-		A47D0A5822B1A2C5000378E0 /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47D0A5622B1A2C5000378E0 /* UserViewCell.swift */; };
-		A47D0A5922B1A2C5000378E0 /* UserViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47D0A5722B1A2C5000378E0 /* UserViewCell.xib */; };
+		A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471E40722D2B7A000125D05 /* PassThroughView.swift */; };
+		A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* MessageCell.swift */; };
+		A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* MessageCell.xib */; };
+		A494720F230843A800309140 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A494720E230843A800309140 /* GoogleService-Info.plist */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
-		A4AE8F0F2296520A008DA01B /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */; };
-		A4C2630322A2108900B82141 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2630222A2108900B82141 /* CustomButton.swift */; };
-		A4C2632922A4236500B82141 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2632822A4236500B82141 /* SelectLocationViewController.swift */; };
+		A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* BookListViewController.swift */; };
+		A4BDA0D322F1ED910076855D /* DataMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDA0D222F1ED910076855D /* DataMock.swift */; };
 		A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C2632B22A42CBD00B82141 /* MapViewController.swift */; };
 		A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C27F7A22A858E50060902E /* FirebaseManager.swift */; };
-		A4D9B359229EF9C600A81F39 /* ContactViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */; };
-		A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */; };
-		A4D9B35C229EFB0800A81F39 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */; };
-		A4DF67BF22AD575A00D6929C /* BookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF67BD22AD575A00D6929C /* BookViewCell.swift */; };
-		A4DF67C022AD575A00D6929C /* BookViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DF67BE22AD575A00D6929C /* BookViewCell.xib */; };
+		A4D0B3B522F9C55E006D76E0 /* ChatTestsSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0B3B422F9C55E006D76E0 /* ChatTestsSuccess.swift */; };
+		A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */; };
+		A4DF67BF22AD575A00D6929C /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF67BD22AD575A00D6929C /* BookCell.swift */; };
+		A4DF67C022AD575A00D6929C /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DF67BE22AD575A00D6929C /* BookCell.xib */; };
 		A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */; };
 		A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBE9228D0F4400180F09 /* Main.storyboard */; };
 		A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */; };
-		A4E3CBFB228D0F4600180F09 /* Troc_LivresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */; };
-		A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC05228D0FB800180F09 /* BookService.swift */; };
+		A4E3CC06228D0FB800180F09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC05228D0FB800180F09 /* NetworkManager.swift */; };
 		A4E3CC08228D124A00180F09 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E3CC07228D124A00180F09 /* Book.swift */; };
 		A4E5D8E222AAB15D00806A8B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */; };
+		A4F4EFD022D4FCD70011D93B /* Book.json in Resources */ = {isa = PBXBuildFile; fileRef = A4F4EFCF22D4FCD70011D93B /* Book.json */; };
+		A4F4EFD322D4FD190011D93B /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */; };
+		A4F4EFD822D4FFF10011D93B /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */; };
+		A4F4EFDA22D5000F0011D93B /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */; };
+		A4FBF03D22F71E3500965737 /* DataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FBF03C22F71E3500965737 /* DataManagerMock.swift */; };
+		A4FC318D22FCC861009C503E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC318C22FCC861009C503E /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,51 +72,59 @@
 /* Begin PBXFileReference section */
 		2FDF7527B112BBE6DAE36852 /* Pods-Troc Livres.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Troc Livres.release.xcconfig"; path = "Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres.release.xcconfig"; sourceTree = "<group>"; };
 		53DD8E720A965BDE2B23C9C2 /* Pods_Troc_LivresTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Troc_LivresTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4044D5722BBB8CA0028F187 /* ChangeLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLocationViewController.swift; sourceTree = "<group>"; };
 		A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersMapViewController.swift; sourceTree = "<group>"; };
 		A4051E682290F7AA002A5D18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4051E702292399E002A5D18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A4051E72229245F0002A5D18 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		A4051E7422925E5B002A5D18 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		A4051E7622926241002A5D18 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A407504122E894B0002BE9BA /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
 		A4135111229336AC00934188 /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
 		A41351132293516C00934188 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A41351152293534500934188 /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
 		A41351172293701300934188 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		A41351192293985100934188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A4264AF022A8661500760D8D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		A420883422C66843006ABB18 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
+		A4314A8122F48CAB009443A8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A44783FB229AFDD900257636 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A44783FF229B081D00257636 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		A4478407229CD51800257636 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		A4478407229CD51800257636 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		A4556A0422D79E5100DC15C2 /* UserTestsSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTestsSuccess.swift; sourceTree = "<group>"; };
+		A45E7CB922D502080011A29C /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A46041C5229F429200E78852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A4620E122301B7E800C3E89D /* ChatTestsFail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTestsFail.swift; sourceTree = "<group>"; };
+		A4620E142301BAAA00C3E89D /* UserTestsFail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTestsFail.swift; sourceTree = "<group>"; };
 		A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
-		A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordTextField.swift; path = ../Model/PasswordTextField.swift; sourceTree = "<group>"; };
-		A475130F229DDEB3002EA87E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
-		A4751310229DDEB3002EA87E /* ChatViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
-		A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBookAdviceView.xib; sourceTree = "<group>"; };
-		A47D0A5622B1A2C5000378E0 /* UserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
-		A47D0A5722B1A2C5000378E0 /* UserViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewCell.xib; sourceTree = "<group>"; };
+		A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordTextField.swift; path = ../../Model/PasswordTextField.swift; sourceTree = "<group>"; };
+		A471E40722D2B7A000125D05 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PassThroughView.swift; path = ../PassThroughView.swift; sourceTree = "<group>"; };
+		A475130F229DDEB3002EA87E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		A4751310229DDEB3002EA87E /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A48E5CA422DD57260061B27A /* Troc Livres.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Troc Livres.entitlements"; sourceTree = "<group>"; };
+		A494720E230843A800309140 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
-		A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
-		A4C2630222A2108900B82141 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		A4C2632822A4236500B82141 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
-		A4C2632B22A42CBD00B82141 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A4AE8F0E2296520A008DA01B /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		A4BDA0D222F1ED910076855D /* DataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMock.swift; sourceTree = "<group>"; };
+		A4C2632B22A42CBD00B82141 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
 		A4C27F7A22A858E50060902E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewCell.swift; sourceTree = "<group>"; };
-		A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewCell.xib; sourceTree = "<group>"; };
-		A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
-		A4DF67BD22AD575A00D6929C /* BookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewCell.swift; sourceTree = "<group>"; };
-		A4DF67BE22AD575A00D6929C /* BookViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookViewCell.xib; sourceTree = "<group>"; };
+		A4D0B3B422F9C55E006D76E0 /* ChatTestsSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTestsSuccess.swift; sourceTree = "<group>"; };
+		A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		A4DF67BD22AD575A00D6929C /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		A4DF67BE22AD575A00D6929C /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
 		A4E3CBE2228D0F4400180F09 /* Troc Livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Troc Livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E3CBEA228D0F4400180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4E3CBEF228D0F4500180F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4E3CBF1228D0F4500180F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E3CBF6228D0F4600180F09 /* Troc LivresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Troc LivresTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Troc_LivresTests.swift; sourceTree = "<group>"; };
 		A4E3CBFC228D0F4600180F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4E3CC05228D0FB800180F09 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		A4E3CC05228D0FB800180F09 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A4E3CC07228D124A00180F09 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTextField.swift; path = ../CustomTextField.swift; sourceTree = "<group>"; };
+		A4F4EFCF22D4FCD70011D93B /* Book.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Book.json; sourceTree = "<group>"; };
+		A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
+		A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		A4FBF03C22F71E3500965737 /* DataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerMock.swift; sourceTree = "<group>"; };
+		A4FC318C22FCC861009C503E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C13AB8DA023E5C7AE6FF92FC /* Pods-Troc LivresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Troc LivresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Troc LivresTests/Pods-Troc LivresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3726D53EFF532DAF2F3882E /* Pods_Troc_Livres.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Troc_Livres.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4CC064FA0D183D1BF8A546 /* Pods-Troc Livres.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Troc Livres.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,16 +174,15 @@
 		A4051E5E22909F67002A5D18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4264AF022A8661500760D8D /* Session.swift */,
 				A4051E682290F7AA002A5D18 /* Constants.swift */,
-				A4051E7622926241002A5D18 /* Extensions.swift */,
 				A41351152293534500934188 /* Persist.swift */,
-				A4E3CC05228D0FB800180F09 /* BookService.swift */,
+				A4051E7622926241002A5D18 /* Extensions.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
+				A407504122E894B0002BE9BA /* Wish.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
-				A4478407229CD51800257636 /* Contact.swift */,
+				A4478407229CD51800257636 /* Chat.swift */,
 				A44783FF229B081D00257636 /* Message.swift */,
-				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
+				A420883422C66843006ABB18 /* Switcher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,30 +193,25 @@
 				A4E3CBEE228D0F4500180F09 /* LaunchScreen.storyboard */,
 				A4AE8F0B229606E1008DA01B /* Welcome.storyboard */,
 				A4E3CBE9228D0F4400180F09 /* Main.storyboard */,
-				A47D0A5322B140C7000378E0 /* SearchBookAdviceView.xib */,
 				A47D0A5522B1A29B000378E0 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		A4516A2422A4827600A2FF7F /* Contacts */ = {
+		A4516A2422A4827600A2FF7F /* Chats */ = {
 			isa = PBXGroup;
 			children = (
-				A4D9B35B229EFB0800A81F39 /* ContactViewController.swift */,
-				A4D9B357229EF9C600A81F39 /* ContactViewCell.swift */,
+				A4D9B35B229EFB0800A81F39 /* ChatListViewController.swift */,
 				A44783FB229AFDD900257636 /* ChatViewController.swift */,
-				A475130F229DDEB3002EA87E /* ChatViewCell.swift */,
+				A475130F229DDEB3002EA87E /* MessageCell.swift */,
 			);
-			path = Contacts;
+			path = Chats;
 			sourceTree = "<group>";
 		};
 		A4516A2522A482C400A2FF7F /* Users */ = {
 			isa = PBXGroup;
 			children = (
 				A4051E6022909FAA002A5D18 /* UsersMapViewController.swift */,
-				A4051E72229245F0002A5D18 /* UserTableViewController.swift */,
-				A4DF67BD22AD575A00D6929C /* BookViewCell.swift */,
-				A47D0A5622B1A2C5000378E0 /* UserViewCell.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -210,9 +219,11 @@
 		A4516A2622A482EE00A2FF7F /* Books */ = {
 			isa = PBXGroup;
 			children = (
-				A4AE8F0E2296520A008DA01B /* MyBooksViewController.swift */,
+				A4051E7422925E5B002A5D18 /* BookViewController.swift */,
+				A4AE8F0E2296520A008DA01B /* BookListViewController.swift */,
 				A4135111229336AC00934188 /* SearchBookViewController.swift */,
 				A465C9DB228E4F030048D3D5 /* ScannerViewController.swift */,
+				A4DF67BD22AD575A00D6929C /* BookCell.swift */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -220,13 +231,9 @@
 		A465C9E222909F3E0048D3D5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */,
-				A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */,
-				A4C2630222A2108900B82141 /* CustomButton.swift */,
-				A4051E7422925E5B002A5D18 /* BookViewController.swift */,
-				A4C2632B22A42CBD00B82141 /* MapViewController.swift */,
+				A4748E6222FC7CFD002CCBB1 /* Superclasses */,
 				A494111122A1B82B009DD9C1 /* Welcome */,
-				A4516A2422A4827600A2FF7F /* Contacts */,
+				A4516A2422A4827600A2FF7F /* Chats */,
 				A4C2632A22A4237000B82141 /* Profile */,
 				A4516A2622A482EE00A2FF7F /* Books */,
 				A4516A2522A482C400A2FF7F /* Users */,
@@ -234,13 +241,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A4748E6222FC7CFD002CCBB1 /* Superclasses */ = {
+			isa = PBXGroup;
+			children = (
+				A4FC318C22FCC861009C503E /* CustomTabBarController.swift */,
+				A4E5D8E122AAB15D00806A8B /* CustomTextField.swift */,
+				A471E40722D2B7A000125D05 /* PassThroughView.swift */,
+				A46B547C22A57EB500FF9D0B /* PasswordTextField.swift */,
+				A4C2632B22A42CBD00B82141 /* MapViewController.swift */,
+			);
+			path = Superclasses;
+			sourceTree = "<group>";
+		};
 		A47D0A5522B1A29B000378E0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				A4751310229DDEB3002EA87E /* ChatViewCell.xib */,
-				A4D9B358229EF9C600A81F39 /* ContactViewCell.xib */,
-				A4DF67BE22AD575A00D6929C /* BookViewCell.xib */,
-				A47D0A5722B1A2C5000378E0 /* UserViewCell.xib */,
+				A4DF67BE22AD575A00D6929C /* BookCell.xib */,
+				A4751310229DDEB3002EA87E /* MessageCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -253,11 +270,21 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		A4B7EC0A22EB3FAC008F8407 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A4E3CC05228D0FB800180F09 /* NetworkManager.swift */,
+				A4314A8122F48CAB009443A8 /* DataManager.swift */,
+				A4C27F7A22A858E50060902E /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		A4C2632A22A4237000B82141 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				A41351132293516C00934188 /* ProfileViewController.swift */,
-				A4C2632822A4236500B82141 /* SelectLocationViewController.swift */,
+				A4044D5722BBB8CA0028F187 /* ChangeLocationViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -285,13 +312,15 @@
 		A4E3CBE4228D0F4400180F09 /* Troc Livres */ = {
 			isa = PBXGroup;
 			children = (
+				A48E5CA422DD57260061B27A /* Troc Livres.entitlements */,
+				A4B7EC0A22EB3FAC008F8407 /* Managers */,
 				A4051E5E22909F67002A5D18 /* Model */,
 				A4051E5F22909F6E002A5D18 /* View */,
 				A465C9E222909F3E0048D3D5 /* Controller */,
 				A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */,
 				A46041C5229F429200E78852 /* Assets.xcassets */,
 				A4E3CBF1228D0F4500180F09 /* Info.plist */,
-				A41351192293985100934188 /* GoogleService-Info.plist */,
+				A494720E230843A800309140 /* GoogleService-Info.plist */,
 			);
 			path = "Troc Livres";
 			sourceTree = "<group>";
@@ -299,8 +328,18 @@
 		A4E3CBF9228D0F4600180F09 /* Troc LivresTests */ = {
 			isa = PBXGroup;
 			children = (
-				A4E3CBFA228D0F4600180F09 /* Troc_LivresTests.swift */,
+				A4D0B3B422F9C55E006D76E0 /* ChatTestsSuccess.swift */,
+				A4620E122301B7E800C3E89D /* ChatTestsFail.swift */,
+				A4556A0422D79E5100DC15C2 /* UserTestsSuccess.swift */,
+				A4620E142301BAAA00C3E89D /* UserTestsFail.swift */,
+				A45E7CB922D502080011A29C /* NetworkManagerTests.swift */,
 				A4E3CBFC228D0F4600180F09 /* Info.plist */,
+				A4F4EFCF22D4FCD70011D93B /* Book.json */,
+				A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */,
+				A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */,
+				A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */,
+				A4BDA0D222F1ED910076855D /* DataMock.swift */,
+				A4FBF03C22F71E3500965737 /* DataManagerMock.swift */,
 			);
 			path = "Troc LivresTests";
 			sourceTree = "<group>";
@@ -358,6 +397,14 @@
 				TargetAttributes = {
 					A4E3CBE1228D0F4400180F09 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A4E3CBF5228D0F4600180F09 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -389,16 +436,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A47D0A5422B140C7000378E0 /* SearchBookAdviceView.xib in Resources */,
 				A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */,
-				A4D9B35A229EF9C600A81F39 /* ContactViewCell.xib in Resources */,
-				A47D0A5922B1A2C5000378E0 /* UserViewCell.xib in Resources */,
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
-				A4751312229DDEB3002EA87E /* ChatViewCell.xib in Resources */,
+				A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */,
 				A46041C6229F429200E78852 /* Assets.xcassets in Resources */,
-				A413511A2293985100934188 /* GoogleService-Info.plist in Resources */,
 				A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */,
-				A4DF67C022AD575A00D6929C /* BookViewCell.xib in Resources */,
+				A4DF67C022AD575A00D6929C /* BookCell.xib in Resources */,
+				A494720F230843A800309140 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +450,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F4EFD022D4FCD70011D93B /* Book.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,32 +463,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Troc Livres/Pods-Troc Livres-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		80BAB79CB4B27E11D22EBB86 /* [CP] Check Pods Manifest.lock */ = {
@@ -497,36 +525,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4AE8F0F2296520A008DA01B /* MyBooksViewController.swift in Sources */,
-				A4264AF122A8661500760D8D /* Session.swift in Sources */,
+				A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */,
 				A4E3CC08228D124A00180F09 /* Book.swift in Sources */,
-				A4C2630322A2108900B82141 /* CustomButton.swift in Sources */,
+				A4FC318D22FCC861009C503E /* CustomTabBarController.swift in Sources */,
 				A41351162293534500934188 /* Persist.swift in Sources */,
+				A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */,
 				A4478400229B081D00257636 /* Message.swift in Sources */,
-				A4478408229CD51800257636 /* Contact.swift in Sources */,
-				A4051E73229245F0002A5D18 /* UserTableViewController.swift in Sources */,
-				A4751311229DDEB3002EA87E /* ChatViewCell.swift in Sources */,
+				A4044D5822BBB8CA0028F187 /* ChangeLocationViewController.swift in Sources */,
+				A4478408229CD51800257636 /* Chat.swift in Sources */,
+				A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */,
 				A4135112229336AC00934188 /* SearchBookViewController.swift in Sources */,
 				A46B547D22A57EB500FF9D0B /* PasswordTextField.swift in Sources */,
+				A407504222E894B0002BE9BA /* Wish.swift in Sources */,
 				A4051E6122909FAA002A5D18 /* UsersMapViewController.swift in Sources */,
 				A4E3CBE6228D0F4400180F09 /* AppDelegate.swift in Sources */,
 				A4E5D8E222AAB15D00806A8B /* CustomTextField.swift in Sources */,
-				A4C2632922A4236500B82141 /* SelectLocationViewController.swift in Sources */,
 				A465C9DC228E4F030048D3D5 /* ScannerViewController.swift in Sources */,
 				A4051E712292399E002A5D18 /* User.swift in Sources */,
 				A4051E7522925E5B002A5D18 /* BookViewController.swift in Sources */,
 				A4C27F7B22A858E50060902E /* FirebaseManager.swift in Sources */,
-				A4E3CC06228D0FB800180F09 /* BookService.swift in Sources */,
-				A4D9B35C229EFB0800A81F39 /* ContactViewController.swift in Sources */,
-				A47D0A5822B1A2C5000378E0 /* UserViewCell.swift in Sources */,
+				A4314A8222F48CAB009443A8 /* DataManager.swift in Sources */,
+				A4E3CC06228D0FB800180F09 /* NetworkManager.swift in Sources */,
+				A420883522C66843006ABB18 /* Switcher.swift in Sources */,
+				A4D9B35C229EFB0800A81F39 /* ChatListViewController.swift in Sources */,
 				A4C2632C22A42CBD00B82141 /* MapViewController.swift in Sources */,
 				A41351182293701300934188 /* WelcomeViewController.swift in Sources */,
 				A41351142293516C00934188 /* ProfileViewController.swift in Sources */,
 				A4051E692290F7AA002A5D18 /* Constants.swift in Sources */,
 				A4051E7722926241002A5D18 /* Extensions.swift in Sources */,
-				A4DF67BF22AD575A00D6929C /* BookViewCell.swift in Sources */,
+				A4DF67BF22AD575A00D6929C /* BookCell.swift in Sources */,
 				A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */,
-				A4D9B359229EF9C600A81F39 /* ContactViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +562,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4E3CBFB228D0F4600180F09 /* Troc_LivresTests.swift in Sources */,
+				A4620E152301BAAA00C3E89D /* UserTestsFail.swift in Sources */,
+				A4556A0522D79E5100DC15C2 /* UserTestsSuccess.swift in Sources */,
+				A45E7CBA22D502080011A29C /* NetworkManagerTests.swift in Sources */,
+				A4F4EFDA22D5000F0011D93B /* URLSessionMock.swift in Sources */,
+				A4BDA0D322F1ED910076855D /* DataMock.swift in Sources */,
+				A4620E132301B7E800C3E89D /* ChatTestsFail.swift in Sources */,
+				A4FBF03D22F71E3500965737 /* DataManagerMock.swift in Sources */,
+				A4D0B3B522F9C55E006D76E0 /* ChatTestsSuccess.swift in Sources */,
+				A4F4EFD822D4FFF10011D93B /* URLSessionDataTaskMock.swift in Sources */,
+				A4F4EFD322D4FD190011D93B /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,9 +734,11 @@
 			baseConfigurationReference = CC4CC064FA0D183D1BF8A546 /* Pods-Troc Livres.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Troc Livres/Troc Livres.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A53F8H373H;
 				INFOPLIST_FILE = "Troc Livres/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -716,9 +755,11 @@
 			baseConfigurationReference = 2FDF7527B112BBE6DAE36852 /* Pods-Troc Livres.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Troc Livres/Troc Livres.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A53F8H373H;
 				INFOPLIST_FILE = "Troc Livres/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

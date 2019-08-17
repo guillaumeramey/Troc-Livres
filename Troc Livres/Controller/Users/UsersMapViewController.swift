@@ -14,35 +14,44 @@ import ProgressHUD
 
 class UsersMapViewController: MapViewController {
 
+    // MARK: - Outlets
+    
+    @IBOutlet weak var centerOnUserLocationButton: UIButton!
+    
     // MARK: - Properties
     
     var selectedUser: User!
-
+    
     // MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         locationManager.delegate = self
-        
+        centerOnUserLocationButton.layer.cornerRadius = 8
         checkLocationServices()
         displayUsersOnMap()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     private func displayUsersOnMap() {
         ProgressHUD.show("Recherche d'utilisateurs")
-        FirebaseManager.getUsers { users in
+        DependencyInjection.shared.dataManager.getUsers { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)
         }
     }
 
-    @IBAction func findMeButtonPressed(_ sender: AnyObject) {
+    @IBAction func centerOnUserLocationButtonPressed() {
         centerMapViewOnUserLocation()
     }
 }
@@ -59,22 +68,15 @@ extension UsersMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? User else { return nil }
         let identifier = "User"
-        var annotationView: MKPinAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+        var annotationView: MKMarkerAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             annotationView = dequeuedView
         } else {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
-            annotationView.animatesDrop = true
-
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            imageView.sd_setImage(with: annotation.imageRef, placeholderImage: Constants.Image.noUserImage)
-            imageView.contentMode = .scaleAspectFill
-            imageView.layer.cornerRadius = 5
-            imageView.clipsToBounds = true
-
-            annotationView.leftCalloutAccessoryView = imageView
+            annotationView.animatesWhenAdded = true
+            annotationView.clusteringIdentifier = identifier
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return annotationView
@@ -83,12 +85,12 @@ extension UsersMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let user = view.annotation as? User else { return }
         selectedUser = user
-        performSegue(withIdentifier: "user", sender: nil)
+        performSegue(withIdentifier: Constants.Segue.userBooksVC, sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "user" {
-            let destinationVC = segue.destination as! UserTableViewController
+        if segue.identifier == Constants.Segue.userBooksVC {
+            let destinationVC = segue.destination as! BookListViewController
             destinationVC.user = selectedUser
         }
     }

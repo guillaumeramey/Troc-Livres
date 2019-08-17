@@ -27,12 +27,13 @@ extension UIViewController {
         present(alert, animated: true)
     }
 
-    func goBack() {
-        navigationController?.popViewController(animated: true)
-    }
-
     enum FormError {
         case accepted
         case rejected(String)
     }
+}
+
+extension Notification.Name {
+    static let pushNotificationReceived = Notification.Name("pushNotificationReceived")
+    static let updateChats = Notification.Name("updateChats")
 }

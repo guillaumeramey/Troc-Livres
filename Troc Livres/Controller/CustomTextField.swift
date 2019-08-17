@@ -34,7 +34,6 @@ class CustomTextField: UITextField {
         iconContainerView.backgroundColor = Constants.Color.button
         iconContainerView.addSubview(iconView)
 
-//        leftView?.backgroundColor = Constants.Color.button
         leftView = iconContainerView
         leftViewMode = .always
     }

@@ -2,7 +2,7 @@
 //  Chat.swift
 //  Troc Livres
 //
-//  Created by Guillaume Ramey on 26/05/2019.
+//  Created by Guillaume Ramey on 27/05/2019.
 //  Copyright © 2019 Guillaume Ramey. All rights reserved.
 //
 
@@ -10,24 +10,57 @@ import Foundation
 import Firebase
 
 class Chat {
-    let key: String
+    var user: User
+    var timestamp: Timestamp
+    var unread: Bool
     var messages = [Message]()
-
-    init?(fromKey key: String) {
-        self.key = key
-        Constants.Firebase.chatRef.child(key).observeSingleEvent(of: .value, with: { snapshot in
-            if let message = Message(from: snapshot) {
-                self.messages.append(message)
-            }
-        })
+    
+    init(from document: DocumentSnapshot) {
+        timestamp = document.get("timestamp") as! Timestamp
+        let data = document.get(Persist.uid) as? [String: Any]
+        let uid = data?["uid"] as? String ?? "UID Error"
+        let name = data?["name"] as? String ?? "Name Error"
+        user = User(uid: uid, name: name, fcmToken: "")
+        unread = data?["unread"] as? Bool ?? true
     }
 
-    func message(_ text: String) {
-        let message = [
-            "text": text,
-            "sender": Session.user.name,
-            "timestamp": ServerValue.timestamp()
-            ] as [String : Any]
-        Constants.Firebase.chatRef.child(key).childByAutoId().setValue(message)
+    init(with user: User) {
+        self.user = user
+        timestamp = Timestamp()
+        unread = true
+    }
+}
+
+extension Chat {
+    
+    func getUser() {
+        DependencyInjection.shared.dataManager.getUser(uid: user.uid) { user in
+            guard let user = user else { return }
+            self.user = user
+        }
+    }
+    
+    func newMessage(content: String, system: Bool = false, completion: @escaping (Bool) -> Void) {
+        DependencyInjection.shared.dataManager.newMessage(in: self, content: content, system: system, completion: { error in
+            if error == nil {
+                // send notification
+                var title = system ? "Nouveau troc avec " : "Message de "
+                title += currentUser.name
+                NetworkManager().sendPushNotification(to: self.user.fcmToken, title: title, body: content)
+            }
+            completion(error == nil)
+        })
+    }
+    
+    func getMessages(completion: @escaping (Bool) -> Void) {
+        DependencyInjection.shared.dataManager.getMessages(in: self) { messages in
+            self.messages = messages
+            completion(true)
+        }
+    }
+    
+    func markAsRead() {
+        DependencyInjection.shared.dataManager.markAsRead(self)
+        unread = false
     }
 }
