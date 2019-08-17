@@ -1,0 +1,6 @@
+framework module Pods_Troc_Livres {
+  umbrella header "Pods-Troc Livres-umbrella.h"
+
+  export *
+  module * { export * }
+}

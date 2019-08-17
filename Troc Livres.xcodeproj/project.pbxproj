@@ -20,7 +20,6 @@
 		A41351142293516C00934188 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351132293516C00934188 /* ProfileViewController.swift */; };
 		A41351162293534500934188 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351152293534500934188 /* Persist.swift */; };
 		A41351182293701300934188 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41351172293701300934188 /* WelcomeViewController.swift */; };
-		A413511A2293985100934188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41351192293985100934188 /* GoogleService-Info.plist */; };
 		A420883522C66843006ABB18 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A420883422C66843006ABB18 /* Switcher.swift */; };
 		A4314A8222F48CAB009443A8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4314A8122F48CAB009443A8 /* DataManager.swift */; };
 		A44783FC229AFDD900257636 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44783FB229AFDD900257636 /* ChatViewController.swift */; };
@@ -36,6 +35,7 @@
 		A471E40822D2B7A000125D05 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471E40722D2B7A000125D05 /* PassThroughView.swift */; };
 		A4751311229DDEB3002EA87E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475130F229DDEB3002EA87E /* MessageCell.swift */; };
 		A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4751310229DDEB3002EA87E /* MessageCell.xib */; };
+		A494720F230843A800309140 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A494720E230843A800309140 /* GoogleService-Info.plist */; };
 		A4AE8F0D229606E1008DA01B /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AE8F0B229606E1008DA01B /* Welcome.storyboard */; };
 		A4AE8F0F2296520A008DA01B /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE8F0E2296520A008DA01B /* BookListViewController.swift */; };
 		A4BDA0D322F1ED910076855D /* DataMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDA0D222F1ED910076855D /* DataMock.swift */; };
@@ -83,7 +83,6 @@
 		A41351132293516C00934188 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A41351152293534500934188 /* Persist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
 		A41351172293701300934188 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		A41351192293985100934188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A420883422C66843006ABB18 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		A4314A8122F48CAB009443A8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A44783FB229AFDD900257636 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +99,7 @@
 		A475130F229DDEB3002EA87E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A4751310229DDEB3002EA87E /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		A48E5CA422DD57260061B27A /* Troc Livres.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Troc Livres.entitlements"; sourceTree = "<group>"; };
+		A494720E230843A800309140 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4AE8F0C229606E1008DA01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		A4AE8F0E2296520A008DA01B /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		A4BDA0D222F1ED910076855D /* DataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMock.swift; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 				A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */,
 				A46041C5229F429200E78852 /* Assets.xcassets */,
 				A4E3CBF1228D0F4500180F09 /* Info.plist */,
-				A41351192293985100934188 /* GoogleService-Info.plist */,
+				A494720E230843A800309140 /* GoogleService-Info.plist */,
 			);
 			path = "Troc Livres";
 			sourceTree = "<group>";
@@ -440,9 +440,9 @@
 				A4E3CBF0228D0F4500180F09 /* LaunchScreen.storyboard in Resources */,
 				A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */,
 				A46041C6229F429200E78852 /* Assets.xcassets in Resources */,
-				A413511A2293985100934188 /* GoogleService-Info.plist in Resources */,
 				A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */,
 				A4DF67C022AD575A00D6929C /* BookCell.xib in Resources */,
+				A494720F230843A800309140 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
