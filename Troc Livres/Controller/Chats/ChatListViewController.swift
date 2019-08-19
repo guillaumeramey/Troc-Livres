@@ -15,6 +15,7 @@ class ChatListViewController: UITableViewController {
     // MARK: - Properties
 
     var selectedChat: Chat!
+    var firstLoad = true
 
     // MARK: - Outlets
     
@@ -41,9 +42,12 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func getChats() {
-        ProgressHUD.show()
+        if firstLoad { ProgressHUD.show() }
         currentUser.getChats {
-            ProgressHUD.dismiss()
+            if self.firstLoad {
+                ProgressHUD.dismiss()
+                self.firstLoad = false
+            }
             self.setBackgroundView()
         }
     }
