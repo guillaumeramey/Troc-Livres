@@ -758,10 +758,6 @@ Appuyez sur + pour en ajouter.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOU-nr-Mio">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KT-If-wEH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
@@ -780,7 +776,7 @@ Appuyez sur + pour en ajouter.</string>
                                 </items>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JJK-Tg-XTc">
-                                <rect key="frame" x="10" y="98" width="394" height="394"/>
+                                <rect key="frame" x="10" y="138" width="394" height="394"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="JJK-Tg-XTc" secondAttribute="height" multiplier="1:1" id="xvz-jf-2NN"/>
                                 </constraints>
@@ -789,18 +785,24 @@ Appuyez sur + pour en ajouter.</string>
                                 </connections>
                             </mapView>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kJe-rZ-lnK">
-                                <rect key="frame" x="10" y="502" width="394" height="30"/>
+                                <rect key="frame" x="10" y="542" width="394" height="30"/>
                                 <color key="backgroundColor" name="Color-LightGray"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wf5-Rl-hug">
-                                <rect key="frame" x="197" y="507" width="20" height="20"/>
+                                <rect key="frame" x="197" y="547" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peb-hP-KKp">
-                                <rect key="frame" x="184.5" y="255" width="45" height="48"/>
+                                <rect key="frame" x="184.5" y="295" width="45" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Déplacez la carte pour choisir un lieu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-jG-lXr">
+                                <rect key="frame" x="10" y="98" width="394" height="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -808,21 +810,21 @@ Appuyez sur + pour en ajouter.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="Color-Button"/>
                         <constraints>
-                            <constraint firstItem="BOU-nr-Mio" firstAttribute="trailing" secondItem="tp6-Eq-TAf" secondAttribute="trailing" id="2iE-LK-ztq"/>
                             <constraint firstItem="wf5-Rl-hug" firstAttribute="centerY" secondItem="kJe-rZ-lnK" secondAttribute="centerY" id="5Ap-Io-0qj"/>
+                            <constraint firstItem="b9J-jG-lXr" firstAttribute="top" secondItem="4KT-If-wEH" secondAttribute="bottom" constant="10" id="B28-Dk-Wvq"/>
                             <constraint firstItem="4KT-If-wEH" firstAttribute="top" secondItem="tp6-Eq-TAf" secondAttribute="top" id="CCP-zz-bMM"/>
-                            <constraint firstItem="JJK-Tg-XTc" firstAttribute="top" secondItem="4KT-If-wEH" secondAttribute="bottom" constant="10" id="DTc-GE-Lwk"/>
                             <constraint firstItem="4KT-If-wEH" firstAttribute="centerX" secondItem="j6p-zU-uUa" secondAttribute="centerX" id="DvV-hx-Ifd"/>
                             <constraint firstItem="peb-hP-KKp" firstAttribute="centerX" secondItem="JJK-Tg-XTc" secondAttribute="centerX" id="Fpw-2h-VJZ"/>
                             <constraint firstItem="tp6-Eq-TAf" firstAttribute="trailing" secondItem="JJK-Tg-XTc" secondAttribute="trailing" constant="10" id="Mjy-Oh-8TL"/>
                             <constraint firstItem="kJe-rZ-lnK" firstAttribute="top" secondItem="JJK-Tg-XTc" secondAttribute="bottom" constant="10" id="Pgw-xd-sdL"/>
+                            <constraint firstItem="JJK-Tg-XTc" firstAttribute="top" secondItem="b9J-jG-lXr" secondAttribute="bottom" constant="10" id="QtJ-86-dlh"/>
                             <constraint firstItem="kJe-rZ-lnK" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" constant="10" id="TgT-qf-ZAn"/>
-                            <constraint firstItem="BOU-nr-Mio" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" id="Vwo-n2-EA2"/>
-                            <constraint firstItem="BOU-nr-Mio" firstAttribute="top" secondItem="4KT-If-wEH" secondAttribute="bottom" id="WL5-3F-MOe"/>
-                            <constraint firstAttribute="bottom" secondItem="BOU-nr-Mio" secondAttribute="bottom" id="av1-oF-Rty"/>
                             <constraint firstItem="JJK-Tg-XTc" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" constant="10" id="gP1-FL-Zxa"/>
+                            <constraint firstItem="JJK-Tg-XTc" firstAttribute="top" secondItem="4KT-If-wEH" secondAttribute="bottom" constant="50" id="nRh-Gn-gv5"/>
                             <constraint firstItem="wf5-Rl-hug" firstAttribute="centerX" secondItem="kJe-rZ-lnK" secondAttribute="centerX" id="oQq-KM-xMJ"/>
                             <constraint firstItem="peb-hP-KKp" firstAttribute="centerY" secondItem="JJK-Tg-XTc" secondAttribute="centerY" constant="-16" id="s4o-iW-rHk"/>
+                            <constraint firstItem="tp6-Eq-TAf" firstAttribute="trailing" secondItem="b9J-jG-lXr" secondAttribute="trailing" constant="10" id="un4-cS-PzB"/>
+                            <constraint firstItem="b9J-jG-lXr" firstAttribute="leading" secondItem="tp6-Eq-TAf" secondAttribute="leading" constant="10" id="uqQ-pv-Hze"/>
                             <constraint firstItem="tp6-Eq-TAf" firstAttribute="trailing" secondItem="kJe-rZ-lnK" secondAttribute="trailing" constant="10" id="vE8-rr-Gat"/>
                             <constraint firstItem="4KT-If-wEH" firstAttribute="leading" secondItem="j6p-zU-uUa" secondAttribute="leading" id="wL4-ng-fNT"/>
                         </constraints>

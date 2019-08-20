@@ -152,7 +152,7 @@ class BookViewController: UITableViewController {
         currentUser.addWish(wish) { error in
             if let error = error {
                 print(error.localizedDescription)
-                ProgressHUD.showError("Impossible d'ajouter le livre à votre liste de souhaits")
+                ProgressHUD.showError("Impossible d'ajouter le livre à votre liste d'envies")
             } else {
                 self.bookIsAWish.toggle()
                 self.getMatch()
@@ -167,7 +167,7 @@ class BookViewController: UITableViewController {
         currentUser.removeWish(wish) { error in
             if let error = error {
                 print(error.localizedDescription)
-                ProgressHUD.showError("Impossible de supprimer le livre de votre liste de souhaits")
+                ProgressHUD.showError("Impossible de supprimer le livre de votre liste d'envies")
             } else {
                 self.bookIsAWish.toggle()
             }
@@ -178,8 +178,11 @@ class BookViewController: UITableViewController {
     // Check if this user wants one of the current user's books
     private func getMatch() {
         DependencyInjection.shared.dataManager.getMatch(with: bookOwner) { wish in
-            guard let wish = wish else { return }
-            self.createMessage(for: wish)
+            if let wish = wish {
+                self.createMessage(for: wish)
+            } else {
+                self.alert(title: "Ajouté à la liste d'envies", message: "Si \(self.bookOwner.name) est également intéressé par un de vos livres, une discussion sera créée.")
+            }
         }
     }
     
