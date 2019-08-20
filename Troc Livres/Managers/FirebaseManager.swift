@@ -319,7 +319,6 @@ extension FirebaseManager: DataManager {
     }
     
     func newChat(with user: User, completion: @escaping (Result<Chat, Error>) -> Void) {
-        print("newchat from firebase")
         let user1Data : [String : Any] = [
             "name": user.name,
             "uid": user.uid,
