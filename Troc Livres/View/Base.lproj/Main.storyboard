@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recherche-->
+        <!--Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SearchBookViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,14 +22,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cdJ-6p-fZ1">
                                 <rect key="frame" x="10" y="93" width="394" height="130"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titre" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hNy-R9-XBc">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hNy-R9-XBc">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Auteur" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-JS-FPz">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-JS-FPz">
                                         <rect key="frame" x="0.0" y="45" width="394" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="textColor"/>
@@ -43,7 +43,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Yzf-We-hQd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <state key="normal" title="Rechercher">
+                                        <state key="normal" title="Search">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -87,7 +87,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Recherche" id="wZm-gI-EQy">
+                    <navigationItem key="navigationItem" title="Search" id="wZm-gI-EQy">
                         <barButtonItem key="rightBarButtonItem" image="Image-Barcode" id="bEd-UB-vbc">
                             <color key="tintColor" name="Color-Button"/>
                             <connections>
@@ -129,11 +129,11 @@
             </objects>
             <point key="canvasLocation" x="2461" y="-285"/>
         </scene>
-        <!--Mes livres-->
+        <!--My books-->
         <scene sceneID="AiL-Xb-Dd3">
             <objects>
                 <navigationController id="IHu-bc-XZS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mes livres" image="Glyph-Book" id="SpP-xE-sSh"/>
+                    <tabBarItem key="tabBarItem" title="My books" image="Glyph-Book" id="SpP-xE-sSh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="46M-Fx-wnp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -147,11 +147,11 @@
             </objects>
             <point key="canvasLocation" x="-475" y="574"/>
         </scene>
-        <!--Discussions-->
+        <!--Chats-->
         <scene sceneID="oMl-JL-fN5">
             <objects>
                 <navigationController id="stN-g2-x8j" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discussions" image="Glyph-Chats" id="E9F-F5-VIG"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="Glyph-Chats" id="E9F-F5-VIG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TcM-fh-odc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -206,9 +206,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cba-J3-4vn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TJz-zF-sxA">
-                        <barButtonItem key="backBarButtonItem" title="Carte" id="YM8-Xo-A7E"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="TJz-zF-sxA"/>
                     <connections>
                         <outlet property="centerOnUserLocationButton" destination="rPW-3x-eKl" id="Lrq-8f-5dW"/>
                         <outlet property="mapView" destination="ZOd-Ny-HDP" id="I5c-e2-Fcn"/>
@@ -256,7 +254,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Titre" id="WRr-8r-L00">
+                            <tableViewSection headerTitle="Title" id="WRr-8r-L00">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="ajN-Uz-az1" style="IBUITableViewCellStyleDefault" id="a0s-vI-VRm">
                                         <rect key="frame" x="0.0" y="72" width="414" height="44"/>
@@ -277,7 +275,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Auteur(s)" id="sGf-31-QXX">
+                            <tableViewSection headerTitle="Author(s)" id="sGf-31-QXX">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="NND-r2-7ZY" style="IBUITableViewCellStyleDefault" id="G1w-YJ-jeO">
                                         <rect key="frame" x="0.0" y="144" width="414" height="44"/>
@@ -298,7 +296,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Résumé" id="FYV-Oo-74B">
+                            <tableViewSection headerTitle="Summary" id="FYV-Oo-74B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="beF-Mm-bUp" style="IBUITableViewCellStyleDefault" id="d0i-v5-Wxg">
                                         <rect key="frame" x="0.0" y="216" width="414" height="44"/>
@@ -339,11 +337,11 @@
             </objects>
             <point key="canvasLocation" x="2462" y="574"/>
         </scene>
-        <!--Carte-->
+        <!--Map-->
         <scene sceneID="Wm9-A5-r5r">
             <objects>
                 <navigationController id="FQB-Ha-Mb5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Carte" image="Glyph-Map" id="5sh-gV-mLK"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Glyph-Map" id="5sh-gV-mLK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Clg-nb-jVp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -379,7 +377,7 @@
             </objects>
             <point key="canvasLocation" x="-2351" y="2448"/>
         </scene>
-        <!--Discussions-->
+        <!--Chats-->
         <scene sceneID="cP0-1i-rL9">
             <objects>
                 <tableViewController id="wVZ-JW-XF3" customClass="ChatListViewController" customModule="Troc_Livres" customModuleProvider="target" sceneMemberID="viewController">
@@ -416,7 +414,7 @@
                             <outlet property="delegate" destination="wVZ-JW-XF3" id="qsu-Fz-kCM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Discussions" largeTitleDisplayMode="always" id="oej-Xf-IZw">
+                    <navigationItem key="navigationItem" title="Chats" largeTitleDisplayMode="always" id="oej-Xf-IZw">
                         <barButtonItem key="backBarButtonItem" title=" " id="hJz-G7-PPG"/>
                     </navigationItem>
                     <connections>
@@ -430,9 +428,9 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vb-Dr-mTf">
                             <rect key="frame" x="20" y="0.0" width="305" height="165"/>
-                            <string key="text">Aucune discussion.
+                            <string key="text">No current chat.
 
-Les discussions sont créées quand un troc est disponible.</string>
+Chats are created when a trade is available.</string>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -548,7 +546,7 @@ Les discussions sont créées quand un troc est disponible.</string>
                                 <rect key="frame" x="20" y="191.5" width="374" height="650.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placez le code-barres de votre livre dans la vue ci-dessous" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tT-cc-M2g">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place the barcode of your book in the view below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tT-cc-M2g">
                                 <rect key="frame" x="20" y="108" width="374" height="63.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
@@ -627,9 +625,9 @@ Les discussions sont créées quand un troc est disponible.</string>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNH-ko-9Ug">
                             <rect key="frame" x="20" y="0.0" width="302" height="128"/>
-                            <string key="text">Vous ne proposez aucun livre actuellement.
+                            <string key="text">You do not currently offer any books.
 
-Appuyez sur + pour en ajouter.</string>
+Press + to add one.</string>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -647,11 +645,11 @@ Appuyez sur + pour en ajouter.</string>
             </objects>
             <point key="canvasLocation" x="1374" y="574"/>
         </scene>
-        <!--Profil-->
+        <!--Account-->
         <scene sceneID="2wh-O1-VjD">
             <objects>
                 <navigationController id="imP-Qt-57M" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profil" image="Glyph-Person" id="Dn6-AR-Qqs"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="Glyph-Person" id="Dn6-AR-Qqs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hvN-d6-pZ4">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -676,20 +674,20 @@ Appuyez sur + pour en ajouter.</string>
                         <sections>
                             <tableViewSection id="UaN-Y1-B2d">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="eB1-IH-Adb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="eB1-IH-Adb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eB1-IH-Adb" id="IXO-gh-pgP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon lieu de troc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQq-zx-YhT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My trade location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQq-zx-YhT">
                                                     <rect key="frame" x="20" y="11" width="231" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non renseigné" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUh-iu-Hcs">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To be defined" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUh-iu-Hcs">
                                                     <rect key="frame" x="20" y="44" width="231" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -720,6 +718,40 @@ Appuyez sur + pour en ajouter.</string>
                                             </segue>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="51" id="NoA-ec-QFT">
+                                        <rect key="frame" x="0.0" y="150" width="414" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NoA-ec-QFT" id="iaL-10-Rmh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Books only in my language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRz-AP-bcb">
+                                                    <rect key="frame" x="20" y="15" width="305" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2nd-Ap-GXc">
+                                                    <rect key="frame" x="345" y="10" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="jJX-Xp-Qji"/>
+                                                        <constraint firstAttribute="height" constant="31" id="uOa-H9-284"/>
+                                                    </constraints>
+                                                    <color key="onTintColor" name="Color-Button"/>
+                                                    <connections>
+                                                        <action selector="booksLanguageSwitchValueChanged:" destination="0dD-IT-W8H" eventType="valueChanged" id="9VP-Om-qBr"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SRz-AP-bcb" firstAttribute="centerY" secondItem="iaL-10-Rmh" secondAttribute="centerY" id="coZ-aQ-WqR"/>
+                                                <constraint firstItem="2nd-Ap-GXc" firstAttribute="centerY" secondItem="iaL-10-Rmh" secondAttribute="centerY" id="csd-Nm-3DL"/>
+                                                <constraint firstItem="SRz-AP-bcb" firstAttribute="leading" secondItem="iaL-10-Rmh" secondAttribute="leadingMargin" id="dg1-lm-245"/>
+                                                <constraint firstAttribute="trailing" secondItem="2nd-Ap-GXc" secondAttribute="trailing" constant="20" id="l3j-ed-BkT"/>
+                                                <constraint firstItem="2nd-Ap-GXc" firstAttribute="leading" secondItem="SRz-AP-bcb" secondAttribute="trailing" constant="20" id="zyL-YF-syb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -729,7 +761,7 @@ Appuyez sur + pour en ajouter.</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="8j7-KS-BgI">
-                        <barButtonItem key="leftBarButtonItem" title="Déconnexion" id="HDd-x3-JA3">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="HDd-x3-JA3">
                             <connections>
                                 <action selector="signOut" destination="0dD-IT-W8H" id="gX4-Fw-j2V"/>
                             </connections>
@@ -743,6 +775,7 @@ Appuyez sur + pour en ajouter.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="xUh-iu-Hcs" id="0FP-Z1-Php"/>
+                        <outlet property="booksLanguageSwitch" destination="2nd-Ap-GXc" id="ePx-vv-MKC"/>
                         <outlet property="mapView" destination="rt8-Cp-ouf" id="T30-nj-gCg"/>
                     </connections>
                 </tableViewController>
@@ -800,7 +833,7 @@ Appuyez sur + pour en ajouter.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Déplacez la carte pour choisir un lieu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-jG-lXr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag the map to select a location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-jG-lXr">
                                 <rect key="frame" x="10" y="98" width="394" height="30"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
@@ -857,7 +890,7 @@ Appuyez sur + pour en ajouter.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QcK-f5-ygN"/>
-        <segue reference="D3n-3N-zZh"/>
+        <segue reference="xWl-Ga-Lgh"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Color-Button"/>
 </document>

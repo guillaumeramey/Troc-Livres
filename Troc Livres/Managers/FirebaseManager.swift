@@ -38,20 +38,20 @@ class FirebaseManager {
         if let errorCode = AuthErrorCode(rawValue: error._code) {
             switch errorCode {
             case .invalidEmail:
-                return "E-mail invalide"
+                return NSLocalizedString("invalid email", comment: "")
             case .emailAlreadyInUse:
-                return "E-mail déjà utilisé"
+                return NSLocalizedString("email already in use", comment: "")
             case .userNotFound:
-                return "Utilisateur introuvable"
+                return NSLocalizedString("user not found", comment: "")
             case .networkError:
-                return "Problème de connexion"
+                return NSLocalizedString("network error", comment: "")
             case .wrongPassword:
-                return "Mot de passe incorrect"
+                return NSLocalizedString("wrong password", comment: "")
             default:
                 return "Error \(errorCode.rawValue): \(error.localizedDescription)"
             }
         }
-        return "Erreur inconnue"
+        return "unknown error"
     }
 }
 
@@ -81,6 +81,7 @@ extension FirebaseManager: DataManager {
         Persist.uid = ""
         Persist.name = ""
         Persist.address = ""
+        Persist.preferredLanguage = true
         Persist.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         do {
             try Auth.auth().signOut()
@@ -117,6 +118,7 @@ extension FirebaseManager: DataManager {
             }
             Persist.uid = result?.user.uid ?? ""
             Persist.name = name
+            Persist.preferredLanguage = true
             self.usersCollection.document(Persist.uid).setData(["name": name])
             completion(nil)
         }

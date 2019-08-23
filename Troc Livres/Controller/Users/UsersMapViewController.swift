@@ -44,7 +44,7 @@ class UsersMapViewController: MapViewController {
     }
     
     private func displayUsersOnMap() {
-        ProgressHUD.show("Recherche d'utilisateurs")
+        ProgressHUD.show(NSLocalizedString("searching users", comment: ""))
         DependencyInjection.shared.dataManager.getUsers { users in
             ProgressHUD.dismiss()
             self.mapView.addAnnotations(users)

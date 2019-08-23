@@ -101,7 +101,7 @@ extension ChatViewController: UITextFieldDelegate {
             if success {
                 self.messageTextField.text = nil                
             } else {
-                ProgressHUD.showError("Impossible d'envoyer le message")
+                ProgressHUD.showError(NSLocalizedString("error sending message", comment: ""))
             }
         }
         return true

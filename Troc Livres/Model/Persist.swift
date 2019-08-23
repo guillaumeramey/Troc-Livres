@@ -19,6 +19,7 @@ struct Persist {
         static let address = "TrocLivresAddress"
         static let latitude = "TrocLivresLatitude"
         static let longitude = "TrocLivresLongitude"
+        static let preferredLanguage = "TrocLivresPreferredLanguage"
     }
 
     static var uid: String {
@@ -50,12 +51,20 @@ struct Persist {
     
     static var location: CLLocationCoordinate2D {
         get {
-            return CLLocationCoordinate2D(latitude: defaults.double(forKey: Keys.latitude),
-                                          longitude: defaults.double(forKey: Keys.longitude))
+            return CLLocationCoordinate2D(latitude: defaults.double(forKey: Keys.latitude), longitude: defaults.double(forKey: Keys.longitude))
         }
         set {
             defaults.set(newValue.latitude, forKey: Keys.latitude)
             defaults.set(newValue.longitude, forKey: Keys.longitude)
+        }
+    }
+    
+    static var preferredLanguage: Bool {
+        get {
+            return defaults.bool(forKey: Keys.preferredLanguage)
+        }
+        set {
+            defaults.set(newValue, forKey: Keys.preferredLanguage)
         }
     }
 }

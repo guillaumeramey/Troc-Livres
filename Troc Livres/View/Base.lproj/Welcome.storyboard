@@ -45,8 +45,8 @@
                                             <constraint firstAttribute="height" constant="40" id="ZUZ-Zv-q5y"/>
                                         </constraints>
                                         <segments>
-                                            <segment title="Inscription"/>
-                                            <segment title="Connexion"/>
+                                            <segment title="New account"/>
+                                            <segment title="Log in"/>
                                         </segments>
                                         <color key="tintColor" name="Color-Button"/>
                                         <connections>
@@ -62,7 +62,7 @@
                                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YAo-Gl-7zH">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="122"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom d'utilisateur" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dzl-Uw-Sxa" customClass="CustomTextField" customModule="Troc_Livres" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dzl-Uw-Sxa" customClass="CustomTextField" customModule="Troc_Livres" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -102,7 +102,7 @@
                                                                     <constraint firstAttribute="height" constant="1" id="S5S-au-eMU"/>
                                                                 </constraints>
                                                             </view>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mot de passe" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GDD-BL-2vr" customClass="PasswordTextField" customModule="Troc_Livres" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GDD-BL-2vr" customClass="PasswordTextField" customModule="Troc_Livres" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="82" width="374" height="40"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -123,9 +123,9 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXp-8h-rMt">
-                                                <rect key="frame" x="224" y="132" width="150" height="30"/>
+                                                <rect key="frame" x="247" y="132" width="127" height="30"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <state key="normal" title="Mot de passe oublié ?">
+                                                <state key="normal" title="Forgot password ?">
                                                     <color key="titleColor" name="Color-Button"/>
                                                 </state>
                                                 <connections>
@@ -145,14 +145,14 @@
                                             <constraint firstAttribute="height" constant="40" id="Rnw-Ch-HAB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <state key="normal" title="Valider">
+                                        <state key="normal" title="Submit">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="validateButtonPressed:" destination="DnR-uh-rGe" eventType="touchUpInside" id="5Fh-ck-aCK"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Echangez des livres autour de vous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPR-pR-s8A">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trade books around you !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPR-pR-s8A">
                                         <rect key="frame" x="0.0" y="459" width="374" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

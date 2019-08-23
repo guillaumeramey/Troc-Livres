@@ -1,0 +1,30 @@
+
+/* Class = "UITextField"; placeholder = "Nom d'utilisateur"; ObjectID = "Dzl-Uw-Sxa"; */
+"Dzl-Uw-Sxa.placeholder" = "Nom d'utilisateur";
+
+/* Class = "UITextField"; placeholder = "Mot de passe"; ObjectID = "GDD-BL-2vr"; */
+"GDD-BL-2vr.placeholder" = "Mot de passe";
+
+/* Class = "UIButton"; normalTitle = "Valider"; ObjectID = "MJ1-Nq-6Nf"; */
+"MJ1-Nq-6Nf.normalTitle" = "Valider";
+
+/* Class = "UILabel"; text = "Echangez des livres autour de vous !"; ObjectID = "aPR-pR-s8A"; */
+"aPR-pR-s8A.text" = "Echangez des livres autour de vous !";
+
+/* Class = "UILabel"; text = "Livres"; ObjectID = "ehN-cd-IDg"; */
+"ehN-cd-IDg.text" = "Livres";
+
+/* Class = "UIButton"; normalTitle = "Mot de passe oublié ?"; ObjectID = "hXp-8h-rMt"; */
+"hXp-8h-rMt.normalTitle" = "Mot de passe oublié ?";
+
+/* Class = "UILabel"; text = " Troc"; ObjectID = "hkn-NZ-yZq"; */
+"hkn-NZ-yZq.text" = " Troc";
+
+/* Class = "UISegmentedControl"; oF1-Ju-YN4.segmentTitles[0] = "Inscription"; ObjectID = "oF1-Ju-YN4"; */
+"oF1-Ju-YN4.segmentTitles[0]" = "Inscription";
+
+/* Class = "UISegmentedControl"; oF1-Ju-YN4.segmentTitles[1] = "Connexion"; ObjectID = "oF1-Ju-YN4"; */
+"oF1-Ju-YN4.segmentTitles[1]" = "Connexion";
+
+/* Class = "UITextField"; placeholder = "E-mail"; ObjectID = "zgE-rE-ubw"; */
+"zgE-rE-ubw.placeholder" = "E-mail";

@@ -51,12 +51,12 @@ class BookViewController: UITableViewController {
         if let authors = book.authors {
             authorLabel.text = authors.joined(separator: "\n")
         } else {
-            authorLabel.text = "Non disponible"
+            authorLabel.text = NSLocalizedString("unavailable", comment: "")
         }
         if let description = book.bookDescription {
             descriptionLabel.text = description
         } else {
-            descriptionLabel.text = "Non disponible"
+            descriptionLabel.text = NSLocalizedString("unavailable", comment: "")
         }
         if let imageURL = book.imageURL, imageURL != "", let url = URL(string: imageURL) {
             imageView.kf.setImage(with: url)
@@ -106,14 +106,14 @@ class BookViewController: UITableViewController {
 
     // Add the book to the user's collection
     @objc func addTapped(_ sender: Any) {
-        ProgressHUD.show("Ajout du livre")
+        ProgressHUD.show(NSLocalizedString("adding book", comment: ""))
         currentUser.addBook(book) { error in
             if let error = error {
                 print(error.localizedDescription)
-                ProgressHUD.showError("Impossible d'ajouter le livre")
+                ProgressHUD.showError(NSLocalizedString("error adding book", comment: ""))
                 return
             }
-            ProgressHUD.showSuccess("Livre ajouté")
+            ProgressHUD.showSuccess(NSLocalizedString("book added", comment: ""))
             self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
         }
     }
@@ -121,22 +121,22 @@ class BookViewController: UITableViewController {
     // Remove the book from the user's collection
     @objc func trashTapped(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let actionDelete = UIAlertAction(title: "Supprimer le livre", style: .destructive, handler: deleteHandler)
+        let actionDelete = UIAlertAction(title: NSLocalizedString("delete book", comment: ""), style: .destructive, handler: deleteHandler)
         alert.addAction(actionDelete)
-        let actionCancel = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
+        let actionCancel = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
         alert.addAction(actionCancel)
         present(alert, animated: true)
     }
 
     private func deleteHandler(alert: UIAlertAction) {
-        ProgressHUD.show("Suppression du livre")
+        ProgressHUD.show(NSLocalizedString("deleting book", comment: ""))
         currentUser.removeBook(book) { error in
             if let error = error {
                 print(error.localizedDescription)
-                ProgressHUD.showError("Impossible de supprimer le livre")
+                ProgressHUD.showError(NSLocalizedString("error deleting book", comment: ""))
                 return
             }
-            ProgressHUD.showSuccess("Livre supprimé")
+            ProgressHUD.showSuccess(NSLocalizedString("book deleted", comment: ""))
             self.performSegue(withIdentifier: "unwindToUserBooks", sender: self)
         }
     }
@@ -152,7 +152,7 @@ class BookViewController: UITableViewController {
         currentUser.addWish(wish) { error in
             if let error = error {
                 print(error.localizedDescription)
-                ProgressHUD.showError("Impossible d'ajouter le livre à votre liste d'envies")
+                ProgressHUD.showError(NSLocalizedString("error adding book to wishlist", comment: ""))
             } else {
                 self.bookIsAWish.toggle()
                 self.getMatch()
@@ -167,7 +167,7 @@ class BookViewController: UITableViewController {
         currentUser.removeWish(wish) { error in
             if let error = error {
                 print(error.localizedDescription)
-                ProgressHUD.showError("Impossible de supprimer le livre de votre liste d'envies")
+                ProgressHUD.showError(NSLocalizedString("error removing book from wishlist", comment: ""))
             } else {
                 self.bookIsAWish.toggle()
             }
@@ -181,14 +181,18 @@ class BookViewController: UITableViewController {
             if let wish = wish {
                 self.createMessage(for: wish)
             } else {
-                self.alert(title: "Ajouté à la liste d'envies", message: "Si \(self.bookOwner.name) est également intéressé par un de vos livres, une discussion sera créée.")
+                let title = NSLocalizedString("book added to wishlist", comment: "")
+                let message = NSLocalizedString("if", comment: "")
+                    + " " + self.bookOwner.name + " "
+                    + NSLocalizedString("user interested equals match", comment: "")
+                self.alert(title: title, message: message)
             }
         }
     }
     
     private func createMessage(for wish: Wish) {
         
-        let message = "\"\(wish.book.title)\" contre \"\(book.title)\""
+        let message = "\"\(wish.book.title)\" ↔ \"\(book.title)\""
         
         // Create a new chat if it does not exist
         let index = currentUser.chats.firstIndex(where: { $0.user == bookOwner })
@@ -198,7 +202,7 @@ class BookViewController: UITableViewController {
             currentUser.newChat(with: self.bookOwner, completion: { error in
                 if let error = error {
                     print(error.localizedDescription)
-                    ProgressHUD.showError("Impossible de créer une discussion avec \(self.bookOwner.name)")
+                    ProgressHUD.showError(NSLocalizedString("error creating chat with", comment: "") + " " + self.bookOwner.name)
                 } else {
                     self.sendMessage(message, in: currentUser.chats.last)
                 }
@@ -210,12 +214,13 @@ class BookViewController: UITableViewController {
         guard let chat = chat else { return }
         chat.newMessage(content: message, system: true) { success in
             if success {
-                let alertTitle = "Troc disponible !"
-                let alertMessage = "\(self.bookOwner.name) veut également un de vos livres. Une discussion a été créée pour vous permettre de les échanger."
+                let alertTitle = NSLocalizedString("trade available", comment: "")
+                let alertMessage = self.bookOwner.name + " "
+                    + NSLocalizedString("user also wants book", comment: "")
                 self.alert(title: alertTitle, message: alertMessage)
                 self.tabBarController?.tabBar.items?[1].badgeValue = "!"
             } else {
-                ProgressHUD.showError("Erreur lors de la création du troc")
+                ProgressHUD.showError(NSLocalizedString("error creating trade", comment: ""))
             }
         }
     }

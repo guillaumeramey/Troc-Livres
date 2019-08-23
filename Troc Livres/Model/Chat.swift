@@ -44,7 +44,9 @@ extension Chat {
         DependencyInjection.shared.dataManager.newMessage(in: self, content: content, system: system, completion: { error in
             if error == nil {
                 // send notification
-                var title = system ? "Nouveau troc avec " : "Message de "
+                var title = system ?
+                    NSLocalizedString("new trade with", comment: "") :
+                    NSLocalizedString("message from", comment: "")
                 title += currentUser.name
                 NetworkManager().sendPushNotification(to: self.user.fcmToken, title: title, body: content)
             }

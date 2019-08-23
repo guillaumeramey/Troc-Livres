@@ -58,7 +58,7 @@ class WelcomeViewController: UIViewController {
 
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
         if emailTextField.text == nil || emailTextField.text == "" {
-            ProgressHUD.showError("Entrez votre e-mail")
+            ProgressHUD.showError(NSLocalizedString("enter email", comment: ""))
             return
         }
         DependencyInjection.shared.dataManager.resetPassword(withEmail: emailTextField.text!) { errorMessage in
@@ -66,7 +66,9 @@ class WelcomeViewController: UIViewController {
                 ProgressHUD.showError(errorMessage)
                 return
             }
-            self.alert(title: "E-mail envoyé !", message: "Consultez vos e-mails et suivez les instructions pour réinitialiser votre mot de passe.")
+            let title = NSLocalizedString("email sent", comment: "")
+            let message = NSLocalizedString("check emails", comment: "")
+            self.alert(title: title, message: message)
         }
     }
 
@@ -76,14 +78,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         setDesign()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        #warning("remove id")
-//        passwordTextField.text = "123456"
-//        emailTextField.text = "marie.dupont@mail.com"
-        usernameTextField.text = nil
     }
 
     private func setDesign() {
@@ -111,22 +105,22 @@ class WelcomeViewController: UIViewController {
 
     private func checkForm() -> FormError {
         if (usernameTextField.text == nil || usernameTextField.text == "") && registration {
-            return .rejected("Entrez un nom d'utilisateur")
+            return .rejected(NSLocalizedString("enter username", comment: ""))
         }
         if emailTextField.text == nil || emailTextField.text == "" {
-            return .rejected("Entrez votre e-mail")
+            return .rejected(NSLocalizedString("enter email", comment: ""))
         }
         if passwordTextField.text == nil || passwordTextField.text == "" {
-            return .rejected("Entrez votre mot de passe")
+            return .rejected(NSLocalizedString("enter password", comment: ""))
         }
         if passwordTextField.text!.count < 6 {
-            return .rejected("Le mot de passe doit faire 6 caractères minimum")
+            return .rejected(NSLocalizedString("password must be 6 chars", comment: ""))
         }
         return .accepted
     }
 
     private func createUser() {
-        ProgressHUD.show("Création de votre compte")
+        ProgressHUD.show(NSLocalizedString("creating account", comment: ""))
         DependencyInjection.shared.dataManager.createAccount(name: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!) { error in
             if let error = error {
                 ProgressHUD.showError(error)
@@ -138,7 +132,7 @@ class WelcomeViewController: UIViewController {
     }
 
     private func authenticateUser() {
-        ProgressHUD.show("Connexion en cours")
+        ProgressHUD.show(NSLocalizedString("signing in", comment: ""))
         DependencyInjection.shared.dataManager.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { errorMessage in
             if let errorMessage = errorMessage {
                 ProgressHUD.showError(errorMessage)
@@ -154,7 +148,7 @@ class WelcomeViewController: UIViewController {
             if success {
                 self.performSegue(withIdentifier: "userLogged", sender: self)
             } else {
-                ProgressHUD.showError("Impossible de se connecter")
+                ProgressHUD.showError(NSLocalizedString("error sign in", comment: ""))
             }
             self.validateButton.isEnabled = true
         })

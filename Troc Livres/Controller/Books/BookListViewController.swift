@@ -59,7 +59,7 @@ class BookListViewController: UITableViewController {
             title = user.name
         } else {
             user = currentUser
-            title = "Mes livres"
+            title = NSLocalizedString("my books", comment: "")
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         }
     }

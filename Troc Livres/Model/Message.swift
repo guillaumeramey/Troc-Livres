@@ -24,8 +24,8 @@ struct Message {
     }
 
     init(from document: DocumentSnapshot) {
-        content = document.get("content") as? String ?? "Erreur content"
-        sender = document.get("sender") as? String ?? "Erreur sender"
+        content = document.get("content") as? String ?? "Error content"
+        sender = document.get("sender") as? String ?? "Error sender"
         timestamp = document.get("timestamp") as? Timestamp
     }
     

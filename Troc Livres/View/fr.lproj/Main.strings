@@ -1,0 +1,89 @@
+
+/* Class = "UITabBarItem"; title = "Carte"; ObjectID = "5sh-gV-mLK"; */
+"5sh-gV-mLK.title" = "Carte";
+
+/* Class = "UILabel"; text = "Aucune discussion.\n\nLes discussions sont créées quand un troc est disponible."; ObjectID = "7Vb-Dr-mTf"; */
+"7Vb-Dr-mTf.text" = "Aucune discussion.\n\nLes discussions sont créées quand un troc est disponible.";
+
+/* Class = "UILabel"; text = "Placez le code-barres de votre livre dans la vue ci-dessous"; ObjectID = "7tT-cc-M2g"; */
+"7tT-cc-M2g.text" = "Placez le code-barres de votre livre dans la vue ci-dessous";
+
+/* Class = "UITabBarItem"; title = "Profil"; ObjectID = "Dn6-AR-Qqs"; */
+"Dn6-AR-Qqs.title" = "Profil";
+
+/* Class = "UITabBarItem"; title = "Discussions"; ObjectID = "E9F-F5-VIG"; */
+"E9F-F5-VIG.title" = "Discussions";
+
+/* Class = "UITableViewSection"; headerTitle = "Résumé"; ObjectID = "FYV-Oo-74B"; */
+"FYV-Oo-74B.headerTitle" = "Résumé";
+
+/* Class = "UIBarButtonItem"; title = "Déconnexion"; ObjectID = "HDd-x3-JA3"; */
+"HDd-x3-JA3.title" = "Déconnexion";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "NND-r2-7ZY"; */
+"NND-r2-7ZY.text" = "Titre";
+
+/* Class = "UITabBarItem"; title = "Mes livres"; ObjectID = "SpP-xE-sSh"; */
+"SpP-xE-sSh.title" = "Mes livres";
+
+/* Class = "UIButton"; normalTitle = "Rechercher"; ObjectID = "Vh4-GU-QhU"; */
+"Vh4-GU-QhU.normalTitle" = "Rechercher";
+
+/* Class = "UITableViewSection"; headerTitle = "Titre"; ObjectID = "WRr-8r-L00"; */
+"WRr-8r-L00.headerTitle" = "Titre";
+
+/* Class = "UIBarButtonItem"; title = "Carte"; ObjectID = "YM8-Xo-A7E"; */
+"YM8-Xo-A7E.title" = "Carte";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Ydv-QD-c2b"; */
+"Ydv-QD-c2b.text" = "Titre";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "ajN-Uz-az1"; */
+"ajN-Uz-az1.text" = "Titre";
+
+/* Class = "UILabel"; text = "Déplacez la carte pour choisir un lieu"; ObjectID = "b9J-jG-lXr"; */
+"b9J-jG-lXr.text" = "Déplacez la carte pour choisir un lieu";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "beF-Mm-bUp"; */
+"beF-Mm-bUp.text" = "Titre";
+
+/* Class = "UITextField"; placeholder = "Auteur"; ObjectID = "bfV-JS-FPz"; */
+"bfV-JS-FPz.placeholder" = "Auteur";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "hJz-G7-PPG"; */
+"hJz-G7-PPG.title" = " ";
+
+/* Class = "UITextField"; placeholder = "Titre"; ObjectID = "hNy-R9-XBc"; */
+"hNy-R9-XBc.placeholder" = "Titre";
+
+/* Class = "UITextField"; placeholder = "Message"; ObjectID = "i2e-e4-6lU"; */
+"i2e-e4-6lU.placeholder" = "Message";
+
+/* Class = "UINavigationItem"; title = "Discussions"; ObjectID = "oej-Xf-IZw"; */
+"oej-Xf-IZw.title" = "Discussions";
+
+/* Class = "UILabel"; text = "📍"; ObjectID = "peb-hP-KKp"; */
+"peb-hP-KKp.text" = "📍";
+
+/* Class = "UITableViewSection"; headerTitle = "Auteur(s)"; ObjectID = "sGf-31-QXX"; */
+"sGf-31-QXX.headerTitle" = "Auteur(s)";
+
+/* Class = "UILabel"; text = "Background label"; ObjectID = "skW-61-Zgw"; */
+"skW-61-Zgw.text" = "Background label";
+
+/* Class = "UINavigationItem"; title = "Recherche"; ObjectID = "wZm-gI-EQy"; */
+"wZm-gI-EQy.title" = "Recherche";
+
+/* Class = "UILabel"; text = "Vous ne proposez aucun livre actuellement.\n\nAppuyez sur + pour en ajouter."; ObjectID = "xNH-ko-9Ug"; */
+"xNH-ko-9Ug.text" = "Vous ne proposez aucun livre actuellement.\n\nAppuyez sur + pour en ajouter.";
+
+/* Class = "UILabel"; text = "Non renseigné"; ObjectID = "xUh-iu-Hcs"; */
+"xUh-iu-Hcs.text" = "Non renseigné";
+
+/* Class = "UILabel"; text = "Mon lieu de troc"; ObjectID = "yQq-zx-YhT"; */
+"yQq-zx-YhT.text" = "Mon lieu de troc";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "zfi-EU-Poy"; */
+"zfi-EU-Poy.text" = "Titre";
+
+"SRz-AP-bcb.text" = "Livres dans ma langue uniquement";

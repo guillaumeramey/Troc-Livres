@@ -58,10 +58,10 @@ class ChangeLocationViewController: MapViewController {
         ProgressHUD.show()
         DependencyInjection.shared.dataManager.setLocation(address: address, location: location) { error in
             if let error = error {
-                ProgressHUD.showError("Impossible d'enregistrer l'adresse : " + error.localizedDescription)
+                ProgressHUD.showError(NSLocalizedString("error saving address", comment: "") + error.localizedDescription)
                 return
             }
-            ProgressHUD.showSuccess("Adresse enregistrée")
+            ProgressHUD.showSuccess(NSLocalizedString("address saved", comment: ""))
             self.delegate?.changeLocation(address: address, location: location)
             self.dismiss(animated: true, completion: nil)
         }
@@ -83,11 +83,11 @@ extension ChangeLocationViewController: MKMapViewDelegate {
 
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
             if let error = error {
-                self.address = "Impossible d'obtenir l'adresse : " + error.localizedDescription
+                self.address = NSLocalizedString("error getting address", comment: "") + " : " + error.localizedDescription
                 return
             }
             guard let placemarks = placemarks?.first else {
-                self.address = "Impossible d'obtenir l'adresse"
+                self.address = NSLocalizedString("error getting address", comment: "")
                 return
             }
 

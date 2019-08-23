@@ -45,26 +45,18 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chargement en cours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDI-V7-btK">
-                                <rect key="frame" x="113.5" y="141" width="187" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zMq-4q-h3y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="05a-NS-zsh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bJs-E2-rbD" secondAttribute="trailing" constant="20" id="5Ms-bU-YeU"/>
                             <constraint firstItem="G6u-BV-tVh" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="AIq-f3-uk9"/>
-                            <constraint firstItem="UDI-V7-btK" firstAttribute="top" secondItem="zMq-4q-h3y" secondAttribute="bottom" constant="20" id="Kff-BQ-2tn"/>
                             <constraint firstItem="bJs-E2-rbD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-10" id="MZ5-ww-XR7"/>
                             <constraint firstItem="G6u-BV-tVh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OQE-vC-qPv"/>
                             <constraint firstItem="bJs-E2-rbD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Uib-JZ-DoB"/>
                             <constraint firstAttribute="bottom" secondItem="G6u-BV-tVh" secondAttribute="bottom" id="V9F-PJ-1Uw"/>
                             <constraint firstItem="zMq-4q-h3y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Z0a-s5-mg6"/>
                             <constraint firstItem="G6u-BV-tVh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tP0-Dr-WBT"/>
-                            <constraint firstItem="UDI-V7-btK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uIW-bx-LPx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zMq-4q-h3y" secondAttribute="trailing" constant="20" id="yHA-PY-Bj4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

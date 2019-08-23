@@ -56,6 +56,7 @@
 		A4F4EFD822D4FFF10011D93B /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */; };
 		A4F4EFDA22D5000F0011D93B /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */; };
 		A4FBF03D22F71E3500965737 /* DataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FBF03C22F71E3500965737 /* DataManagerMock.swift */; };
+		A4FC1596230F027900E799C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4FC1598230F027900E799C4 /* Localizable.strings */; };
 		A4FC318D22FCC861009C503E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC318C22FCC861009C503E /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,10 @@
 		A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
 		A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		A4FBF03C22F71E3500965737 /* DataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerMock.swift; sourceTree = "<group>"; };
+		A4FC1592230EFA6E00E799C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Welcome.strings; sourceTree = "<group>"; };
+		A4FC1593230EFA6E00E799C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		A4FC1597230F027900E799C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A4FC1599230F028900E799C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A4FC318C22FCC861009C503E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C13AB8DA023E5C7AE6FF92FC /* Pods-Troc LivresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Troc LivresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Troc LivresTests/Pods-Troc LivresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3726D53EFF532DAF2F3882E /* Pods_Troc_Livres.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Troc_Livres.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +181,6 @@
 			children = (
 				A4051E682290F7AA002A5D18 /* Constants.swift */,
 				A41351152293534500934188 /* Persist.swift */,
-				A4051E7622926241002A5D18 /* Extensions.swift */,
 				A4051E702292399E002A5D18 /* User.swift */,
 				A407504122E894B0002BE9BA /* Wish.swift */,
 				A4E3CC07228D124A00180F09 /* Book.swift */,
@@ -196,6 +200,31 @@
 				A47D0A5522B1A29B000378E0 /* Cells */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A4485C192310296E000DABBD /* Network Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A45E7CB922D502080011A29C /* NetworkManagerTests.swift */,
+				A4F4EFCF22D4FCD70011D93B /* Book.json */,
+				A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */,
+				A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */,
+				A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */,
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		A4485C1A23102990000DABBD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4D0B3B422F9C55E006D76E0 /* ChatTestsSuccess.swift */,
+				A4620E122301B7E800C3E89D /* ChatTestsFail.swift */,
+				A4556A0422D79E5100DC15C2 /* UserTestsSuccess.swift */,
+				A4620E142301BAAA00C3E89D /* UserTestsFail.swift */,
+				A4BDA0D222F1ED910076855D /* DataMock.swift */,
+				A4FBF03C22F71E3500965737 /* DataManagerMock.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A4516A2422A4827600A2FF7F /* Chats */ = {
@@ -312,12 +341,14 @@
 		A4E3CBE4228D0F4400180F09 /* Troc Livres */ = {
 			isa = PBXGroup;
 			children = (
+				A4051E7622926241002A5D18 /* Extensions.swift */,
 				A48E5CA422DD57260061B27A /* Troc Livres.entitlements */,
 				A4B7EC0A22EB3FAC008F8407 /* Managers */,
 				A4051E5E22909F67002A5D18 /* Model */,
 				A4051E5F22909F6E002A5D18 /* View */,
 				A465C9E222909F3E0048D3D5 /* Controller */,
 				A4E3CBE5228D0F4400180F09 /* AppDelegate.swift */,
+				A4FC1598230F027900E799C4 /* Localizable.strings */,
 				A46041C5229F429200E78852 /* Assets.xcassets */,
 				A4E3CBF1228D0F4500180F09 /* Info.plist */,
 				A494720E230843A800309140 /* GoogleService-Info.plist */,
@@ -328,18 +359,9 @@
 		A4E3CBF9228D0F4600180F09 /* Troc LivresTests */ = {
 			isa = PBXGroup;
 			children = (
-				A4D0B3B422F9C55E006D76E0 /* ChatTestsSuccess.swift */,
-				A4620E122301B7E800C3E89D /* ChatTestsFail.swift */,
-				A4556A0422D79E5100DC15C2 /* UserTestsSuccess.swift */,
-				A4620E142301BAAA00C3E89D /* UserTestsFail.swift */,
-				A45E7CB922D502080011A29C /* NetworkManagerTests.swift */,
+				A4485C1A23102990000DABBD /* Model */,
+				A4485C192310296E000DABBD /* Network Manager */,
 				A4E3CBFC228D0F4600180F09 /* Info.plist */,
-				A4F4EFCF22D4FCD70011D93B /* Book.json */,
-				A4F4EFD722D4FFF10011D93B /* URLSessionDataTaskMock.swift */,
-				A4F4EFD922D5000F0011D93B /* URLSessionMock.swift */,
-				A4F4EFD122D4FD190011D93B /* FakeResponseData.swift */,
-				A4BDA0D222F1ED910076855D /* DataMock.swift */,
-				A4FBF03C22F71E3500965737 /* DataManagerMock.swift */,
 			);
 			path = "Troc LivresTests";
 			sourceTree = "<group>";
@@ -419,6 +441,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = A4E3CBD9228D0F4400180F09;
 			productRefGroup = A4E3CBE3228D0F4400180F09 /* Products */;
@@ -441,6 +464,7 @@
 				A4751312229DDEB3002EA87E /* MessageCell.xib in Resources */,
 				A46041C6229F429200E78852 /* Assets.xcassets in Resources */,
 				A4E3CBEB228D0F4400180F09 /* Main.storyboard in Resources */,
+				A4FC1596230F027900E799C4 /* Localizable.strings in Resources */,
 				A4DF67C022AD575A00D6929C /* BookCell.xib in Resources */,
 				A494720F230843A800309140 /* GoogleService-Info.plist in Resources */,
 			);
@@ -590,6 +614,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4AE8F0C229606E1008DA01B /* Base */,
+				A4FC1592230EFA6E00E799C4 /* fr */,
 			);
 			name = Welcome.storyboard;
 			sourceTree = "<group>";
@@ -598,6 +623,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4E3CBEA228D0F4400180F09 /* Base */,
+				A4FC1593230EFA6E00E799C4 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -610,6 +636,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A4FC1598230F027900E799C4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4FC1597230F027900E799C4 /* en */,
+				A4FC1599230F028900E799C4 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -617,6 +652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -678,6 +714,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

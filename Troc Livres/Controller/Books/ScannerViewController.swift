@@ -77,7 +77,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     private func failed() {
-        alert(title: "Scan impossible", message: "Votre appareil ne peut pas scanner ce code.")
+        let title = NSLocalizedString("error scan", comment: "")
+        let message = NSLocalizedString("phone cannot scan", comment: "")
+        alert(title: title, message: message)
         captureSession = nil
     }
 

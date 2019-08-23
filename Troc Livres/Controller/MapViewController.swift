@@ -34,13 +34,13 @@ class MapViewController: UIViewController {
         case .authorizedWhenInUse:
             centerMapViewOnUserLocation()
         case .denied:
-            alert(title: "Impossible d'accéder aux données de localisation",
-                  message: "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.")
+            alert(title: NSLocalizedString("error access location", comment: ""),
+                  message: NSLocalizedString("change settings for access location", comment: ""))
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            alert(title: "Impossible d'accéder aux données de localisation",
-                  message: "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.")
+            alert(title: NSLocalizedString("error access location", comment: ""),
+                  message: NSLocalizedString("access location restricted", comment: ""))
         case .authorizedAlways:
             break
         @unknown default:

@@ -1,0 +1,133 @@
+/* 
+  Localizable.strings
+  Troc Livres
+
+  Created by Guillaume Ramey on 22/08/2019.
+  Copyright © 2019 Guillaume Ramey. All rights reserved.
+*/
+
+"new trade with" = "New trade with ";
+
+"message from" = "Message from ";
+
+"access location restricted" = "You do not have sufficient permission to use location data.";
+
+"change settings for access location" = "Change your iPhone settings to allow the location data to be used by the application.";
+
+"error access location" = "Unable to access location data";
+
+"scan or fill to search" =  "Scan the barcode
+
+- or -
+
+Fill the search fields";
+
+"searching" = "Search in progress";
+
+"book" = "book";
+
+"my books" = "My books";
+
+"adding book" = "Adding book";
+
+"book added" = "Book added";
+
+"book added to wishlist" = "Book added to the wishlist";
+
+"book deleted" = "Book deleted";
+
+"delete book" = "Delete the book";
+
+"deleting book" = "Deleting the book";
+
+"error adding book" = "Unable to add the book";
+
+"error adding book to wishlist" = "Unable to add the book to the wishlist";
+
+"error creating chat with" = "Unable to create chat with";
+
+"error creating trade" = "Unable to create trade";
+
+"error deleting book" = "Unable to delete the book";
+
+"error removing book from wishlist" = "Unable to remove the book from the wishlist";
+
+"if" = "If";
+
+"trade available" = "Trade available !";
+
+"unavailable" = "Unavailable";
+
+"user also wants book" = "also wants one of your books. A chat has been created to allow you to trade them.";
+
+"user interested equals match" = "also wants one of your books, a chat will be created.";
+
+"error scan" = "Unable to scan";
+
+"phone cannot scan" = "Your device can not scan this barcode.";
+
+"check emails" = "Check your emails and follow the instructions to reset your password.";
+
+"creating account" = "Creating your account";
+
+"email sent" = "Email sent !";
+
+"enter email" = "Enter your email";
+
+"enter password" = "Enter your password";
+
+"enter username" = "Enter your username";
+
+"error sign in" = "Unable to sign in";
+
+"password must be 6 chars" = "Password must have at least 6 characters";
+
+"signing in" = "Signing in";
+
+"address saved" = "Address saved";
+
+"error getting address" = "Unable to get the address";
+
+"error saving address" = "Unable to save the address";
+
+"alert delete account" = "The deletion of an account is final and irreversible";
+
+"cancel" = "Cancel";
+
+"confirm" = "Confirm";
+
+"deleting account" = "Deleting your account";
+
+"error deleting account" = "Unable to delete the account";
+
+"password" = "Password";
+
+"password required" = "Password required";
+
+"tap to select location" = "Tap to select a location";
+
+"wrong password" = "Wrong password";
+
+"searching users" = "Searching for users";
+
+"error sending message" = "Unable to send the message";
+
+"invalid email" = "Invalid email";
+
+"email already in use" = "Email already in use";
+
+"user not found" = "User not found";
+
+"network error" = "Network error";
+
+"unknown error" = "Unknown error";
+
+"network error encodingString" = "Forbidden characters";
+
+"network error badURL" = "Request error";
+
+"network error noData" = "No data received";
+
+"network error noResult" = "No result";
+
+"network error noResponse" = "No response";

@@ -30,13 +30,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
             if backgroundText != nil {
                 tableViewBackgroundLabel.text = backgroundText
             } else {
-                tableViewBackgroundLabel.text = """
-                    Scannez le code-barres
-
-                    - ou -
-
-                    Remplissez les champs de texte
-                    """
+                tableViewBackgroundLabel.text = NSLocalizedString("scan or fill to search", comment: "")
             }
         }
     }
@@ -72,7 +66,8 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
     }
 
     func getBooks(isbn: String = "") {
-        ProgressHUD.show("Recherche en cours")
+        guard isbn != "" || titleTextField.text! != "" || authorTextField.text! != "" else { return }
+        ProgressHUD.show(NSLocalizedString("searching", comment: ""))
         backgroundText = ""
         let networkManager = NetworkManager()
         networkManager.getBooks(isbn: isbn, title: titleTextField.text!, author: authorTextField.text!) { result in
@@ -84,7 +79,7 @@ class SearchBookViewController: UIViewController, ScannerDelegate {
             case .failure(let error):
                 self.results.removeAll()
                 self.tableView.reloadData()
-                self.tableViewBackgroundLabel.text = error.rawValue
+                self.tableViewBackgroundLabel.text = NSLocalizedString(error.rawValue, comment: "")
             }
             ProgressHUD.dismiss()
         }

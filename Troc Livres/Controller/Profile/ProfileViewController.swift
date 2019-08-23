@@ -18,15 +18,23 @@ class ProfileViewController: UITableViewController {
 
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var mapView: PassThroughView!
+    @IBOutlet weak var booksLanguageSwitch: UISwitch!
+    
+    // MARK: - Actions
+
+    @IBAction func booksLanguageSwitchValueChanged(_ sender: UISwitch) {
+        Persist.preferredLanguage = sender.isOn
+    }
     
     // MARK: - Methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Persist.name
         tableView.tableFooterView = UIView()
         updateUserLocation()
+        booksLanguageSwitch.isOn = Persist.preferredLanguage
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +50,7 @@ class ProfileViewController: UITableViewController {
     }
     
     private func updateUserLocation() {
-        addressLabel.text = Persist.address != "" ? Persist.address : "Appuyez pour choisir un lieu"
+        addressLabel.text = Persist.address != "" ? Persist.address : NSLocalizedString("tap to select location", comment: "")
         let region = MKCoordinateRegion.init(center: Persist.location,
                                              latitudinalMeters: 1000,
                                              longitudinalMeters: 1000)
@@ -59,26 +67,26 @@ class ProfileViewController: UITableViewController {
     }
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        let alertTitle = "Mot de passe requis"
-        let alertMessage = "La suppression d'un compte est définitive et irréversible."
+        let alertTitle = NSLocalizedString("password required", comment: "")
+        let alertMessage = NSLocalizedString("alert delete account", comment: "")
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
 
         // Reauthenticate to confirm deletion
         alert.addTextField { textField in
-            textField.placeholder = "Mot de passe"
+            textField.placeholder = NSLocalizedString("password", comment: "")
             textField.isSecureTextEntry = true
         }
         
-        alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Confirmer", style: .destructive, handler: { [weak alert] (_) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: .destructive, handler: { [weak alert] (_) in
             if let password = alert?.textFields![0].text, password != "" {
                 ProgressHUD.show()
                 DependencyInjection.shared.dataManager.reauthenticate(withPassword: password, completion: { success in
                     if success {
                         self.deleteUser()
                     } else {
-                        ProgressHUD.showError("Mot de passe invalide")
+                        ProgressHUD.showError(NSLocalizedString("wrong password", comment: ""))
                     }
                 })
             }
@@ -87,10 +95,10 @@ class ProfileViewController: UITableViewController {
     }
 
     private func deleteUser() {
-        ProgressHUD.show("Suppression de votre compte")
+        ProgressHUD.show(NSLocalizedString("deleting account", comment: ""))
         DependencyInjection.shared.dataManager.deleteUser { error in
             if let error = error {
-                ProgressHUD.showError("Echec de la suppression : \(error.localizedDescription)")
+                ProgressHUD.showError(NSLocalizedString("error deleting account", comment: "") + error.localizedDescription)
             } else {
                 DependencyInjection.shared.dataManager.signOut()
             }
@@ -98,11 +106,17 @@ class ProfileViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 5
+        if indexPath.row == 0 {
+            return view.frame.height / 5
+        }
+        return view.frame.height / 10
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 5
+        if indexPath.row == 0 {
+            return view.frame.height / 5
+        }
+        return view.frame.height / 10
     }
 
     // MARK: - Navigation

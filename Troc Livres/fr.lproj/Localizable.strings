@@ -1,0 +1,133 @@
+/* 
+  Localizable.strings
+  Troc Livres
+
+  Created by Guillaume Ramey on 22/08/2019.
+  Copyright © 2019 Guillaume Ramey. All rights reserved.
+*/
+
+"new trade with" = "Nouveau troc avec ";
+
+"message from" = "Message de ";
+
+"access location restricted" = "Vous n'avez pas la permission suffisante pour utiliser les données de localisation.";
+
+"change settings for access location" = "Modifiez les paramètres de l'iPhone pour autoriser l'utilisation des données de localisation par l'application.";
+
+"error access location" = "Impossible d'accéder aux données de localisation";
+
+"scan or fill to search" =  "Scannez le code-barres
+
+- ou -
+
+Remplissez les champs de texte";
+
+"searching" = "Recherche en cours";
+
+"book" = "livre";
+
+"my books" = "Mes livres";
+
+"adding book" = "Ajout du livre";
+
+"book added" = "Livre ajouté";
+
+"book added to wishlist" = "Livre ajouté à la liste d'envies";
+
+"book deleted" = "Livre supprimé";
+
+"delete book" = "Supprimer le livre";
+
+"deleting book" = "Suppression du livre";
+
+"error adding book" = "Impossible d'ajouter le livre";
+
+"error adding book to wishlist" = "Impossible d'ajouter le livre à la liste d'envies";
+
+"error creating chat with" = "Impossible de créer la discussion avec";
+
+"error creating trade" = "Impossible de créer le troc";
+
+"error deleting book" = "Impossible de supprimer le livre";
+
+"error removing book from wishlist" = "Impossible de retirer le livre de la liste d'envies";
+
+"if" = "Si";
+
+"trade available" = "Un troc est disponible !";
+
+"unavailable" = "Non disponible";
+
+"user also wants book" = "veut également un de vos livres. Une discussion a été créée pour vous permettre de les échanger.";
+
+"user interested equals match" = "est également intéressé par un de vos livres, une discussion sera créée.";
+
+"error scan" = "Scan impossible";
+
+"phone cannot scan" = "Votre appareil ne peut pas scanner ce code.";
+
+"check emails" = "Consultez vos e-mails et suivez les instructions pour réinitialiser votre mot de passe.";
+
+"creating account" = "Création de votre compte";
+
+"email sent" = "Email envoyé !";
+
+"enter email" = "Entrez votre e-mail";
+
+"enter password" = "Entrez votre mot de passe";
+
+"enter username" = "Entrez votre nom d'utlisateur";
+
+"error sign in" = "Impossible de se connecter";
+
+"password must be 6 chars" = "Le mot de passe doit faire 6 caractères minimum";
+
+"signing in" = "Connexion en cours";
+
+"address saved" = "Adresse enregistrée";
+
+"error getting address" = "Impossible d'obtenir l'adresse";
+
+"error saving address" = "Impossible d'enregistrer l'adresse";
+
+"alert delete account" = "La suppression d'un compte est définitive et irréversible";
+
+"cancel" = "Annuler";
+
+"confirm" = "Confirmer";
+
+"deleting account" = "Suppression de votre compte";
+
+"error deleting account" = "Impossible de supprimer le compte";
+
+"password" = "Mot de passe";
+
+"password required" = "Mot de passe requis";
+
+"tap to select location" = "Appuyer pour choisir un lieu";
+
+"wrong password" = "Mot de passe incorrect";
+
+"searching users" = "Recherche d'utilisateurs";
+
+"error sending message" = "Impossible d'envoyer le message";
+
+"invalid email" = "E-mail invalide";
+
+"email already in use" = "E-mail déjà utilisé";
+
+"user not found" = "Utilisateur introuvable";
+
+"network error" = "Problème de connexion";
+
+"unknown error" = "Erreur inconnue";
+
+"network error encodingString" = "Caractères interdits";
+
+"network error badURL" = "Erreur dans la requête";
+
+"network error noData" = "Aucune donnée reçue";
+
+"network error noResult" = "Aucun résultat";
+
+"network error noResponse" = "Erreur réseau";

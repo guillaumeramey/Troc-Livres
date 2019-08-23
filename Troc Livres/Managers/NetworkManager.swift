@@ -10,16 +10,16 @@ import UIKit
 import UserNotifications
 
 enum NetworkError: String, Error {
-    case encodingString = "Caractères interdits"
-    case badURL = "Erreur dans la requête"
-    case error = "Une erreur est survenue"
-    case noData = "Aucune donnée reçue"
-    case noResult = "Aucun résultat"
-    case noResponse = "Erreur réseau"
+    case encodingString = "network error encodingString"
+    case badURL = "network error badURL"
+    case error = "unknown error"
+    case noData = "network error noData"
+    case noResult = "network error noResult"
+    case noResponse = "network error noResponse"
 }
 
 class NetworkManager: NSObject {
-    
+
     private var task: URLSessionDataTask!
     private let session: URLSession
     private let booksURL = "https://www.googleapis.com/books/v1/volumes?"
@@ -36,13 +36,12 @@ class NetworkManager: NSObject {
 
 extension NetworkManager {
     
-    func getBooks(isbn: String = "", title: String = "", author: String = "", langRestrict: String = "fr", completion: @escaping (Result<[Book], NetworkError>) -> Void) {
+    func getBooks(isbn: String = "", title: String = "", author: String = "", completion: @escaping (Result<[Book], NetworkError>) -> Void) {
 
         let query = createBookQuery(
             isbn: isbn,
             title: title.trimmingCharacters(in: CharacterSet(charactersIn: " ")),
-            author: author.trimmingCharacters(in: CharacterSet(charactersIn: " ")),
-            langRestrict: langRestrict
+            author: author.trimmingCharacters(in: CharacterSet(charactersIn: " "))
         )
 
         // remove forbidden characters
@@ -90,7 +89,7 @@ extension NetworkManager {
         task?.resume()
     }
     
-    private func createBookQuery(isbn: String, title: String, author: String, langRestrict: String) -> String {
+    private func createBookQuery(isbn: String, title: String, author: String) -> String {
         var query = booksURL + "key=" + booksKey + "&q="
 
         if isbn != "" {
@@ -107,8 +106,8 @@ extension NetworkManager {
                 query += "inauthor:" + author.replacingOccurrences(of: " ", with: "+inauthor:")
             }
             
-            if langRestrict != "" {
-                query += "&langRestrict=" + langRestrict
+            if Persist.preferredLanguage, let languageCode = Locale.current.languageCode {
+                query += "&langRestrict=" + languageCode
             }
         }
         query += "&fields=items/id,items/volumeInfo(title,authors,description,pageCount,imageLinks/thumbnail,language)"

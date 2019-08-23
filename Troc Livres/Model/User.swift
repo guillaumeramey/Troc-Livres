@@ -44,7 +44,7 @@ class User: NSObject, MKAnnotation {
     
     var subtitle: String? {
         if let numberOfBooks = numberOfBooks {
-            return "\(numberOfBooks) livre" + (numberOfBooks > 1 ? "s" : "")
+            return "\(numberOfBooks) \(NSLocalizedString("book", comment: ""))" + (numberOfBooks > 1 ? "s" : "")
         }
         return nil
     }
